@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 gem 'pg'
 gem 'jbuilder', '~> 2.0'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # Auth
 gem 'bcrypt', '~> 3.1.7'
