@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'lunches', 'stuff', on: :collection
   end
 
-  resources :orders, except: [:new, :edit]
+  resources :orders, except: [:new, :edit, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

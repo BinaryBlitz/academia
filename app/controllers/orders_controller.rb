@@ -9,20 +9,10 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
+    @order = current_user.orders.build(order_params)
 
     if @order.save
       render :show, status: :created, location: @order
-    else
-      render json: @order.errors, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    @order = Order.find(params[:id])
-
-    if @order.update(order_params)
-      head :no_content
     else
       render json: @order.errors, status: :unprocessable_entity
     end
@@ -41,6 +31,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address)
+    params.require(:order).permit(:address, line_items_params: [:dish_id, :quantity])
   end
 end
