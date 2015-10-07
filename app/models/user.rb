@@ -16,4 +16,9 @@
 
 class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
+
+  has_secure_password validations: false
+  has_secure_token :api_token
+
+  validates :password, presence: true, on: :create, length: { minimum: 6 }
 end
