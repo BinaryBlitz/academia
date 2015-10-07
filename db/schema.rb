@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007181427) do
+ActiveRecord::Schema.define(version: 20151007183258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,21 @@ ActiveRecord::Schema.define(version: 20151007181427) do
     t.boolean  "lunch",       default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+  end
+
+  create_table "dishes_ingredients", id: false, force: :cascade do |t|
+    t.integer "dish_id"
+    t.integer "ingredient_id"
+  end
+
+  add_index "dishes_ingredients", ["dish_id"], name: "index_dishes_ingredients_on_dish_id", using: :btree
+  add_index "dishes_ingredients", ["ingredient_id"], name: "index_dishes_ingredients_on_ingredient_id", using: :btree
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "line_items", force: :cascade do |t|
