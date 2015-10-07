@@ -1,44 +1,21 @@
 class DishesController < ApplicationController
-  before_action :set_dish, only: [:show, :update, :destroy]
+  before_action :set_dishes
 
   def index
-    @dishes = Dish.all
   end
 
-  def show
+  def lunches
+    render :index
   end
 
-  def create
-    @dish = Dish.new(dish_params)
-
-    if @dish.save
-      render :show, status: :created, location: @dish
-    else
-      render json: @dish.errors, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    if @dish.update(dish_params)
-      head :no_content
-    else
-      render json: @dish.errors, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @dish.destroy
-
-    head :no_content
+  def stuff
+    render :index
   end
 
   private
 
-  def set_dish
-    @dish = Dish.find(params[:id])
-  end
-
-  def dish_params
-    params.require(:dish).permit(:name, :description, :price, :image)
+  def set_dishes
+    @day = Day.today
+    @dishes = @day.dishes
   end
 end
