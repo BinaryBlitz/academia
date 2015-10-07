@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :dishes, except: [:new, :edit]
   resources :days, except: [:new, :edit]
   resources :orders, except: [:new, :edit]
   resources :users, except: [:new, :edit]
