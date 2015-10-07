@@ -3,8 +3,12 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 gem 'pg'
 gem 'jbuilder', '~> 2.0'
+
+# Auth
 gem 'bcrypt', '~> 3.1.7'
 gem 'has_secure_token'
+gem 'vkontakte_api'
+gem 'koala'
 
 # Front end
 gem 'sass-rails', '~> 5.0'

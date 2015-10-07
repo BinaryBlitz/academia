@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   resources :dishes, except: [:new, :edit]
   resources :days, except: [:new, :edit]
   resources :orders, except: [:new, :edit]
-  resources :users, except: [:new, :edit]
+  resource :user, except: [:index, :new, :edit, :destroy] do
+    collection do
+      post 'authenticate'
+      post 'authenticate_vk'
+      post 'authenticate_fb'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

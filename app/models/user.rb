@@ -21,4 +21,6 @@ class User < ActiveRecord::Base
   has_secure_token :api_token
 
   validates :password, presence: true, on: :create, length: { minimum: 6 }
+
+  include Authenticable
 end
