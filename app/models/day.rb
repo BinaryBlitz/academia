@@ -11,4 +11,6 @@
 class Day < ActiveRecord::Base
   has_many :schedules, dependent: :destroy
   has_many :dishes, through: :schedules
+
+  validates :day_of_week, presence: true, inclusion: 0..6, uniqueness: true
 end

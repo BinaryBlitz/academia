@@ -13,4 +13,8 @@
 class LineItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :dish
+
+  validates :order, presence: true
+  validates :dish, presence: true
+  validates :quantity, presence: true
 end

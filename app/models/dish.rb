@@ -18,4 +18,8 @@ class Dish < ActiveRecord::Base
   has_many :days, through: :schedules
   has_and_belongs_to_many :ingredients
   has_and_belongs_to_many :badges
+
+  validates :name, presence: true
+  validates :price, presence: true, numericality: { greter_than: 0 }
+  validates :image, presence: true
 end

@@ -12,4 +12,7 @@
 class Schedule < ActiveRecord::Base
   belongs_to :day
   belongs_to :dish
+
+  validates :day, presence: true
+  validates :dish, presence: true
 end

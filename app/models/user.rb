@@ -17,10 +17,14 @@
 class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
 
-  has_secure_password validations: false
   has_secure_token :api_token
 
+  has_secure_password validations: false
   validates :password, presence: true, on: :create, length: { minimum: 6 }
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :phone_number, presence: true
 
   include Authenticable
 end
