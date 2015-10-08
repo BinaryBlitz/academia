@@ -1,21 +1,16 @@
 class DishesController < ApplicationController
-  before_action :set_dishes
-
   def index
+    @day = Day.today
+    @dishes = @day.dishes
   end
 
   def lunches
+    @dishes = Dish.where(lunch: true)
     render :index
   end
 
   def stuff
+    @dishes = Dish.where(stuff: true)
     render :index
-  end
-
-  private
-
-  def set_dishes
-    @day = Day.today
-    @dishes = @day.dishes
   end
 end

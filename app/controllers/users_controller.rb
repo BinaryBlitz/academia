@@ -16,8 +16,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       head :no_content
     else
@@ -29,7 +27,7 @@ class UsersController < ApplicationController
     @user = User.find_by(email: params[:email])
 
     if @user && @user.authenticate(params[:password])
-      render json: { id: @user.id, api_token: @user.api_token }
+      render :show
     else
       render json: { error: 'Invalid email / password combination' }, status: :unauthorized
     end
@@ -39,7 +37,7 @@ class UsersController < ApplicationController
     if params[:token].present?
       vk = VkontakteApi::Client.new(params[:token])
       @user = User.find_or_create_from_vk(vk)
-      render json: { id: @user.id, api_token: @user.api_token }
+      render :show
     else
       head 422
     end
@@ -49,7 +47,7 @@ class UsersController < ApplicationController
     if params[:token].present?
       graph = Koala::Facebook::API.new(params[:token])
       @user = User.find_or_create_from_fb(graph)
-      render json: { id: @user.id, api_token: @user.api_token }
+      render :show
     else
       head 422
     end
