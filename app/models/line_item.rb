@@ -11,7 +11,7 @@
 #
 
 class LineItem < ActiveRecord::Base
-  belongs_to :order
+  belongs_to :order, inverse_of: :line_items
   belongs_to :dish
 
   validates :order, presence: true
