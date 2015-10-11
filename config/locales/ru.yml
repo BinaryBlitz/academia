@@ -23,6 +23,9 @@ ru:
   activerecord:
     models:
       dish: Блюдо
+      ingredient: Ингридиент
+      order: Заказ
+      day: День
     attributes:
       name: Название
       dish:
@@ -36,12 +39,14 @@ ru:
         image: Изображение
       order:
         address: Адрес
+      schedules:
+        dish: Блюдо
     errors:
       models:
         schedule:
           attributes:
             dish:
-              taken: Блюдо уже есть в расписании
+              taken: уже есть в расписании
   helpers:
     submit:
       create: Создать
