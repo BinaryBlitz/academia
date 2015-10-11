@@ -11,6 +11,19 @@
     </div>
   <% end %>
 
+  <h3>Блюда</h3>
+
+  <div class="form-group">
+    <%= f.add_nested_fields_link :schedules, 'Добавить', class: 'btn btn-default' %>
+  </div>
+
+  <%= f.nested_fields_for :schedules do |ff| %>
+    <div class="form-group dish-select">
+      <%= ff.collection_select(:dish_id, Dish.all, :id, :name, {}, class: 'form-control') %>
+      <%= ff.remove_nested_fields_link 'Удалить', class: 'btn btn-danger' %>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <div class="actions">
       <%= f.submit class: 'btn btn-default' %>

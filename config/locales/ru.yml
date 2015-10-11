@@ -31,6 +31,12 @@ ru:
         name: Название
       order:
         address: Адрес
+    errors:
+      models:
+        schedule:
+          attributes:
+            dish:
+              taken: Блюдо уже есть в расписании
   helpers:
     submit:
       create: Создать

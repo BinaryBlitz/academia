@@ -19,7 +19,7 @@ class Admin::OrdersController < Admin::AdminController
     @order = Order.new(admin_order_params)
 
     if @order.save
-      redirect_to [:admin, @order], notice: 'Order was successfully created.'
+      redirect_to [:admin, @order], notice: 'Заказ был успешно создан.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admin::OrdersController < Admin::AdminController
 
   def update
     if @order.update(admin_order_params)
-      redirect_to [:admin, @order], notice: 'Order was successfully updated.'
+      redirect_to [:admin, @order], notice: 'Заказ был успешно обновлен.'
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class Admin::OrdersController < Admin::AdminController
 
   def destroy
     @order.destroy
-    redirect_to admin_orders_url, notice: 'Order was successfully destroyed.'
+    redirect_to admin_orders_url, notice: 'Заказ был успешно удален.'
   end
 
   private

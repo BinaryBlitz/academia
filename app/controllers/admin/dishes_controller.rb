@@ -19,7 +19,7 @@ class Admin::DishesController < Admin::AdminController
     @dish = Dish.new(admin_dish_params)
 
     if @dish.save
-      redirect_to [:admin, @dish], notice: 'Dish was successfully created.'
+      redirect_to [:admin, @dish], notice: 'Блюдо было успешно создано.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admin::DishesController < Admin::AdminController
 
   def update
     if @dish.update(admin_dish_params)
-      redirect_to [:admin, @dish], notice: 'Dish was successfully updated.'
+      redirect_to [:admin, @dish], notice: 'Блюдо было успешно обновлено.'
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class Admin::DishesController < Admin::AdminController
 
   def destroy
     @dish.destroy
-    redirect_to admin_dishes_url, notice: 'Dish was successfully destroyed.'
+    redirect_to admin_dishes_url, notice: 'Блюдо было успешно удалено.'
   end
 
   private

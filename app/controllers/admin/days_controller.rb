@@ -11,26 +11,16 @@ class Admin::DaysController < Admin::AdminController
   def edit
   end
 
-  def create
-    @day = Day.new(admin_day_params)
-
-    if @day.save
-      redirect_to @day, notice: 'Day was successfully created.'
-    else
-      render :new
-    end
-  end
-
   def update
-    if @day.update(admin_day_params)
-      redirect_to @day, notice: 'Day was successfully updated.'
+    if @day.update(day_params)
+      redirect_to [:admin, @day], notice: 'День был успешно обновлен.'
     else
       render :edit
     end
   end
 
   def destroy
-    redirect_to admin_days_url, notice: 'Day was successfully destroyed.'
+    redirect_to admin_days_url, notice: 'День был успешно сброшен.'
   end
 
   private
@@ -39,7 +29,7 @@ class Admin::DaysController < Admin::AdminController
     @day = Day.find(params[:id])
   end
 
-  def admin_day_params
-    params.require(:day)
+  def day_params
+    params.require(:day).permit(schedules_attributes: [:id, :dish_id, :_destroy])
   end
 end

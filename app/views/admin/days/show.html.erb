@@ -1,2 +1,20 @@
-<%= link_to 'Изменить', edit_admin_day_path(@day) %> |
-<%= link_to 'Back', admin_days_path %>
+<h1><%= @day %></h1>
+
+<div class="form-group">
+  <%= link_to 'Изменить', edit_admin_day_path(@day), class: 'btn btn-default' %>
+</div>
+
+<table class="table">
+  <thead>
+    <th>Блюдо</th>
+    <th>Цена</th>
+  </thead>
+  <tbody>
+    <% @day.schedules.all.each do |schedule| %>
+      <tr>
+        <td><%= schedule.dish.name %></td>
+        <td><%= schedule.dish.price %> рублей</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -16,7 +16,7 @@ class Admin::IngredientsController < Admin::AdminController
     @ingredient = Ingredient.new(admin_ingredient_params)
 
     if @ingredient.save
-      redirect_to admin_ingredients_path, notice: 'Ingredient was successfully created.'
+      redirect_to admin_ingredients_path, notice: 'Ингридиент был успешно создан.'
     else
       render :new
     end
@@ -24,7 +24,7 @@ class Admin::IngredientsController < Admin::AdminController
 
   def update
     if @ingredient.update(admin_ingredient_params)
-      redirect_to admin_ingredients_path, notice: 'Ingredient was successfully updated.'
+      redirect_to admin_ingredients_path, notice: 'Ингридиент был успешно обновлен.'
     else
       render :edit
     end
@@ -32,7 +32,7 @@ class Admin::IngredientsController < Admin::AdminController
 
   def destroy
     @ingredient.destroy
-    redirect_to admin_ingredients_url, notice: 'Ingredient was successfully destroyed.'
+    redirect_to admin_ingredients_url, notice: 'Ингридиент был успешно удален.'
   end
 
   private
