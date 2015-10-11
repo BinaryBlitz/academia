@@ -1,0 +1,24 @@
+<h1>Ингридиенты</h1>
+
+<%= link_to 'New Ingredient', new_admin_ingredient_path %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Изображение</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ingredients.each do |admin_ingredient| %>
+      <tr>
+        <td><%= admin_ingredient.name %></td>
+        <td><%= admin_ingredient.image_url %></td>
+        <td><%= link_to 'Edit', edit_admin_ingredient_path(admin_ingredient) %></td>
+        <td><%= link_to 'Destroy', [:admin, admin_ingredient], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
