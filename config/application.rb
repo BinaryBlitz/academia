@@ -25,7 +25,8 @@ module ZpApp
 
     config.generators do |g|
       g.assets = false
-      g.helpers = false
+      g.helper = false
+      g.test_framework = nil
     end
   end
 end

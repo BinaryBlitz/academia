@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  root 'admin/orders#index'
+
+  namespace :admin do
+    resources :ingredients, except: :show
+    resources :dishes
+    resources :orders
+    resources :days
+
+    get 'schedule' => 'days#index'
+  end
+
   resource :user, except: [:index, :new, :edit, :destroy] do
     post 'authenticate', 'authenticate_vk', 'authenticate_fb', on: :collection
   end
@@ -11,9 +22,6 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
