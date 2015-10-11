@@ -17,4 +17,8 @@ class Day < ActiveRecord::Base
   def self.today
     Day.find_by(day_of_week: Date.today.wday)
   end
+
+  def to_s
+    Date::DAYNAMES[day_of_week]
+  end
 end

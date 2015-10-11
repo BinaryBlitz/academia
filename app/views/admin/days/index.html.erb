@@ -1,0 +1,20 @@
+<h1>Listing Admin Days</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>День</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @days.each do |day| %>
+      <tr>
+        <td><%= link_to day, [:admin, day] %></td>
+        <td><%= link_to 'Edit', edit_admin_day_path(day) %></td>
+        <td><%= link_to 'Destroy', [:admin, day], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
