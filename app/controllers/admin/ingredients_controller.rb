@@ -2,7 +2,7 @@ class Admin::IngredientsController < Admin::AdminController
   before_action :set_admin_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.all.order(name: :asc)
   end
 
   def new
@@ -13,7 +13,7 @@ class Admin::IngredientsController < Admin::AdminController
   end
 
   def create
-    @ingredient = Ingredient.new(admin_ingredient_params)
+    @ingredient = Ingredient.new(ingredient_params)
 
     if @ingredient.save
       redirect_to admin_ingredients_path, notice: 'Ингридиент был успешно создан.'
@@ -23,7 +23,7 @@ class Admin::IngredientsController < Admin::AdminController
   end
 
   def update
-    if @ingredient.update(admin_ingredient_params)
+    if @ingredient.update(ingredient_params)
       redirect_to admin_ingredients_path, notice: 'Ингридиент был успешно обновлен.'
     else
       render :edit
@@ -41,7 +41,7 @@ class Admin::IngredientsController < Admin::AdminController
     @ingredient = Ingredient.find(params[:id])
   end
 
-  def admin_ingredient_params
+  def ingredient_params
     params.require(:ingredient).permit(:name, :image, :remove_image)
   end
 end

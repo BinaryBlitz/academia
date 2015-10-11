@@ -27,8 +27,10 @@ ru:
       name: Название
       dish:
         name: Название
+        image: Изображение
       ingredient:
         name: Название
+        image: Изображение
       order:
         address: Адрес
     errors:
