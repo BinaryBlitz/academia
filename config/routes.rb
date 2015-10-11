@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resources :orders
     resources :days
 
+    get 'lunches' => 'dishes#lunches'
+    get 'stuff' => 'dishes#stuff'
+
     get 'schedule' => 'days#index'
   end
 

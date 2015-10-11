@@ -1,4 +1,4 @@
-<h1>Блюда</h1>
+<h1><%= title_for_action(action_name) %></h1>
 
 <div class="form-group">
   <%= link_to 'Новое блюдо', new_admin_dish_path, class: 'btn btn-default' %>
@@ -19,9 +19,11 @@
       <tr>
         <td><%= link_to dish.name, [:admin, dish] %></td>
         <td><%= dish.description %></td>
-        <td><%= dish.image %></td>
-        <td><%= link_to 'Изменить', edit_admin_dish_path(dish) %></td>
-        <td><%= link_to 'Удалить', [:admin, dish], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= dish.image.present? %></td>
+        <td>
+          <%= link_to 'Изменить', edit_admin_dish_path(dish), class: 'btn btn-default' %>
+          <%= link_to 'Удалить', [:admin, dish], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -2,7 +2,17 @@ class Admin::DishesController < Admin::AdminController
   before_action :set_admin_dish, only: [:show, :edit, :update, :destroy]
 
   def index
-    @dishes = Dish.all
+    @dishes = Dish.dishes
+  end
+
+  def lunches
+    @dishes = Dish.where(lunch: true)
+    render :index
+  end
+
+  def stuff
+    @dishes = Dish.where(stuff: true)
+    render :index
   end
 
   def show

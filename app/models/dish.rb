@@ -26,4 +26,6 @@ class Dish < ActiveRecord::Base
   accepts_nested_attributes_for :ingredients, allow_destroy: true
 
   mount_uploader :image, DishUploader
+
+  scope :dishes, -> { where(stuff: true).where(lunch: false) }
 end

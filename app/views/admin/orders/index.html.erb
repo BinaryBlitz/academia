@@ -20,7 +20,7 @@
         <td><%= link_to order.address, [:admin, order] %></td>
         <td>
           <%= link_to 'Изменить', edit_admin_order_path(order), class: 'btn btn-default' %>
-          <%= link_to 'Удалить', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <%= link_to 'Удалить', order, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
         </td>
       </tr>
     <% end %>
