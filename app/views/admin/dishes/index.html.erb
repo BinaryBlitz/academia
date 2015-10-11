@@ -1,0 +1,26 @@
+<h1>Listing Admin Dishes</h1>
+
+<%= link_to 'New Dish', new_admin_dish_path %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Изображение</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dishes.each do |dish| %>
+      <tr>
+        <td><%= link_to dish.name, [:admin, dish] %></td>
+        <td><%= dish.description %></td>
+        <td><%= dish.image %></td>
+        <td><%= link_to 'Edit', edit_admin_dish_path(dish) %></td>
+        <td><%= link_to 'Destroy', [:admin, dish], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
