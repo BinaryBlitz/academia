@@ -23,5 +23,7 @@ class Dish < ActiveRecord::Base
   validates :price, presence: true, numericality: { greter_than: 0 }
   validates :image, presence: true
 
+  accepts_nested_attributes_for :ingredients, allow_destroy: true
+
   mount_uploader :image, DishUploader
 end

@@ -16,7 +16,7 @@ class Admin::DishesController < Admin::AdminController
   end
 
   def create
-    @dish = Dish.new(admin_dish_params)
+    @dish = Dish.new(dish_params)
 
     if @dish.save
       redirect_to [:admin, @dish], notice: 'Блюдо было успешно создано.'
@@ -26,7 +26,7 @@ class Admin::DishesController < Admin::AdminController
   end
 
   def update
-    if @dish.update(admin_dish_params)
+    if @dish.update(dish_params)
       redirect_to [:admin, @dish], notice: 'Блюдо было успешно обновлено.'
     else
       render :edit
@@ -44,7 +44,11 @@ class Admin::DishesController < Admin::AdminController
     @dish = Dish.find(params[:id])
   end
 
-  def admin_dish_params
-    params.require(:dish).permit(:name, :description, :price, :image, :remove_image, :stuff, :lunch)
+  def dish_params
+    params.require(:dish)
+          .permit(
+            :name, :description, :price, :image, :remove_image, :stuff, :lunch,
+            ingredients_attributes: [:id, :_destroy]
+          )
   end
 end

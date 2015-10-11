@@ -1,2 +1,29 @@
-<%= link_to 'Изменить', edit_admin_dish_path(@dish) %> |
-<%= link_to 'Back', admin_dishes_path %>
+<h1><%= @dish.name %></h1>
+
+<div class="form-group">
+  <%= link_to 'Изменить', edit_admin_dish_path(@dish), class: 'btn btn-default' %>
+</div>
+
+<div class="form-group">
+  <strong>Цена:</strong> <%= @dish.price %> р.
+</div>
+
+<div class="form-group">
+  <strong>Описание:</strong> <%= @dish.description %>
+</div>
+
+<div class="form-group">
+  <strong>Ингридиенты:</strong>
+
+  <ul>
+    <% @dish.ingredients.each do |ingredient| %>
+      <li><%= ingredient.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="form-group">
+  <% if @dish.image.present? %>
+    <%= image_tag @dish.image_url %>
+  <% end %>
+</div>

@@ -16,6 +16,46 @@
     <%= f.text_field :name, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :price %>
+    <%= f.number_field :price, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+
+  <%= f.label :ingredients %>
+
+  <div class="form-group">
+    <%= f.add_nested_fields_link :ingredients, 'Добавить', class: 'btn btn-default' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.nested_fields_for :ingredients do |ff| %>
+      <div class="form-group dish-select">
+        <%= ff.collection_select(:id, Ingredient.all, :id, :name, { include_blank: true }, class: 'form-control') %>
+        <%= ff.remove_nested_fields_link 'Удалить', class: 'btn btn-danger' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image %>
+    <% if @dish.image? %>
+      <%= image_tag @dish.image_url, class: 'form-image' %>
+
+      <div class="checkbox">
+        <%= f.label :remove_image do %>
+          <%= f.check_box :remove_image %> Удалить изображение
+        <% end %>
+      </div>
+    <% else %>
+      <%= f.file_field :image %>
+    <% end %>
+  </div>
+
   <div class="form-group actions">
     <%= f.submit class: 'btn btn-default' %>
   </div>

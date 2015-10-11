@@ -28,6 +28,9 @@ ru:
       dish:
         name: Название
         image: Изображение
+        price: Цена
+        description: Описание
+        ingredients: Ингридиенты
       ingredient:
         name: Название
         image: Изображение
