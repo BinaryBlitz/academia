@@ -2,7 +2,7 @@ class Admin::OrdersController < Admin::AdminController
   before_action :set_admin_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    @orders = Order.all
+    @orders = Order.all.page(params[:page])
   end
 
   def show

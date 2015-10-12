@@ -14,15 +14,17 @@
   </thead>
 
   <tbody>
-    <% @ingredients.each do |admin_ingredient| %>
+    <% @ingredients.each do |ingredient| %>
       <tr>
-        <td><%= admin_ingredient.name %></td>
-        <td><%= image_tag admin_ingredient.image_url %></td>
+        <td><%= ingredient.name %></td>
+        <td><%= image_tag ingredient.image_url %></td>
         <td>
-          <%= link_to 'Изменить', edit_admin_ingredient_path(admin_ingredient), class: 'btn btn-default' %>
-          <%= link_to 'Удалить', [:admin, admin_ingredient], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+          <%= link_to 'Изменить', edit_admin_ingredient_path(ingredient), class: 'btn btn-default' %>
+          <%= link_to 'Удалить', [:admin, ingredient], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @ingredients %>

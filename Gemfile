@@ -6,6 +6,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rails-i18n'
+gem 'kaminari'
+gem 'kaminari-i18n'
 
 # Auth
 gem 'bcrypt', '~> 3.1.7'

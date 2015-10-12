@@ -2,7 +2,7 @@ class Admin::IngredientsController < Admin::AdminController
   before_action :set_admin_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ingredients = Ingredient.all.order(name: :asc)
+    @ingredients = Ingredient.order(name: :asc).page(params[:page])
   end
 
   def new
