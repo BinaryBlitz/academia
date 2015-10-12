@@ -27,9 +27,7 @@ gem 'bootstrap-sass'
 gem 'nested_form_fields'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'unicorn'
 
 group :development, :test do
   gem 'byebug'
@@ -40,5 +38,8 @@ group :development do
   gem 'spring'
   gem 'annotate'
   gem 'ffaker'
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'rvm-capistrano', require: false
 end
 
