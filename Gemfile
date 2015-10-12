@@ -12,6 +12,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'has_secure_token'
 gem 'vkontakte_api'
 gem 'koala'
+gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'devise-bootstrap-views'
 
 # Front end
 gem 'sass-rails', '~> 5.0'

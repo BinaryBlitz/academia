@@ -49,3 +49,6 @@ end
     stuff: true
   )
 end
+
+# Admins
+a = Admin.create!(email: 'foo@bar.com', password: 'qwerty123')

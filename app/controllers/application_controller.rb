@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_action :restrict_access
 
+  # Devise configuration
+  skip_before_filter :restrict_access, if: :devise_controller?
+  layout 'admin', if: :devise_controller?
+
   attr_reader :current_user
   helper_method :current_user
 
