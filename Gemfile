@@ -39,9 +39,10 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'annotate'
-  gem 'ffaker'
   gem 'capistrano'
   gem 'capistrano-ext'
   gem 'rvm-capistrano', require: false
 end
+
+gem 'ffaker', group: [:development, :staging]
 
