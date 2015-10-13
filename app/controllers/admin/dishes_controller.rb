@@ -6,12 +6,12 @@ class Admin::DishesController < Admin::AdminController
   end
 
   def lunches
-    @dishes = Dish.where(lunch: true)
+    @dishes = Dish.where(lunch: true).page(params[:page])
     render :index
   end
 
   def stuff
-    @dishes = Dish.where(stuff: true)
+    @dishes = Dish.where(stuff: true).page(params[:page])
     render :index
   end
 
