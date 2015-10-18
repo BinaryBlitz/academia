@@ -11,6 +11,7 @@
 #  lunch       :boolean          default(FALSE)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  subtitle    :string
 #
 
 class Dish < ActiveRecord::Base
@@ -22,6 +23,7 @@ class Dish < ActiveRecord::Base
   validates :name, presence: true
   validates :price, presence: true, numericality: { greter_than: 0 }
   validates :image, presence: true
+  validates :subtitle, presence: true, if: '!stuff && !lunch'
 
   accepts_nested_attributes_for :ingredients, allow_destroy: true
 

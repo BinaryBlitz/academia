@@ -15,16 +15,17 @@ end
 # Days & schedules
 Date::DAYNAMES.each_with_index do |dayname, i|
   day = Day.create!(day_of_week: i)
+end
 
-  5.times do
-    dish = day.dishes.create!(
-      name: FFaker::Food.vegetable,
-      description: FFaker::BaconIpsum.sentence,
-      price: rand(500) + 1,
-      remote_image_url: 'http://lorempixel.com/450/800/food/'
-    )
-    dish.ingredients << Ingredient.order('RANDOM()').limit(5)
-  end
+5.times do
+  dish = Dish.create!(
+    name: FFaker::Food.vegetable,
+    description: FFaker::BaconIpsum.sentence,
+    subtitle: FFaker::BaconIpsum.words(3).join(' / '),
+    price: rand(500) + 1,
+    remote_image_url: 'http://lorempixel.com/450/800/food/'
+  )
+  dish.ingredients << Ingredient.order('RANDOM()').limit(5)
 end
 
 # Lunches

@@ -33,6 +33,7 @@ ru:
         image: Изображение
         price: Цена
         description: Описание
+        subtitle: Подзаголовок
         ingredients: Ингридиенты
       ingredient:
         name: Название

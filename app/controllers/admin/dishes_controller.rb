@@ -1,5 +1,5 @@
 class Admin::DishesController < Admin::AdminController
-  before_action :set_admin_dish, only: [:show, :edit, :update, :destroy]
+  before_action :set_dish, only: [:show, :edit, :update, :destroy]
 
   def index
     @dishes = Dish.dishes.page(params[:page])
@@ -50,14 +50,14 @@ class Admin::DishesController < Admin::AdminController
 
   private
 
-  def set_admin_dish
+  def set_dish
     @dish = Dish.find(params[:id])
   end
 
   def dish_params
     params.require(:dish)
           .permit(
-            :name, :description, :price, :image, :remove_image, :stuff, :lunch,
+            :name, :description, :subtitle, :price, :image, :remove_image, :stuff, :lunch,
             ingredients_attributes: [:id, :_destroy]
           )
   end
