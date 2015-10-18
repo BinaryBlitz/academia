@@ -28,8 +28,8 @@ after 'deploy:update_code', roles: :app do
   run "ln -nfs #{deploy_to}/shared/config/secrets.yml #{current_release}/config/secrets.yml"
 
   # Uploads
-  # run "rm -f #{current_release}/public/uploads"
-  # run "ln -nfs #{deploy_to}/shared/public/uploads #{current_release}/public/uploads"
+  run "rm -f #{current_release}/public/uploads"
+  run "ln -nfs #{deploy_to}/shared/public/uploads #{current_release}/public/uploads"
 
   run "cd #{current_release}; bundle exec rake db:migrate RAILS_ENV=#{rails_env}"
 end
