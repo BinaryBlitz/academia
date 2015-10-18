@@ -9,6 +9,7 @@
     <tr>
       <th>Название</th>
       <th>Описание</th>
+      <th>Цена</th>
       <th>Изображение</th>
       <th colspan="2"></th>
     </tr>
@@ -19,6 +20,7 @@
       <tr>
         <td><%= link_to dish.name, [:admin, dish] %></td>
         <td><%= dish.description %></td>
+        <td><%= dish.price %> р.</td>
         <td><%= dish.image.present? %></td>
         <td>
           <%= link_to 'Изменить', edit_admin_dish_path(dish), class: 'btn btn-default' %>
