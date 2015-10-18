@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018153759) do
+ActiveRecord::Schema.define(version: 20151018180856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 20151018153759) do
   add_index "badges_dishes", ["dish_id"], name: "index_badges_dishes_on_dish_id", using: :btree
 
   create_table "days", force: :cascade do |t|
-    t.integer  "day_of_week"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date     "date"
   end
 
   create_table "dishes", force: :cascade do |t|
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20151018153759) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "subtitle"
+    t.boolean  "hidden",      default: false
   end
 
   create_table "dishes_ingredients", id: false, force: :cascade do |t|

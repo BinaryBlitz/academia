@@ -27,6 +27,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass'
 gem 'nested_form_fields'
+gem 'bootstrap-datepicker-rails'
 
 # Use Unicorn as the app server
 gem 'unicorn'

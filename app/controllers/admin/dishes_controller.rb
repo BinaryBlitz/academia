@@ -7,19 +7,17 @@ class Admin::DishesController < Admin::AdminController
 
   def lunches
     @dishes = Dish.where(lunch: true).page(params[:page])
-    render :index
   end
 
   def stuff
     @dishes = Dish.where(stuff: true).page(params[:page])
-    render :index
   end
 
   def show
   end
 
   def new
-    @dish = Dish.new
+    @dish = Dish.new(new_dish_params)
   end
 
   def edit
@@ -54,10 +52,14 @@ class Admin::DishesController < Admin::AdminController
     @dish = Dish.find(params[:id])
   end
 
+  def new_dish_params
+    params.permit(:stuff, :lunch)
+  end
+
   def dish_params
     params.require(:dish)
           .permit(
-            :name, :description, :subtitle, :price, :image, :remove_image, :stuff, :lunch,
+            :name, :description, :subtitle, :price, :image, :remove_image, :stuff, :lunch, :hidden,
             ingredients_attributes: [:id, :_destroy]
           )
   end

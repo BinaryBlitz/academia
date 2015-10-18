@@ -8,6 +8,20 @@ class Admin::DaysController < Admin::AdminController
   def show
   end
 
+  def new
+    @day = Day.new
+  end
+
+  def create
+    @day = Day.new(day_params)
+
+    if @day.save
+      render :show, notice: 'День был успешно создан.', location: [:admin, @day]
+    else
+      render :new
+    end
+  end
+
   def edit
   end
 
@@ -30,6 +44,6 @@ class Admin::DaysController < Admin::AdminController
   end
 
   def day_params
-    params.require(:day).permit(schedules_attributes: [:id, :dish_id, :_destroy])
+    params.require(:day).permit(:date, schedules_attributes: [:id, :dish_id, :_destroy])
   end
 end

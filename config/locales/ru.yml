@@ -27,7 +27,8 @@ ru:
       order: Заказ
       day: День
     attributes:
-      name: Название
+      day:
+        date: Дата
       dish:
         name: Название
         image: Изображение
