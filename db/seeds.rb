@@ -13,9 +13,7 @@ u.update!(api_token: 'foobar')
 end
 
 # Days & schedules
-Date::DAYNAMES.each_with_index do |dayname, i|
-  day = Day.create!(day_of_week: i)
-end
+day = Day.create!(date: Date.today)
 
 5.times do
   dish = Dish.create!(

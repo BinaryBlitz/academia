@@ -10,7 +10,7 @@
 #
 
 class Schedule < ActiveRecord::Base
-  belongs_to :day
+  belongs_to :day, inverse_of: :schedules
   belongs_to :dish
 
   validates :day, presence: true
