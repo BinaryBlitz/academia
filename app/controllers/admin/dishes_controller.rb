@@ -57,7 +57,7 @@ class Admin::DishesController < Admin::AdminController
   def dish_params
     params.require(:dish)
           .permit(
-            :name, :description, :subtitle, :price, :image, :remove_image, :stuff, :lunch,
+            :name, :description, :subtitle, :price, :image, :remove_image, :stuff, :lunch, :hidden,
             ingredients_attributes: [:id, :_destroy]
           )
   end

@@ -10,7 +10,7 @@ class DishesController < ApplicationController
   end
 
   def stuff
-    @dishes = Dish.where(stuff: true)
+    @dishes = Dish.where(stuff: true).visible
     render :index
   end
 end

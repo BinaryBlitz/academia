@@ -12,6 +12,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  subtitle    :string
+#  hidden      :boolean          default(FALSE)
 #
 
 class Dish < ActiveRecord::Base
@@ -30,4 +31,5 @@ class Dish < ActiveRecord::Base
   mount_uploader :image, DishUploader
 
   scope :dishes, -> { where(stuff: true).where(lunch: false) }
+  scope :visible, -> { where(hidden: false) }
 end

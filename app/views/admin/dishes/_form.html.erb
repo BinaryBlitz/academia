@@ -47,6 +47,14 @@
   </div>
 
   <div class="form-group">
+    <div class="checkbox">
+      <%= f.label :hidden do %>
+        <%= f.check_box :hidden %> Скрыть
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :image %>
     <% if @dish.image? %>
       <%= image_tag @dish.image_url, class: 'form-image' %>
