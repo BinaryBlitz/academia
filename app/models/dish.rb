@@ -32,4 +32,8 @@ class Dish < ActiveRecord::Base
 
   scope :dishes, -> { where(stuff: true).where(lunch: false) }
   scope :visible, -> { where(hidden: false) }
+
+  def main?
+    !stuff && !lunch
+  end
 end
