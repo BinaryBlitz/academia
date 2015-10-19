@@ -30,7 +30,7 @@ class Dish < ActiveRecord::Base
 
   mount_uploader :image, DishUploader
 
-  scope :dishes, -> { where(stuff: true).where(lunch: false) }
+  scope :dishes, -> { where(stuff: false).where(lunch: false) }
   scope :visible, -> { where(hidden: false) }
 
   def main?

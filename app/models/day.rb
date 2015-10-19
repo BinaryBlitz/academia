@@ -2,10 +2,10 @@
 #
 # Table name: days
 #
-#  id          :integer          not null, primary key
-#  day_of_week :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  date       :date
 #
 
 class Day < ActiveRecord::Base
