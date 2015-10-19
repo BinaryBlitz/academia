@@ -8,6 +8,8 @@ gem 'mini_magick'
 gem 'rails-i18n'
 gem 'kaminari'
 gem 'kaminari-i18n'
+gem 'email_validator'
+gem 'phony_rails'
 
 # Auth
 gem 'bcrypt', '~> 3.1.7'

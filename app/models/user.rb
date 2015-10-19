@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :phone_number, presence: true
+  validates :phone_number, presence: true, phony_plausible: true
+  validates :email, email: true
 
   include Authenticable
 
