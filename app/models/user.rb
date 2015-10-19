@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
   validates :phone_number, presence: true
 
   include Authenticable
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
