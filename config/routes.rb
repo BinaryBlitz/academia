@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :dishes
     resources :orders
     resources :days
+    resources :users, except: [:new, :create]
 
     get 'lunches' => 'dishes#lunches'
     get 'stuff' => 'dishes#stuff'

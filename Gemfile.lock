@@ -85,6 +85,8 @@ GEM
     devise-bootstrap-views (0.0.6)
     devise-i18n (0.12.1)
     devise-i18n-views (0.3.6)
+    email_validator (1.6.0)
+      activemodel
     erubis (2.7.0)
     execjs (2.6.0)
     faraday (0.9.2)
@@ -156,6 +158,10 @@ GEM
     oj (2.12.14)
     orm_adapter (0.5.0)
     pg (0.18.3)
+    phony (2.15.3)
+    phony_rails (0.12.10)
+      activesupport (>= 3.0)
+      phony (~> 2.12)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -251,6 +257,7 @@ DEPENDENCIES
   devise-bootstrap-views
   devise-i18n
   devise-i18n-views
+  email_validator
   ffaker
   has_secure_token
   jbuilder (~> 2.0)
@@ -261,6 +268,7 @@ DEPENDENCIES
   mini_magick
   nested_form_fields
   pg
+  phony_rails
   rails (= 4.2.4)
   rails-i18n
   rvm-capistrano
