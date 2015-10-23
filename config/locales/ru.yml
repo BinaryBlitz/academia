@@ -43,6 +43,9 @@ ru:
         address: Адрес
       schedules:
         dish: Блюдо
+      badge:
+        name: Название
+        image: Изображение
       user:
         balance: Баланс
         promo_used: Промо код использован

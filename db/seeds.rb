@@ -12,6 +12,13 @@ u.update!(api_token: 'foobar')
   )
 end
 
+10.times do
+  Badge.create!(
+    name: FFaker::HealthcareIpsum.word,
+    remote_image_url: 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100×100&w=100&h=100&fm=png'
+  )
+end
+
 # Days & schedules
 day = Day.create!(date: Date.today)
 
