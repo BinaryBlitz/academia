@@ -16,9 +16,8 @@ class Day < ActiveRecord::Base
 
   accepts_nested_attributes_for :schedules, allow_destroy: true
 
-  # FIXME: Apply order
   def self.today
-    Day.where('date <= ?', Date.today).first
+    Day.where('date <= ?', Date.today).order(date: :desc).first
   end
 
   def to_s
