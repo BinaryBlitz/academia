@@ -23,6 +23,16 @@
 </div>
 
 <div class="form-group">
+  <strong>Иконки:</strong>
+
+  <ul>
+    <% @dish.badges.each do |badge| %>
+      <li><%= badge.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="form-group">
   <% if @dish.image.present? %>
     <%= image_tag @dish.image_url %>
   <% end %>
