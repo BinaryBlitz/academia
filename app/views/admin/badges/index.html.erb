@@ -1,0 +1,28 @@
+<h1>Иконки</h1>
+
+<%= link_to 'Новая иконка', new_admin_badge_path, class: 'btn btn-default' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Иконка</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @badges.each do |badge| %>
+      <tr>
+        <td><%= badge.name %></td>
+        <td><%= image_tag badge.image_url %></td>
+        <td>
+          <%= link_to 'Изменить', edit_admin_badge_path(badge), class: 'btn btn-default' %>
+          <%= link_to 'Удалить', [:admin, badge], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @badges %>

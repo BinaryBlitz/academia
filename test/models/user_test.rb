@@ -13,6 +13,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  api_token       :string
+#  promo_used      :boolean          default(FALSE)
+#  balance         :integer          default(0)
 #
 
 require 'test_helper'
