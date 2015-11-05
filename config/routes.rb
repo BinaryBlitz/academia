@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     get 'stuff', on: :collection
   end
 
+  resource :day, only: :show
+
   resources :orders, except: [:new, :edit, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
