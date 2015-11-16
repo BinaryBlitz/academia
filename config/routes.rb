@@ -21,8 +21,10 @@ Rails.application.routes.draw do
   end
 
   resources :dishes, only: [:index] do
-    get 'lunches', 'stuff', on: :collection
+    get 'stuff', on: :collection
   end
+
+  resource :day, only: :show
 
   resources :orders, except: [:new, :edit, :update]
 
