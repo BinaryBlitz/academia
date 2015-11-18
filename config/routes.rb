@@ -27,7 +27,12 @@ Rails.application.routes.draw do
 
   resource :day, only: :show
 
-  resources :orders, only: [:index, :create, :destroy]
+  resources :orders, except: [:new, :edit, :update] do
+    member do
+      post 'payment'
+      get 'payment_status'
+    end
+  end
   post 'promo_codes/redeem'
 
   # The priority is based upon order of creation: first created -> highest priority.
