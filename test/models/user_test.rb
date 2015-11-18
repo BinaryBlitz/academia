@@ -15,7 +15,6 @@
 #  promo_used   :boolean          default(FALSE)
 #  balance      :integer          default(0)
 #  promo_code   :string
-#
 
 require 'test_helper'
 

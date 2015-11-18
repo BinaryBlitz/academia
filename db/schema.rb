@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< cb3e8ee1423695350fe3c404a11ed8cea31f49b9
 ActiveRecord::Schema.define(version: 20151122133613) do
+=======
+ActiveRecord::Schema.define(version: 20151118121913) do
+>>>>>>> Payment#check_status
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,9 +164,10 @@ ActiveRecord::Schema.define(version: 20151122133613) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.string   "api_token"
-    t.boolean  "promo_used",   default: false
-    t.integer  "balance",      default: 0
-    t.string   "promo_code"
+    t.boolean  "promo_used",      default: false
+    t.integer  "balance",         default: 0
+    t.string   "alfa_binding_id"
+    t.string   "card_number"
   end
 
 end
