@@ -17,6 +17,8 @@ class Payment < ActiveRecord::Base
   RUB = 810
   KOPEYKI_IN_RUB = 100
   REGISTRATION_URL = "https://test.paymentgate.ru/testpayment/rest/register.do"
+  CHECK_STATUS_URL = "https://test.paymentgate.ru/testpayment/rest/getOrderStatus.do"
+  SUCCESS = 0
 
   belongs_to :order
 
@@ -41,6 +43,17 @@ class Payment < ActiveRecord::Base
     end
   end
 
+  def check_status
+    response = JSON.parse(make_status_request.parsed_response)
+
+    if response["ErrorCode"] == SUCCESS
+      update_attribute(:payed, true)
+      set_user_binding_from_response(response) if response.has_key? "bindingId"
+    end
+
+    response["ErrorMessage"]
+  end
+
   private
 
   def set_price
@@ -49,6 +62,18 @@ class Payment < ActiveRecord::Base
 
   def make_registration_request
     HTTParty.post(REGISTRATION_URL, body: generate_payment_params)
+  end
+
+  def make_status_request
+    HTTParty.post(CHECK_STATUS_URL, body: generate_status_params)
+  end
+
+  def generate_status_params
+    {
+      userName: 'zdorovoepitanie-api',
+      password: 'zdorovoepitanie',
+      orderId: alfa_order_id
+    }.map { |k, v| "#{k}=#{v}" }.join('&')
   end
 
   def generate_payment_params
@@ -67,7 +92,7 @@ class Payment < ActiveRecord::Base
     if use_binding?
       params.merge!(
         userName: 'zdorovoepitanie_auto-api',
-        bindingId: user.alfa_binding_id # TODO: add field
+        bindingId: user.alfa_binding_id
       )
     end
 
@@ -78,6 +103,15 @@ class Payment < ActiveRecord::Base
     update_attributes(
       alfa_order_id: response["orderId"],
       alfa_form_url: response["formUrl"]
+    )
+  end
+
+  def set_user_binding_from_response(response)
+    return if response["bindingId"] == user.alfa_binding_id
+
+    user.update_attributes(
+      alfa_binding_id: response["bindingId"],
+      card_number: response["Pan"]
     )
   end
 end

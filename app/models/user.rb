@@ -15,6 +15,8 @@
 #  api_token       :string
 #  promo_used      :boolean          default(FALSE)
 #  balance         :integer          default(0)
+#  alfa_binding_id :string
+#  card_number     :string
 #
 
 class User < ActiveRecord::Base
