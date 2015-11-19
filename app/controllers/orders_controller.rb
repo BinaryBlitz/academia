@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
     @order = current_user.orders.build(order_params)
 
     if @order.save
-      render :show, status: :created, location: @order
+      render :show, status: :created
     else
       render json: @order.errors, status: :unprocessable_entity
     end
