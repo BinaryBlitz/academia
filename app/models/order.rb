@@ -9,6 +9,8 @@
 #  updated_at    :datetime         not null
 #  status        :string
 #  scheduled_for :datetime
+#  latitude      :float
+#  longitude     :float
 #
 
 class Order < ActiveRecord::Base
@@ -21,6 +23,9 @@ class Order < ActiveRecord::Base
 
   validates :user, presence: true
   validates :address, presence: true
+
+  validates :latitude , numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }
+  validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
 
   extend Enumerize
   enumerize :status, in: [:new, :on_the_way, :delivered, :rejected], default: :new

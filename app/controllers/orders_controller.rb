@@ -27,6 +27,8 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address, :scheduled_for, line_items_attributes: [:dish_id, :quantity])
+    params.require(:order).permit(
+      :address, :scheduled_for, :latitude, :longitude, line_items_attributes: [:dish_id, :quantity]
+    )
   end
 end
