@@ -31,8 +31,7 @@
     <%= f.text_area :subtitle, class: 'form-control' %>
   </div>
 
-  <% if @dish.main? %>
-    <%# Ingredients %>
+  <% if @dish.main? || @dish.lunch? %>
     <%= f.label :ingredients %>
 
     <div class="form-group">
@@ -48,7 +47,6 @@
       <% end %>
     </div>
 
-    <%# Badges %>
     <%= f.label :badges %>
 
     <div class="form-group">

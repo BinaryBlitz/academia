@@ -36,6 +36,7 @@ ru:
         description: Описание
         subtitle: Подзаголовок
         ingredients: Ингридиенты
+        badges: Иконки
       ingredient:
         name: Название
         image: Изображение
