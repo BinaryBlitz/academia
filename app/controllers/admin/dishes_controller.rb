@@ -61,7 +61,7 @@ class Admin::DishesController < Admin::AdminController
           .permit(
             :name, :description, :subtitle, :price, :image, :remove_image, :stuff, :lunch, :hidden,
             dish_ingredients_attributes: [:id, :ingredient_id, :_destroy],
-            badges_attributes: [:id, :_destroy]
+            dish_badges_attributes: [:id, :badge_id, :_destroy]
           )
   end
 end
