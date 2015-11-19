@@ -5,9 +5,6 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  def show
-  end
-
   def create
     @order = current_user.orders.build(order_params)
 
@@ -20,7 +17,6 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
-
     head :no_content
   end
 

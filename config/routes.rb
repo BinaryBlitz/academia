@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   resource :day, only: :show
 
-  resources :orders, except: [:new, :edit, :update]
+  resources :orders, only: [:index, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

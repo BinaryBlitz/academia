@@ -20,6 +20,12 @@ class Order < ActiveRecord::Base
   validates :user, presence: true
   validates :address, presence: true
 
+  def total_price
+    sum = 0
+    line_items.each { |item| sum += item.total_price }
+    sum
+  end
+
   private
 
   def ensure_presence_of_line_items

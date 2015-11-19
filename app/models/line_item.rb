@@ -17,4 +17,8 @@ class LineItem < ActiveRecord::Base
   validates :order, presence: true
   validates :dish, presence: true
   validates :quantity, presence: true
+
+  def total_price
+    dish.price * quantity
+  end
 end

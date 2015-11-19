@@ -1,6 +1,6 @@
-json.extract! @order, :id, :address, :created_at
+json.extract! order, :id, :address, :created_at, :total_price
 
-json.line_items @order.line_items do |line_item|
+json.line_items order.line_items do |line_item|
   json.extract! line_item, :id, :quantity
 
   json.dish do
