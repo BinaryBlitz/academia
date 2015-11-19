@@ -40,6 +40,7 @@ ru:
       ingredient:
         name: Название
         image: Изображение
+        weight: Вес
       order:
         address: Адрес
         status: Статус

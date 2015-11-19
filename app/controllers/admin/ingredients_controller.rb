@@ -42,6 +42,6 @@ class Admin::IngredientsController < Admin::AdminController
   end
 
   def ingredient_params
-    params.require(:ingredient).permit(:name, :image, :remove_image)
+    params.require(:ingredient).permit(:name, :weight, :image, :remove_image)
   end
 end
