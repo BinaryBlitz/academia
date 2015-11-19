@@ -10,6 +10,7 @@
       <th>№</th>
       <th>Адрес</th>
       <th>Статус</th>
+      <th>Время доставки</th>
       <th></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= order.id %></td>
         <td><%= order.address %></td>
         <td><%= order.status.text %></td>
+        <td><%= order.scheduled_for %></td>
         <td>
           <%= link_to 'Изменить', edit_admin_order_path(order), class: 'btn btn-default' %>
           <%= link_to 'Удалить', order, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
