@@ -18,7 +18,11 @@
 class Dish < ActiveRecord::Base
   has_many :schedules, dependent: :destroy
   has_many :days, through: :schedules
-  has_and_belongs_to_many :ingredients
+
+  has_many :dish_ingredients, dependent: :destroy, inverse_of: :dish
+  has_many :ingredients, through: :dish_ingredients
+  accepts_nested_attributes_for :dish_ingredients, allow_destroy: true
+
   has_and_belongs_to_many :badges
 
   validates :name, presence: true
@@ -26,7 +30,6 @@ class Dish < ActiveRecord::Base
   validates :image, presence: true
   validates :subtitle, presence: true, if: '!stuff && !lunch'
 
-  accepts_nested_attributes_for :ingredients, allow_destroy: true
   accepts_nested_attributes_for :badges, allow_destroy: true
 
   mount_uploader :image, DishUploader
