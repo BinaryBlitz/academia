@@ -31,4 +31,12 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def redeem(promo_code)
+    if promo_used?
+      false
+    else
+      update(balance: balance + promo_code.discount, promo_used: true)
+    end
+  end
 end
