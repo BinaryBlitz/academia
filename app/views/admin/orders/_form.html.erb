@@ -16,6 +16,11 @@
     <%= f.text_field :address, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :status %>
+    <%= f.select :status, Order.status.values.collect { |v| [v.text, v] }, {}, class: 'form-control' %>
+  </div>
+
   <div class="form-group actions">
     <%= f.submit class: 'btn btn-default' %>
   </div>

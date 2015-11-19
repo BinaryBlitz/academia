@@ -9,6 +9,7 @@
     <tr>
       <th>№</th>
       <th>Адрес</th>
+      <th>Статус</th>
       <th></th>
     </tr>
   </thead>
@@ -16,8 +17,9 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to order.id, [:admin, order] %></td>
-        <td><%= link_to order.address, [:admin, order] %></td>
+        <td><%= order.id %></td>
+        <td><%= order.address %></td>
+        <td><%= order.status.text %></td>
         <td>
           <%= link_to 'Изменить', edit_admin_order_path(order), class: 'btn btn-default' %>
           <%= link_to 'Удалить', order, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>

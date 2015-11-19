@@ -10,6 +10,7 @@ gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'email_validator'
 gem 'phony_rails'
+gem 'enumerize'
 
 # Auth
 gem 'bcrypt', '~> 3.1.7'

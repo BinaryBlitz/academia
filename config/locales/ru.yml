@@ -42,6 +42,7 @@ ru:
         image: Изображение
       order:
         address: Адрес
+        status: Статус
       schedules:
         dish: Блюдо
       badge:
@@ -60,3 +61,10 @@ ru:
     submit:
       create: Создать
       update: Обновить
+  enumerize:
+    order:
+      status:
+        new: Новый
+        on_the_way: В пути
+        delivered: Доставлен и оплачен
+        rejected: Отказан

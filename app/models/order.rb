@@ -7,6 +7,7 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  status     :string
 #
 
 class Order < ActiveRecord::Base
@@ -19,6 +20,9 @@ class Order < ActiveRecord::Base
 
   validates :user, presence: true
   validates :address, presence: true
+
+  extend Enumerize
+  enumerize :status, in: [:new, :on_the_way, :delivered, :rejected], default: :new
 
   def total_price
     sum = 0
