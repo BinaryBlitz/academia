@@ -26,6 +26,7 @@ ru:
       ingredient: Ингридиент
       order: Заказ
       day: День
+      promo_code: Промо код
     attributes:
       day:
         date: Дата
@@ -52,6 +53,9 @@ ru:
       user:
         balance: Баланс
         promo_used: Промо код использован
+      promo_code:
+        code: Код
+        discount: Скидка
     errors:
       models:
         schedule:

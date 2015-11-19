@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :orders
     resources :days
     resources :users, except: [:new, :create]
+    resources :promo_codes, except: [:show]
 
     get 'lunches' => 'dishes#lunches'
     get 'stuff' => 'dishes#stuff'
