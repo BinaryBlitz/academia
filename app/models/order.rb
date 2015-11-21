@@ -14,6 +14,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :user
 
+  has_one :payment
   has_many :line_items, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :line_items
 
@@ -23,7 +24,7 @@ class Order < ActiveRecord::Base
   private
 
   def ensure_presence_of_line_items
-    if line_items.size <= 0
+    if line_items.empty?
       errors.add(:line_items, "can't be blank")
       false
     else

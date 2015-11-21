@@ -26,7 +26,12 @@ Rails.application.routes.draw do
 
   resource :day, only: :show
 
-  resources :orders, except: [:new, :edit, :update]
+  resources :orders, except: [:new, :edit, :update] do
+    member do
+      post 'payment'
+      get 'payment_status'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
