@@ -14,9 +14,12 @@
 #  api_token    :string
 #  promo_used   :boolean          default(FALSE)
 #  balance      :integer          default(0)
+#  promo_code   :string
 #
 
 class User < ActiveRecord::Base
+  before_create :generate_promo_code
+
   has_many :orders, dependent: :destroy
 
   has_secure_token :api_token
@@ -38,5 +41,12 @@ class User < ActiveRecord::Base
     else
       update(balance: balance + promo_code.discount, promo_used: true)
     end
+  end
+
+  private
+
+  def generate_promo_code
+    letters = (0..9).to_a + ('a'..'z').to_a
+    self.promo_code = letters.sample(6).join.upcase unless promo_code
   end
 end
