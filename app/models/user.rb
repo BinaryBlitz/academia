@@ -18,6 +18,9 @@
 #
 
 class User < ActiveRecord::Base
+  REFERRAL_BONUS = 100
+  PROMO_CODE_LENGTH = 6
+
   before_create :generate_promo_code
 
   has_many :orders, dependent: :destroy
@@ -35,18 +38,31 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def redeem(promo_code)
-    if promo_used?
-      false
-    else
-      update(balance: balance + promo_code.discount, promo_used: true)
-    end
+  def redeem(code)
+    return false if promo_used?
+
+    promo = PromoCode.find_by(code: code)
+    return redeem_promo_code(promo) if promo
+
+    user = User.find_by(promo_code: code)
+    return redeem_user_code(promo) if user
+
+    return false
   end
 
   private
 
   def generate_promo_code
     letters = (0..9).to_a + ('a'..'z').to_a
-    self.promo_code = letters.sample(6).join.upcase unless promo_code
+    self.promo_code = letters.sample(PROMO_CODE_LENGTH).join.upcase unless promo_code
+  end
+
+  def redeem_user_code(referred_user)
+    referred_user.update(balance: referred_user.balance + REFERRAL_BONUS)
+    update(balance: balance + REFERRAL_BONUS, promo_used: true)
+  end
+
+  def redeem_promo_code(promo)
+    update(balance: balance + promo.discount, promo_used: true)
   end
 end
