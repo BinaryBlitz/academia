@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< cb3e8ee1423695350fe3c404a11ed8cea31f49b9
 ActiveRecord::Schema.define(version: 20151122133613) do
-=======
-ActiveRecord::Schema.define(version: 20151118121913) do
->>>>>>> Payment#check_status
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,13 +120,6 @@ ActiveRecord::Schema.define(version: 20151118121913) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "promo_codes", force: :cascade do |t|
-    t.string   "code"
-    t.integer  "discount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "payments", force: :cascade do |t|
     t.integer  "price",         null: false
     t.integer  "order_id",      null: false
@@ -143,6 +132,13 @@ ActiveRecord::Schema.define(version: 20151118121913) do
   end
 
   add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
+
+  create_table "promo_codes", force: :cascade do |t|
+    t.string   "code"
+    t.integer  "discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "schedules", force: :cascade do |t|
     t.integer  "day_id"
@@ -161,11 +157,12 @@ ActiveRecord::Schema.define(version: 20151118121913) do
     t.string   "phone_number"
     t.string   "vk_id"
     t.string   "fb_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "api_token"
     t.boolean  "promo_used",      default: false
     t.integer  "balance",         default: 0
+    t.string   "promo_code"
     t.string   "alfa_binding_id"
     t.string   "card_number"
   end
