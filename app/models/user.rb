@@ -18,6 +18,7 @@
 #  alfa_binding_id       :string
 #  card_number           :string
 #  sms_verification_code :integer
+#  discount              :integer          default(0)
 #
 
 class User < ActiveRecord::Base

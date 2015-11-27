@@ -1,6 +1,6 @@
 u = User.create!(
   first_name: 'Foo', last_name: 'Bar', email: 'foo@bar.com',
-  phone_number: '+75551234567', password: 'foobar'
+  phone_number: '+75551234567'
 )
 u.update!(api_token: 'foobar')
 

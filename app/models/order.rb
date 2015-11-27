@@ -34,7 +34,17 @@ class Order < ActiveRecord::Base
   def total_price
     sum = 0
     line_items.each { |item| sum += item.total_price }
-    sum
+    sum *= (1.0 - (user.discount / 100.0))
+    sum = user.balance > sum ? 0 : sum - user.balance
+    sum.to_i
+  end
+
+  def redeem_balance
+    if user.balance > total_price
+      user.update(balance: user.balance - total_price)
+    else
+      user.update(balance: 0)
+    end
   end
 
   private
