@@ -55,8 +55,9 @@ class UsersController < ApplicationController
   end
 
   def send_verification_code
-    User.find_or_initialize_by(phone_number: params[:phone_number]).send_verification_code
-    head :created
+    user = User.find_or_initialize_by(phone_number: params[:phone_number])
+    user.send_verification_code
+    render json: { sms_verification_code: user.sms_verification_code }
   end
 
   def verify_phone_number
