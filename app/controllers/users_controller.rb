@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update]
-  skip_before_action :restrict_access, only: [:create, :authenticate, :authenticate_vk, :authenticate_fb, :send_verification_code]
+  skip_before_action :restrict_access, only: [:create, :authenticate, :authenticate_vk, :authenticate_fb, :send_verification_code, :verify_phone_number]
 
   def show
   end
@@ -57,6 +57,17 @@ class UsersController < ApplicationController
   def send_verification_code
     User.find_or_initialize_by(phone_number: params[:phone_number]).send_verification_code
     head :created
+  end
+
+  def verify_phone_number
+    @user = User.find_by(sms_verification_params)
+
+    if @user && @user.sms_verification_code
+      @user.update(sms_verification_code: nil)
+      render :show
+    else
+      render json: { message: "User not found or invalid code" }, status: 422
+    end
   end
 
   private
