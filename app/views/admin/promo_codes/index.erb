@@ -1,0 +1,16 @@
+<h1>Промо коды</h1>
+
+<div class="form-group">
+  <%= link_to 'Новый промо код', new_admin_promo_code_path, class: 'btn btn-default' %>
+</div>
+
+<table class="table">
+  <thead>
+    <th>Код</th>
+    <th>Скидка</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <%= render @promo_codes %>
+  </tbody>
+</table>

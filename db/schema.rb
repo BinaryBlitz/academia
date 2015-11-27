@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023105754) do
+ActiveRecord::Schema.define(version: 20151122133613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,26 @@ ActiveRecord::Schema.define(version: 20151023105754) do
     t.date     "date"
   end
 
+  create_table "dish_badges", force: :cascade do |t|
+    t.integer  "dish_id"
+    t.integer  "badge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "dish_badges", ["badge_id"], name: "index_dish_badges_on_badge_id", using: :btree
+  add_index "dish_badges", ["dish_id"], name: "index_dish_badges_on_dish_id", using: :btree
+
+  create_table "dish_ingredients", force: :cascade do |t|
+    t.integer  "dish_id"
+    t.integer  "ingredient_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "dish_ingredients", ["dish_id"], name: "index_dish_ingredients_on_dish_id", using: :btree
+  add_index "dish_ingredients", ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id", using: :btree
+
   create_table "dishes", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -68,19 +88,12 @@ ActiveRecord::Schema.define(version: 20151023105754) do
     t.boolean  "hidden",      default: false
   end
 
-  create_table "dishes_ingredients", id: false, force: :cascade do |t|
-    t.integer "dish_id"
-    t.integer "ingredient_id"
-  end
-
-  add_index "dishes_ingredients", ["dish_id"], name: "index_dishes_ingredients_on_dish_id", using: :btree
-  add_index "dishes_ingredients", ["ingredient_id"], name: "index_dishes_ingredients_on_ingredient_id", using: :btree
-
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "weight"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -97,11 +110,35 @@ ActiveRecord::Schema.define(version: 20151023105754) do
   create_table "orders", force: :cascade do |t|
     t.text     "address"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "status"
+    t.datetime "scheduled_for"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "price",         null: false
+    t.integer  "order_id",      null: false
+    t.string   "alfa_order_id"
+    t.string   "alfa_form_url"
+    t.boolean  "payed"
+    t.boolean  "use_binding"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
+
+  create_table "promo_codes", force: :cascade do |t|
+    t.string   "code"
+    t.integer  "discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "schedules", force: :cascade do |t|
     t.integer  "day_id"
@@ -118,7 +155,6 @@ ActiveRecord::Schema.define(version: 20151023105754) do
     t.string   "last_name"
     t.string   "email"
     t.string   "phone_number"
-    t.string   "password_digest"
     t.string   "vk_id"
     t.string   "fb_id"
     t.datetime "created_at",                      null: false
@@ -126,6 +162,9 @@ ActiveRecord::Schema.define(version: 20151023105754) do
     t.string   "api_token"
     t.boolean  "promo_used",      default: false
     t.integer  "balance",         default: 0
+    t.string   "promo_code"
+    t.string   "alfa_binding_id"
+    t.string   "card_number"
   end
 
 end

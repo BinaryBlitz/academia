@@ -9,21 +9,14 @@
     <tr>
       <th>№</th>
       <th>Адрес</th>
+      <th>Статус</th>
+      <th>Время доставки</th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= link_to order.id, [:admin, order] %></td>
-        <td><%= link_to order.address, [:admin, order] %></td>
-        <td>
-          <%= link_to 'Изменить', edit_admin_order_path(order), class: 'btn btn-default' %>
-          <%= link_to 'Удалить', order, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+    <%= render @orders %>
   </tbody>
 </table>
 

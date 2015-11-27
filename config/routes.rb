@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :orders
     resources :days
     resources :users, except: [:new, :create]
+    resources :promo_codes, except: [:show]
 
     get 'lunches' => 'dishes#lunches'
     get 'stuff' => 'dishes#stuff'
@@ -26,7 +27,13 @@ Rails.application.routes.draw do
 
   resource :day, only: :show
 
-  resources :orders, except: [:new, :edit, :update]
+  resources :orders, except: [:new, :edit, :update] do
+    member do
+      post 'payment'
+      get 'payment_status'
+    end
+  end
+  post 'promo_codes/redeem'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -12,4 +12,23 @@
   <strong>Телефон:</strong> <%= @user.phone_number %>
 </div>
 
+<div class="form-group">
+  <strong>Баланс:</strong> <%= @user.balance %>
+</div>
 
+<h2>Заказы</h2>
+
+<% if @user.orders.any? %>
+  <table class="table">
+    <thead>
+      <th>№</th>
+      <th>Адрес</th>
+      <th>Статус</th>
+      <th>Время доставки</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <%= render @user.orders %>
+    </tbody>
+  </table>
+<% end %>

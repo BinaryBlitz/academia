@@ -1,3 +1,5 @@
+json.current_time Time.zone.now
+
 json.dishes do
   json.partial! 'dish', collection: @day.dishes.main, as: :dish
 end

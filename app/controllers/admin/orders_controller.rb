@@ -45,6 +45,6 @@ class Admin::OrdersController < Admin::AdminController
   end
 
   def admin_order_params
-    params.require(:order).permit(:address)
+    params.require(:order).permit(:address, :status)
   end
 end

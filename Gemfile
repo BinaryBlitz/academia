@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5'
 gem 'pg'
 gem 'jbuilder', '~> 2.0'
 gem 'carrierwave'
@@ -10,6 +10,8 @@ gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'email_validator'
 gem 'phony_rails'
+gem 'enumerize'
+gem 'httparty'
 
 # Auth
 gem 'bcrypt', '~> 3.1.7'
@@ -48,4 +50,3 @@ group :development do
 end
 
 gem 'ffaker', group: [:development, :staging]
-

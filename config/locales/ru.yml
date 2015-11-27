@@ -26,6 +26,7 @@ ru:
       ingredient: Ингридиент
       order: Заказ
       day: День
+      promo_code: Промо код
     attributes:
       day:
         date: Дата
@@ -36,11 +37,14 @@ ru:
         description: Описание
         subtitle: Подзаголовок
         ingredients: Ингридиенты
+        badges: Иконки
       ingredient:
         name: Название
         image: Изображение
+        weight: Вес
       order:
         address: Адрес
+        status: Статус
       schedules:
         dish: Блюдо
       badge:
@@ -49,6 +53,9 @@ ru:
       user:
         balance: Баланс
         promo_used: Промо код использован
+      promo_code:
+        code: Код
+        discount: Скидка
     errors:
       models:
         schedule:
@@ -59,3 +66,10 @@ ru:
     submit:
       create: Создать
       update: Обновить
+  enumerize:
+    order:
+      status:
+        new: Новый
+        on_the_way: В пути
+        delivered: Доставлен и оплачен
+        rejected: Отказан
