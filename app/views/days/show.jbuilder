@@ -1,7 +1,8 @@
 json.current_time Time.zone.now
-json.is_closed @day.nil?
+json.is_closed Day.open?
+json.opens_at Day.opens_at
 
-if @day
+if Day.open?
   json.dishes do
     json.partial! 'dish', collection: @day.dishes.main, as: :dish
   end
