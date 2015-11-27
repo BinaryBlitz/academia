@@ -52,6 +52,7 @@ ru:
         image: Изображение
       user:
         balance: Баланс
+        discount: Скидка
         promo_used: Промо код использован
       promo_code:
         code: Код
