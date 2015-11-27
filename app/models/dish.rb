@@ -31,10 +31,11 @@ class Dish < ActiveRecord::Base
   accepts_nested_attributes_for :dish_badges, allow_destroy: true
 
   # Validations
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 30 }
   validates :price, presence: true, numericality: { greter_than: 0 }
   validates :image, presence: true
   validates :subtitle, presence: true, if: '!stuff && !lunch'
+  validates :subtitle, length: { maximum: 60 }
 
   mount_uploader :image, DishUploader
 
