@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resource :user, except: [:index, :new, :edit, :destroy] do
     post 'authenticate', 'authenticate_vk', 'authenticate_fb', on: :collection
+    post 'send_verification_code', on: :collection
   end
 
   resources :dishes, only: [:index] do

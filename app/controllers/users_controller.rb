@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update]
-  skip_before_action :restrict_access, only: [:create, :authenticate, :authenticate_vk, :authenticate_fb]
+  skip_before_action :restrict_access, only: [:create, :authenticate, :authenticate_vk, :authenticate_fb, :send_verification_code]
 
   def show
   end
@@ -24,12 +24,13 @@ class UsersController < ApplicationController
   end
 
   def authenticate
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by(sms_verification_params)
 
-    if @user && @user.authenticate(params[:password])
+    if @user
+      @user.update(sms_verification_code: nil)
       render :show
     else
-      render json: { error: 'Invalid email / password combination' }, status: :unauthorized
+      head :unauthorized
     end
   end
 
@@ -53,6 +54,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def send_verification_code
+    User.find_or_initialize_by(phone_number: params[:phone_number]).send_verification_code
+    head :created
+  end
+
   private
 
   def set_user
@@ -61,5 +67,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :password)
+  end
+
+  def sms_verification_params
+    params.permit(:phone_number, :sms_verification_code)
   end
 end

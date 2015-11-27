@@ -2,26 +2,29 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  first_name      :string
-#  last_name       :string
-#  email           :string
-#  phone_number    :string
-#  vk_id           :string
-#  fb_id           :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  api_token       :string
-#  promo_used      :boolean          default(FALSE)
-#  balance         :integer          default(0)
-#  promo_code      :string
-#  alfa_binding_id :string
-#  card_number     :string
+#  id                    :integer          not null, primary key
+#  first_name            :string
+#  last_name             :string
+#  email                 :string
+#  phone_number          :string
+#  vk_id                 :string
+#  fb_id                 :string
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  api_token             :string
+#  promo_used            :boolean          default(FALSE)
+#  balance               :integer          default(0)
+#  promo_code            :string
+#  alfa_binding_id       :string
+#  card_number           :string
+#  sms_verification_code :integer
 #
 
 class User < ActiveRecord::Base
   REFERRAL_BONUS = 100
   PROMO_CODE_LENGTH = 6
+
+  SMS_VERIFICATION_URL = 'http://sms.ru/sms/send'
 
   before_create :generate_promo_code
 
@@ -52,6 +55,17 @@ class User < ActiveRecord::Base
     return false
   end
 
+  def send_verification_code
+    response = HTTParty.post(SMS_VERIFICATION_URL, body: sms_verification_params).parsed_response
+
+    if response.lines.first.try(:chomp) == '100'
+      update(sms_verification_code: @sms_verification_code)
+    else
+      logger.info "#{Time.zone.now}: SMS verification for #{phone_number} failed.\n#{response}"
+      false
+    end
+  end
+
   private
 
   def generate_promo_code
@@ -66,5 +80,15 @@ class User < ActiveRecord::Base
 
   def redeem_promo_code(promo)
     update(balance: balance + promo.discount, promo_used: true)
+  end
+
+  def sms_verification_params
+    @sms_verification_code = Random.new.rand(1000..9999)
+
+    {
+      api_id: Rails.application.secrets.sms_ru_api_id,
+      text: "Код верификации: #{@sms_verification_code}",
+      to: phone_number
+    }
   end
 end

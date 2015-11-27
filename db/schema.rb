@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122133613) do
+ActiveRecord::Schema.define(version: 20151127131524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,14 +157,15 @@ ActiveRecord::Schema.define(version: 20151122133613) do
     t.string   "phone_number"
     t.string   "vk_id"
     t.string   "fb_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "api_token"
-    t.boolean  "promo_used",      default: false
-    t.integer  "balance",         default: 0
+    t.boolean  "promo_used",            default: false
+    t.integer  "balance",               default: 0
     t.string   "promo_code"
     t.string   "alfa_binding_id"
     t.string   "card_number"
+    t.integer  "sms_verification_code"
   end
 
 end
