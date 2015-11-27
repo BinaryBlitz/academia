@@ -17,7 +17,7 @@ class Day < ActiveRecord::Base
   accepts_nested_attributes_for :schedules, allow_destroy: true
 
   def self.today
-    Day.where('date <= ?', Date.today).order(date: :desc).first
+    Day.find_by(date: Date.today)
   end
 
   def to_s
