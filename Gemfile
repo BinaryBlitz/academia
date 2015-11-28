@@ -12,6 +12,7 @@ gem 'email_validator'
 gem 'phony_rails'
 gem 'enumerize'
 gem 'httparty'
+gem 'validates_overlap'
 
 # Auth
 gem 'bcrypt', '~> 3.1.7'

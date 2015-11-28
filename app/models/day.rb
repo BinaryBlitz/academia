@@ -19,7 +19,9 @@ class Day < ActiveRecord::Base
   accepts_nested_attributes_for :schedules, allow_destroy: true
 
   def self.open?
-    @is_open ||= today.present? && Time.use_zone('Moscow') { Time.zone.now.hour >= OPENS_AT }
+    Time.use_zone('Moscow') do
+      WorkingHour.all.find { |hour| (hour.starts_at..hour.ends_at).include?(Time.now.hour) }
+    end
   end
 
   def self.opens_at
