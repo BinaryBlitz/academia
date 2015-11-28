@@ -24,13 +24,13 @@ class OrdersController < ApplicationController
     order_payment = (@order.payment || @order.create_payment(payment_params))
     @url = order_payment.register_in_alfa
 
-    format.json { render json: {url: @url} }
+    render json: {url: @url}, status: :ok
   end
 
   def payment_status
     @status = @order.payment.try(:check_status)
 
-    format.json { render json: {status: @status} }
+    render json: {status: @status}, status: :ok
   end
 
   private
