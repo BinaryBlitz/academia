@@ -9,7 +9,7 @@
 #
 
 class Day < ActiveRecord::Base
-  OPENS_AT = 12
+  OPENS_AT = 0
 
   has_many :schedules, dependent: :destroy, inverse_of: :day
   has_many :dishes, through: :schedules

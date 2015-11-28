@@ -1,5 +1,5 @@
 json.current_time Time.zone.now
-json.is_closed Day.open?
+json.is_open Day.open?
 json.opens_at Day.opens_at
 
 if Day.open?
