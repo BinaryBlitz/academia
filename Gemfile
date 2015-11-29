@@ -13,6 +13,7 @@ gem 'phony_rails'
 gem 'enumerize'
 gem 'httparty'
 gem 'validates_overlap'
+gem 'geokit'
 
 # Auth
 gem 'bcrypt', '~> 3.1.7'

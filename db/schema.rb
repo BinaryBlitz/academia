@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128124147) do
+ActiveRecord::Schema.define(version: 20151129115217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20151128124147) do
     t.date     "date"
   end
 
+  create_table "delivery_points", force: :cascade do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dish_badges", force: :cascade do |t|
     t.integer  "dish_id"
     t.integer  "badge_id"
@@ -86,6 +93,13 @@ ActiveRecord::Schema.define(version: 20151128124147) do
     t.datetime "updated_at",                  null: false
     t.string   "subtitle"
     t.boolean  "hidden",      default: false
+  end
+
+  create_table "edge_points", force: :cascade do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ingredients", force: :cascade do |t|

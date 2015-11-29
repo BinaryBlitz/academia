@@ -24,9 +24,9 @@ class Order < ActiveRecord::Base
 
   validates :user, presence: true
   validates :address, presence: true
+  validate :inside_delivery_zone?
 
-  validates :latitude , numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }
-  validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
+  include Geocodable
 
   extend Enumerize
   enumerize :status, in: [:new, :on_the_way, :delivered, :rejected], default: :new
@@ -56,5 +56,14 @@ class Order < ActiveRecord::Base
     else
       true
     end
+  end
+
+  def inside_delivery_zone?
+    return unless latitude && longitude
+    errors.add(:base, 'outside delivery zone') unless EdgePoint.to_polygon.contains?(to_point)
+  end
+
+  def to_point
+    Geokit::LatLng.new(latitude, longitude)
   end
 end
