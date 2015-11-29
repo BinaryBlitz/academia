@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       post 'authenticate', 'authenticate_vk', 'authenticate_fb'
     end
   end
-  resources :verification_tokens, only: [:create, :update]
+  resources :verification_tokens, only: [:create, :update], param: :token
 
   resources :dishes, only: [:index] do
     get 'stuff', on: :collection

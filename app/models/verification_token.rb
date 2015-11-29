@@ -42,6 +42,10 @@ class VerificationToken < ActiveRecord::Base
     end
   end
 
+  def as_json(options)
+    { phone_number: phone_number, token: token }
+  end
+
   private
 
   def generate_code

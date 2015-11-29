@@ -5,7 +5,7 @@ class VerificationTokensController < ApplicationController
     @verification_token = VerificationToken.new(verification_token_params)
 
     if @verification_token.save
-      head :created
+      render json: @verification_token, status: :created
     else
       render json: @verification_token.errors, status: 422
     end
@@ -14,7 +14,7 @@ class VerificationTokensController < ApplicationController
   def update
     @verification_token = VerificationToken.find_by!(token: params[:token])
 
-    if @verification_token.verify(params[:code])
+    if @verification_token.verify(params[:code].to_i)
       render json: { api_token: @verification_token.user.try(:api_token) }
     else
       head :forbidden
