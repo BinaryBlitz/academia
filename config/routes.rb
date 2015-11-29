@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :days
     resources :users, except: [:new, :create]
     resources :promo_codes, except: [:show]
+    resources :working_hours, except: [:show, :edit, :update]
 
     get 'lunches' => 'dishes#lunches'
     get 'stuff' => 'dishes#stuff'
@@ -18,7 +19,10 @@ Rails.application.routes.draw do
   end
 
   resource :user, except: [:index, :new, :edit, :destroy] do
-    post 'authenticate', 'authenticate_vk', 'authenticate_fb', on: :collection
+    collection do
+      post 'authenticate', 'authenticate_vk', 'authenticate_fb', 'send_verification_code'
+      get 'verify_phone_number'
+    end
   end
 
   resources :dishes, only: [:index] do

@@ -16,7 +16,7 @@ class Admin::BadgesController < Admin::AdminController
     @badge = Badge.new(badge_params)
 
     if @badge.save
-      redirect_to @badge, notice: 'Иконка была успешно создана.'
+      redirect_to admin_badges_url, notice: 'Иконка была успешно создана.'
     else
       render :new
     end
@@ -24,7 +24,7 @@ class Admin::BadgesController < Admin::AdminController
 
   def update
     if @badge.update(badge_params)
-      redirect_to @badge, notice: 'Иконка была успешно обновлена.'
+      redirect_to admin_badges_url, notice: 'Иконка была успешно обновлена.'
     else
       render :edit
     end

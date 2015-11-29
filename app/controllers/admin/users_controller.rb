@@ -13,7 +13,7 @@ class Admin::UsersController < Admin::AdminController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to [:admin, @user], notice: 'User was successfully updated.'
     else
       render :edit
     end
@@ -31,6 +31,6 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def user_params
-    params.require(:user).permit(:balance, :promo_used)
+    params.require(:user).permit(:balance, :discount, :promo_used)
   end
 end

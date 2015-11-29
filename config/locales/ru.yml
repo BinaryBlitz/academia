@@ -27,6 +27,7 @@ ru:
       order: Заказ
       day: День
       promo_code: Промо код
+      working_hour: Интервал
     attributes:
       day:
         date: Дата
@@ -52,16 +53,24 @@ ru:
         image: Изображение
       user:
         balance: Баланс
+        discount: Скидка
         promo_used: Промо код использован
       promo_code:
         code: Код
         discount: Скидка
+      working_hour:
+        starts_at: Начало
+        ends_at: Конец
     errors:
       models:
         schedule:
           attributes:
             dish:
               taken: уже есть в расписании
+        working_hour:
+            attributes:
+              starts_at:
+                overlap: пересекается с другим интервалом
   helpers:
     submit:
       create: Создать

@@ -16,6 +16,10 @@
   <strong>Баланс:</strong> <%= @user.balance %>
 </div>
 
+<div class="form-group">
+  <strong>Скидка:</strong> <%= @user.discount %>%
+</div>
+
 <h2>Заказы</h2>
 
 <% if @user.orders.any? %>

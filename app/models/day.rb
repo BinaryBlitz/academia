@@ -9,6 +9,8 @@
 #
 
 class Day < ActiveRecord::Base
+  OPENS_AT = 0
+
   has_many :schedules, dependent: :destroy, inverse_of: :day
   has_many :dishes, through: :schedules
 
@@ -16,8 +18,21 @@ class Day < ActiveRecord::Base
 
   accepts_nested_attributes_for :schedules, allow_destroy: true
 
+  def self.open?
+    Time.use_zone('Moscow') do
+      today.present? && WorkingHour.all.find { |hour| (hour.starts_at..hour.ends_at).include?(Time.now.hour) }
+    end
+  end
+
+  def self.opens_at
+    Time.use_zone('Moscow') do
+      now = Time.zone.now
+      Time.new(now.year, now.month, now.day, OPENS_AT)
+    end
+  end
+
   def self.today
-    Day.where('date <= ?', Date.today).order(date: :desc).first
+    Day.find_by(date: Date.today)
   end
 
   def to_s

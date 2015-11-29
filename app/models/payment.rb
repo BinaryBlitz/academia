@@ -48,6 +48,7 @@ class Payment < ActiveRecord::Base
 
     if response["ErrorCode"] == SUCCESS
       update_attribute(:payed, true)
+      order.redeem_balance
       set_user_binding_from_response(response) if response.has_key? "bindingId"
     end
 
