@@ -22,10 +22,10 @@ Rails.application.routes.draw do
 
   resource :user, except: [:index, :new, :edit, :destroy] do
     collection do
-      post 'authenticate', 'authenticate_vk', 'authenticate_fb', 'send_verification_code'
-      get 'verify_phone_number'
+      post 'authenticate', 'authenticate_vk', 'authenticate_fb'
     end
   end
+  resources :verification_tokens, only: [:create, :update]
 
   resources :dishes, only: [:index] do
     get 'stuff', on: :collection
