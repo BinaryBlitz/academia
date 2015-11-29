@@ -1,0 +1,24 @@
+<h1>Зона доставки</h1>
+
+<div class="form-group">
+  <%= link_to 'Новая точка', new_admin_edge_point_path, class: 'btn btn-default' %>
+</div>
+
+<table class="table">
+  <thead>
+    <th>Широта</th>
+    <th>Долгота</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @edge_points.each do |edge_point| %>
+      <tr>
+        <td><%= edge_point.latitude %></td>
+        <td><%= edge_point.longitude %></td>
+        <td>
+          <%= link_to 'Удалить', [:admin, edge_point], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

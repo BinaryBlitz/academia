@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :users, except: [:new, :create]
     resources :promo_codes, except: [:show]
     resources :working_hours, except: [:show, :edit, :update]
+    resources :edge_points, except: [:show, :edit, :update]
 
     get 'lunches' => 'dishes#lunches'
     get 'stuff' => 'dishes#stuff'
