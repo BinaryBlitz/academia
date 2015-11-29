@@ -1,0 +1,24 @@
+<h1>Рабочее время</h1>
+
+<div class="form-group">
+  <%= link_to 'Новый интервал', new_admin_working_hour_path, class: 'btn btn-default' %>
+</div>
+
+<table class="table">
+  <thead>
+    <th>Начало</th>
+    <th>Конец</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @working_hours.each do |working_hour| %>
+      <tr>
+        <td><%= working_hour.starts_at %></td>
+        <td><%= working_hour.ends_at %></td>
+        <td>
+          <%= link_to 'Удалить', [:admin, working_hour], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
