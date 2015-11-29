@@ -20,7 +20,7 @@ class Day < ActiveRecord::Base
 
   def self.open?
     Time.use_zone('Moscow') do
-      WorkingHour.all.find { |hour| (hour.starts_at..hour.ends_at).include?(Time.now.hour) }
+      today.present? && WorkingHour.all.find { |hour| (hour.starts_at..hour.ends_at).include?(Time.now.hour) }
     end
   end
 
