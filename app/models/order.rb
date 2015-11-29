@@ -24,6 +24,7 @@ class Order < ActiveRecord::Base
 
   validates :user, presence: true
   validates :address, presence: true
+  validate :inside_delivery_zone?
 
   include Geocodable
 
@@ -55,5 +56,14 @@ class Order < ActiveRecord::Base
     else
       true
     end
+  end
+
+  def inside_delivery_zone?
+    return unless latitude && longitude
+    errors.add(:base, 'outside delivery zone') unless EdgePoint.to_polygon.contains?(to_point)
+  end
+
+  def to_point
+    Geokit::LatLng.new(latitude, longitude)
   end
 end

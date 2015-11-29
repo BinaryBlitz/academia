@@ -11,4 +11,9 @@
 
 class EdgePoint < ActiveRecord::Base
   include Geocodable
+
+  def self.to_polygon
+    points = all.map { |point| Geokit::LatLng.new(point.latitude, point.longitude) }
+    Geokit::Polygon.new(points)
+  end
 end
