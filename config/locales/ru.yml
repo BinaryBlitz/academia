@@ -64,6 +64,9 @@ ru:
       edge_point:
         latitude: Широта
         longitude: Долгота
+      delivery_point:
+        latitude: Широта
+        longitude: Долгота
     errors:
       models:
         schedule:

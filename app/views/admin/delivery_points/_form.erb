@@ -1,10 +1,10 @@
-<%= form_for([:admin, @edge_point]) do |f| %>
-  <% if @edge_point.errors.any? %>
+<%= form_for([:admin, @delivery_point]) do |f| %>
+  <% if @delivery_point.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@edge_point.errors.count, "error") %>:</h2>
+      <h2><%= pluralize(@delivery_point.errors.count, "error") %>:</h2>
 
       <ul>
-      <% @edge_point.errors.full_messages.each do |message| %>
+      <% @delivery_point.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
