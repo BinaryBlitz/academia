@@ -32,7 +32,7 @@ class Payment < ActiveRecord::Base
 
   def register_in_alfa
     return alfa_form_url if alfa_order_id.present?
-    response = JSON.parse(make_registration_request.parsed_response)
+    response = make_registration_request.parsed_response
 
     if response.has_key? "orderId"
       set_alfa_data_from_response(response)
@@ -44,9 +44,9 @@ class Payment < ActiveRecord::Base
   end
 
   def check_status
-    response = JSON.parse(make_status_request.parsed_response)
+    response = make_status_request.parsed_response
 
-    if response["ErrorCode"] == SUCCESS
+    if response["ErrorCode"].to_i == SUCCESS
       update_attribute(:payed, true)
       order.redeem_balance
       order.update(status: :on_the_way)
@@ -63,11 +63,11 @@ class Payment < ActiveRecord::Base
   end
 
   def make_registration_request
-    HTTParty.post(REGISTRATION_URL, body: generate_payment_params)
+    HTTParty.post(REGISTRATION_URL, body: generate_payment_params, format: :json)
   end
 
   def make_status_request
-    HTTParty.post(CHECK_STATUS_URL, body: generate_status_params)
+    HTTParty.post(CHECK_STATUS_URL, body: generate_status_params, format: :json)
   end
 
   def generate_status_params
