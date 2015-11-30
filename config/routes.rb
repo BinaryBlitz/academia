@@ -20,11 +20,7 @@ Rails.application.routes.draw do
     get 'schedule' => 'days#index'
   end
 
-  resource :user, except: [:index, :new, :edit, :destroy] do
-    collection do
-      post 'authenticate', 'authenticate_vk', 'authenticate_fb'
-    end
-  end
+  resource :user, only: [:show, :create, :update]
   resources :verification_tokens, only: [:create, :update], param: :token
 
   resources :dishes, only: [:index] do

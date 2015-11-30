@@ -39,8 +39,6 @@ class User < ActiveRecord::Base
   validates :email, email: true
   validates :discount, inclusion: { in: 0..100 }
 
-  include Authenticable
-
   def full_name
     "#{first_name} #{last_name}"
   end
