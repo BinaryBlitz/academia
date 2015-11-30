@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update]
-  skip_before_action :restrict_access,
-                     except: [:create, :authenticate, :authenticate_vk, :authenticate_fb]
+  skip_before_action :restrict_access, only: [:create]
 
   def show
   end
