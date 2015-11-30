@@ -13,7 +13,7 @@ class Admin::UsersController < Admin::AdminController
 
   def update
     if @user.update(user_params)
-      redirect_to [:admin, @user], notice: 'User was successfully updated.'
+      redirect_to admin_users_url, notice: 'Пользователь успешно обновлен.'
     else
       render :edit
     end
