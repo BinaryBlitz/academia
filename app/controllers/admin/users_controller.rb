@@ -31,6 +31,6 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def user_params
-    params.require(:user).permit(:balance, :discount, :promo_used)
+    params.require(:user).permit(:balance, :discount)
   end
 end
