@@ -19,6 +19,13 @@ class WorkingHour < ActiveRecord::Base
   validates :starts_at, :ends_at, presence: true
   validates :starts_at, :ends_at, overlap: true
 
+  def self.open_now?
+    Time.use_zone('Moscow') do
+      time = Time.zone.now
+      all.detect { |hour| (hour.starts_at..hour.ends_at).include?(time.hour * 60 + time.min) }
+    end
+  end
+
   def from
     "#{starts_at / 60} ч #{starts_at % 60} мин"
   end
