@@ -34,6 +34,14 @@ class WorkingHour < ActiveRecord::Base
     "#{ends_at / 60} ч #{ends_at % 60} мин"
   end
 
+  def hour
+    starts_at / 60
+  end
+
+  def min
+    starts_at % 60
+  end
+
   private
 
   def convert_values

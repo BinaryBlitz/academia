@@ -9,8 +9,6 @@
 #
 
 class Day < ActiveRecord::Base
-  OPENS_AT = 11
-
   has_many :schedules, dependent: :destroy, inverse_of: :day
   has_many :dishes, through: :schedules
 
@@ -23,11 +21,13 @@ class Day < ActiveRecord::Base
   end
 
   def self.opens_at
-    return nil unless @is_open
-
+    return nil if open?
     Time.use_zone('Moscow') do
       now = Time.zone.now
-      Time.new(now.year, now.month, now.day, OPENS_AT)
+      current_minute = now.hour * 60 + now.min
+      working_hour = WorkingHour.order(starts_at: :asc).where('starts_at > ?', current_minute).first
+      return nil unless working_hour
+      Time.new(now.year, now.month, now.day, working_hour.hour, working_hour.min)
     end
   end
 
