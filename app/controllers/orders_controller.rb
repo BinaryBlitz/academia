@@ -15,6 +15,14 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    if @order.update(order_params)
+      head :ok
+    else
+      render json: @order.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @order.destroy
     head :no_content
@@ -41,7 +49,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(
-      :address, :scheduled_for, :latitude, :longitude, line_items_attributes: [:dish_id, :quantity]
+      :address, :scheduled_for, :latitude, :longitude,
+      :rating, :review,
+      line_items_attributes: [:dish_id, :quantity]
     )
   end
 

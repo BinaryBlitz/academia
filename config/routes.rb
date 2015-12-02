@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   resource :day, only: :show
 
-  resources :orders, except: [:new, :edit, :update] do
+  resources :orders, except: [:new, :edit] do
     member do
       post 'payment'
       get 'payment_status'

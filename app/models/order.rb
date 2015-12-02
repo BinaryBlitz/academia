@@ -11,6 +11,8 @@
 #  scheduled_for :datetime
 #  latitude      :float
 #  longitude     :float
+#  rating        :integer
+#  review        :text
 #
 
 class Order < ActiveRecord::Base
@@ -24,6 +26,7 @@ class Order < ActiveRecord::Base
 
   validates :user, presence: true
   validates :address, presence: true
+  validates :rating, inclusion: { in: 1..5 }, allow_blank: true
   validate :inside_delivery_zone?
 
   include Geocodable
