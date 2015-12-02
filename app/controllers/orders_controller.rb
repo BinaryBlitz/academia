@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_order, except: [:index, :create]
 
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.visible
   end
 
   def create

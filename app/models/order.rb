@@ -31,6 +31,8 @@ class Order < ActiveRecord::Base
   extend Enumerize
   enumerize :status, in: [:new, :on_the_way, :delivered, :rejected], default: :new
 
+  scope :visible, -> { where(status: [:on_the_way, :delivered]) }
+
   def total_price
     sum = 0
     line_items.each { |item| sum += item.total_price }
