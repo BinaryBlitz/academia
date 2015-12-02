@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'edge_points/index'
+
   root 'admin/orders#index'
   devise_for :admins, path: 'admin', skip: :registrations
 
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
       get 'payment_status'
     end
   end
+  resources :edge_points, only: :index
   post 'promo_codes/redeem'
 
   # The priority is based upon order of creation: first created -> highest priority.
