@@ -34,6 +34,7 @@ class Admin::DaysController < Admin::AdminController
   end
 
   def destroy
+    @day.destroy
     redirect_to admin_days_url, notice: 'День был успешно сброшен.'
   end
 
