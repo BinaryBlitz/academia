@@ -27,7 +27,7 @@ class Admin::DishesController < Admin::AdminController
     @dish = Dish.new(dish_params)
 
     if @dish.save
-      redirect_to [:admin, @dish], notice: 'Блюдо было успешно создано.'
+      redirect_to [:admin, @dish], notice: 'Блюдо успешно создано.'
     else
       render :new
     end
@@ -43,7 +43,13 @@ class Admin::DishesController < Admin::AdminController
 
   def destroy
     @dish.destroy
-    redirect_to admin_dishes_url, notice: 'Блюдо было успешно удалено.'
+    if @dish.lunch?
+      redirect_to admin_lunches_url, notice: 'Ланч успешно удален.'
+    elsif @dish.stuff
+      redirect_to admin_stuff_url, notice: 'Дополнительное блюдо успешно удалено.'
+    else
+      redirect_to admin_dishes_url, notice: 'Блюдо успешно удалено.'
+    end
   end
 
   private
