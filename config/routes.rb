@@ -8,13 +8,15 @@ Rails.application.routes.draw do
     resources :ingredients, except: :show
     resources :badges, except: :show
     resources :dishes
-    resources :orders
     resources :days
     resources :users, except: [:new, :create]
     resources :promo_codes, except: [:show]
     resources :working_hours, except: [:show, :edit, :update]
     resources :edge_points, except: [:show, :edit, :update]
     resources :delivery_points, except: [:show, :edit, :update]
+    resources :orders do
+      get 'delivered', 'rejected', on: :collection
+    end
 
     get 'lunches' => 'dishes#lunches'
     get 'stuff' => 'dishes#stuff'

@@ -35,6 +35,8 @@ class Order < ActiveRecord::Base
   enumerize :status, in: [:new, :on_the_way, :delivered, :rejected], default: :new
 
   scope :visible, -> { where(status: [:on_the_way, :delivered]) }
+  scope :delivered, -> { where(status: :delivered) }
+  scope :rejected, -> { where(status: :rejected) }
 
   def total_price
     sum = 0

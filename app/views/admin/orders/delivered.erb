@@ -1,0 +1,19 @@
+<h1>Доставленные заказы</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Адрес</th>
+      <th>Статус</th>
+      <th>Время доставки</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @delivered %>
+  </tbody>
+</table>
+
+<%= paginate @delivered %>
