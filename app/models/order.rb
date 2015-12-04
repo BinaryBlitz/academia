@@ -16,6 +16,9 @@
 #
 
 class Order < ActiveRecord::Base
+  FREE_DELIVERY_FROM = 1000
+  DELIVERY_COST = 200
+
   before_save :ensure_presence_of_line_items
 
   belongs_to :user
@@ -40,9 +43,14 @@ class Order < ActiveRecord::Base
 
   def total_price
     sum = 0
+    # Items
     line_items.each { |item| sum += item.total_price }
+    # Discount
     sum *= (1.0 - (user.discount / 100.0))
+    # Balance
     sum = user.balance > sum ? 0 : sum - user.balance
+    # Delivery
+    sum += DELIVERY_COST if sum < FREE_DELIVERY_FROM
     sum.to_i
   end
 
