@@ -20,6 +20,9 @@ class Dish < ActiveRecord::Base
   has_many :schedules, dependent: :destroy
   has_many :days, through: :schedules
 
+  # Orders
+  has_many :line_items, dependent: :destroy
+
   # Ingredients
   has_many :dish_ingredients, dependent: :destroy, inverse_of: :dish
   has_many :ingredients, through: :dish_ingredients
