@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   def redeem(code)
-    return false if promo_used?
+    return false if promo_used? || code == promo_code
 
     promo = PromoCode.find_by(code: code)
     return redeem_promo_code(promo) if promo
