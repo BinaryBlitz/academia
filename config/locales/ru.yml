@@ -37,7 +37,7 @@ ru:
         price: Цена
         description: Описание
         subtitle: Подзаголовок
-        ingredients: Ингридиенты
+        ingredients: Ингредиенты
         badges: Иконки
       ingredient:
         name: Название
