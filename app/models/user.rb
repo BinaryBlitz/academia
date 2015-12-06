@@ -19,6 +19,7 @@
 #  card_number           :string
 #  sms_verification_code :integer
 #  discount              :integer          default(0)
+#  referred_user_id      :integer
 #
 
 class User < ActiveRecord::Base
@@ -31,6 +32,8 @@ class User < ActiveRecord::Base
 
   has_many :orders, dependent: :destroy
 
+  belongs_to :referred_user, class_name: 'User'
+
   has_secure_token :api_token
 
   validates :first_name, presence: true
@@ -39,6 +42,7 @@ class User < ActiveRecord::Base
   validates :email, email: true
   validates :discount, inclusion: { in: 0..20 }
   validates :balance, numericality: { greater_than_or_equal_to: 0 }
+  validate :refers_self
 
   def full_name
     "#{first_name} #{last_name}"
@@ -51,9 +55,15 @@ class User < ActiveRecord::Base
     return redeem_promo_code(promo) if promo
 
     user = User.find_by(promo_code: code)
-    return redeem_user_code(user) if user
+    update(referred_user: user) if user
 
     return false
+  end
+
+  def redeem_user_code
+    return false unless referred_user
+    referred_user.update(balance: referred_user.balance + REFERRAL_BONUS)
+    update(balance: balance + REFERRAL_BONUS, promo_used: true)
   end
 
   private
@@ -63,12 +73,12 @@ class User < ActiveRecord::Base
     self.promo_code = letters.sample(PROMO_CODE_LENGTH).join.upcase unless promo_code
   end
 
-  def redeem_user_code(referred_user)
-    referred_user.update(balance: referred_user.balance + REFERRAL_BONUS)
-    update(balance: balance + REFERRAL_BONUS, promo_used: true)
-  end
-
   def redeem_promo_code(promo)
     update(balance: balance + promo.discount, promo_used: true)
+  end
+
+  def refers_self
+    return unless referred_user
+    errors.add(:referred_user, 'cannot be equal to self')
   end
 end
