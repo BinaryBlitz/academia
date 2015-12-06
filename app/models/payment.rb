@@ -59,7 +59,7 @@ class Payment < ActiveRecord::Base
   private
 
   def set_price
-    self.price = line_items.inject(0) { |acc, li| acc + li.total_price }
+    self.price = order.total_price
   end
 
   def make_registration_request
