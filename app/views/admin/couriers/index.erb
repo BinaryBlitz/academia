@@ -1,0 +1,25 @@
+<h1>Курьеры</h1>
+
+<div class="form-group">
+  <%= link_to 'Новый курьер', new_admin_courier_path, class: 'btn btn-default' %>
+</div>
+
+<table class="table">
+  <thead>
+    <th>Имя</th>
+    <th>Телефон</th>
+    <th>Точка</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @couriers.each do |courier| %>
+      <td><%= courier.name %></td>
+      <td><%= courier.phone_number %></td>
+      <td><%= courier.delivery_point %></td>
+      <td>
+        <%= link_to 'Изменить', edit_admin_courier_path(courier), class: 'btn btn-default' %>
+        <%= link_to 'Удалить', [:admin, courier], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+      </td>
+    <% end %>
+  </tbody>
+</table>

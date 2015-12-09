@@ -13,4 +13,8 @@ class DeliveryPoint < ActiveRecord::Base
   include Geocodable
 
   has_many :couriers
+
+  def to_s
+    "#{latitude}, #{longitude}"
+  end
 end

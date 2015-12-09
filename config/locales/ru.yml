@@ -28,6 +28,7 @@ ru:
       day: День
       promo_code: Промо код
       working_hour: Интервал
+      courier: Курьер
     attributes:
       day:
         date: Дата
@@ -67,6 +68,11 @@ ru:
       delivery_point:
         latitude: Широта
         longitude: Долгота
+      courier:
+        name: Имя
+        phone_number: Номер телефона
+        password: Пароль
+        delivery_point: Точка доставки
     errors:
       models:
         schedule:
