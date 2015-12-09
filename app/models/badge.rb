@@ -10,6 +10,8 @@
 #
 
 class Badge < ActiveRecord::Base
+  has_many :dish_badges, dependent: :destroy
+  
   validates :name, presence: true
   validates :image, presence: true
 

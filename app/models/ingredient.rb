@@ -11,6 +11,8 @@
 #
 
 class Ingredient < ActiveRecord::Base
+  has_many :dish_ingredients, dependent: :destroy
+
   validates :name, presence: true
   validates :image, presence: true
   validates :weight, numericality: { greater_than: 0 }, allow_blank: true
