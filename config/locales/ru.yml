@@ -40,6 +40,8 @@ ru:
         subtitle: Подзаголовок
         ingredients: Ингредиенты
         badges: Иконки
+        dish_ingredients: Ингредиенты
+        dish_badges: Иконки
       ingredient:
         name: Название
         image: Изображение
