@@ -4,20 +4,4 @@
   <%= link_to 'Новый заказ', new_admin_order_path, class: 'btn btn-default' %>
 </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>№</th>
-      <th>Адрес</th>
-      <th>Статус</th>
-      <th>Время доставки</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%= render @orders %>
-  </tbody>
-</table>
-
-<%= paginate @orders %>
+<%= render 'orders', orders: @orders %>

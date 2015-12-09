@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :promo_codes, except: [:show]
     resources :working_hours, except: [:show, :edit, :update]
     resources :edge_points, except: [:show, :edit, :update]
+    resources :couriers
+    resources :alerts, only: [:index]
     resources :delivery_points, except: [:show, :edit, :update]
     resources :orders do
       get 'delivered', 'rejected', on: :collection

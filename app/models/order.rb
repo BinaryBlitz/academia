@@ -13,15 +13,18 @@
 #  longitude     :float
 #  rating        :integer
 #  review        :text
+#  courier_id    :integer
 #
 
 class Order < ActiveRecord::Base
   FREE_DELIVERY_FROM = 1000
   DELIVERY_COST = 200
+  MAX_DELIVERY_MINUTES = 40
 
   before_save :ensure_presence_of_line_items
 
   belongs_to :user
+  belongs_to :courier
 
   has_one :payment
   has_many :line_items, dependent: :destroy, inverse_of: :order
@@ -40,6 +43,9 @@ class Order < ActiveRecord::Base
   scope :visible, -> { where(status: [:on_the_way, :delivered]) }
   scope :delivered, -> { where(status: :delivered) }
   scope :rejected, -> { where(status: :rejected) }
+  scope :on_the_way, -> { where(status: :on_the_way) }
+  scope :unassigned, -> { on_the_way.where(courier: nil) }
+  scope :late, -> { on_the_way.where('created_at < ?', MAX_DELIVERY_MINUTES.minutes.ago) }
 
   def total_price
     sum = 0

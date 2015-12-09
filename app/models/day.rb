@@ -9,6 +9,8 @@
 #
 
 class Day < ActiveRecord::Base
+  DAYS_BEFORE_ALERT = 3
+
   has_many :schedules, dependent: :destroy, inverse_of: :day
   has_many :dishes, through: :schedules
 
@@ -33,6 +35,11 @@ class Day < ActiveRecord::Base
 
   def self.today
     Day.find_by(date: Date.today)
+  end
+
+  def self.present_for_the_next_three_days?
+    dates = (1..DAYS_BEFORE_ALERT).map { |day| Date.today + day.days }
+    where(date: dates).count == DAYS_BEFORE_ALERT
   end
 
   def to_s

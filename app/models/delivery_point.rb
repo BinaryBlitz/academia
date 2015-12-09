@@ -11,4 +11,6 @@
 
 class DeliveryPoint < ActiveRecord::Base
   include Geocodable
+
+  has_many :couriers
 end

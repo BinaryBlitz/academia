@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206103429) do
+ActiveRecord::Schema.define(version: 20151209130717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(version: 20151206103429) do
 
   add_index "badges_dishes", ["badge_id"], name: "index_badges_dishes_on_badge_id", using: :btree
   add_index "badges_dishes", ["dish_id"], name: "index_badges_dishes_on_dish_id", using: :btree
+
+  create_table "couriers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone_number"
+    t.string   "password_digest"
+    t.integer  "delivery_point_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "couriers", ["delivery_point_id"], name: "index_couriers_on_delivery_point_id", using: :btree
 
   create_table "days", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -132,8 +143,10 @@ ActiveRecord::Schema.define(version: 20151206103429) do
     t.float    "longitude"
     t.integer  "rating"
     t.text     "review"
+    t.integer  "courier_id"
   end
 
+  add_index "orders", ["courier_id"], name: "index_orders_on_courier_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
