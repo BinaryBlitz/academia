@@ -45,6 +45,10 @@ class Admin::DaysController < Admin::AdminController
   end
 
   def day_params
-    params.require(:day).permit(:date, schedules_attributes: [:id, :dish_id, :_destroy])
+    params.require(:day).permit(
+      :date,
+      schedules_attributes: [:id, :dish_id, :_destroy],
+      courier_schedules_attributes: [:id, :courier_id, :_destroy]
+    )
   end
 end

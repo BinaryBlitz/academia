@@ -14,9 +14,13 @@ class Day < ActiveRecord::Base
   has_many :schedules, dependent: :destroy, inverse_of: :day
   has_many :dishes, through: :schedules
 
-  validates :date, presence: true, uniqueness: true
+  has_many :courier_schedules, dependent: :destroy, inverse_of: :day
+  has_many :couriers, through: :courier_schedules
 
   accepts_nested_attributes_for :schedules, allow_destroy: true
+  accepts_nested_attributes_for :courier_schedules, allow_destroy: true
+
+  validates :date, presence: true, uniqueness: true
 
   def self.open?
     @is_open = !!(today.present? && WorkingHour.open_now?)

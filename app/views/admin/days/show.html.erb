@@ -4,6 +4,8 @@
   <%= link_to 'Изменить', edit_admin_day_path(@day), class: 'btn btn-default' %>
 </div>
 
+<h2>Блюда</h2>
+
 <table class="table">
   <thead>
     <th>Блюдо</th>
@@ -15,6 +17,23 @@
         <td><%= schedule.dish.name %></td>
         <td><%= schedule.dish.price %> р.</td>
       </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Курьеры</h2>
+
+<table class="table">
+  <thead>
+    <th>Имя</th>
+    <th>Телефон</th>
+    <th>Точка</th>
+  </thead>
+  <tbody>
+    <% @day.couriers.each do |courier| %>
+      <td><%= courier.name %></td>
+      <td><%= courier.phone_number %></td>
+      <td><%= courier.delivery_point %></td>
     <% end %>
   </tbody>
 </table>

@@ -29,6 +29,19 @@
     </div>
   <% end %>
 
+  <h3>Курьеры</h3>
+
+  <div class="form-group">
+    <%= f.add_nested_fields_link :courier_schedules, 'Добавить', class: 'btn btn-default' %>
+  </div>
+
+  <%= f.nested_fields_for :courier_schedules do |ff| %>
+    <div class="form-group dish-select">
+      <%= ff.select(:courier_id, Courier.all.collect { |courier| [courier.name, courier.id] }, { include_blank: true }, class: 'form-control') %>
+      <%= ff.remove_nested_fields_link 'Удалить', class: 'btn btn-danger' %>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <div class="actions">
       <%= f.submit class: 'btn btn-default' %>
