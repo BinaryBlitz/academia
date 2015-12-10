@@ -20,10 +20,12 @@ class WorkingHour < ActiveRecord::Base
   validates :starts_at, :ends_at, overlap: true
 
   def self.open_now?
-    Time.use_zone('Moscow') do
-      time = Time.zone.now
-      all.detect { |hour| (hour.starts_at..hour.ends_at).include?(time.hour * 60 + time.min) }
-    end
+    time = Time.zone.now
+    all.detect { |hour| (hour.starts_at..hour.ends_at).include?(time.hour * 60 + time.min) }
+  end
+
+  def self.earliest
+    order(starts_at: :asc).first
   end
 
   def from
