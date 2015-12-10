@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_order, except: [:index, :create]
 
   def index
-    @orders = Order.all
+    @orders = current_user.orders.visible
   end
 
   def create
@@ -10,6 +10,14 @@ class OrdersController < ApplicationController
 
     if @order.save
       render :show, status: :created
+    else
+      render json: @order.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @order.update(order_params)
+      head :ok
     else
       render json: @order.errors, status: :unprocessable_entity
     end
@@ -41,7 +49,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(
-      :address, :scheduled_for, :latitude, :longitude, line_items_attributes: [:dish_id, :quantity]
+      :address, :scheduled_for, :latitude, :longitude,
+      :rating, :review,
+      line_items_attributes: [:dish_id, :quantity]
     )
   end
 

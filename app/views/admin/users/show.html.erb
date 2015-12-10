@@ -20,6 +20,10 @@
   <strong>Скидка:</strong> <%= @user.discount %>%
 </div>
 
+<div class="form-group">
+  <strong>Промо код использован:</strong> <%= @user.promo_used %>
+</div>
+
 <h2>Заказы</h2>
 
 <% if @user.orders.any? %>

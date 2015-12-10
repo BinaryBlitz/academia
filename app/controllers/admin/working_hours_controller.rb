@@ -1,4 +1,6 @@
 class Admin::WorkingHoursController < Admin::AdminController
+  before_action :sanitize_params, only: :create
+
   def index
     @working_hours = WorkingHour.order(starts_at: :asc).all
   end
@@ -25,6 +27,12 @@ class Admin::WorkingHoursController < Admin::AdminController
   private
 
   def working_hour_params
-    params.require(:working_hour).permit(:starts_at, :ends_at)
+    params.require(:working_hour).permit(:start_hour, :start_minute, :end_hour, :end_minute)
+  end
+
+  def sanitize_params
+    params['working_hour'].each do |key, value|
+      params['working_hour'][key] = value.to_i
+    end
   end
 end

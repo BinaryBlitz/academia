@@ -11,7 +11,7 @@
 #
 
 class Ingredient < ActiveRecord::Base
-  has_and_belongs_to_many :dishes
+  has_many :dish_ingredients, dependent: :destroy
 
   validates :name, presence: true
   validates :image, presence: true

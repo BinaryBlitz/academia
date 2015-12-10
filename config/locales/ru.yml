@@ -28,6 +28,8 @@ ru:
       day: День
       promo_code: Промо код
       working_hour: Интервал
+      courier: Курьер
+      lunch_dish: Блюдо для ланча
     attributes:
       day:
         date: Дата
@@ -37,8 +39,11 @@ ru:
         price: Цена
         description: Описание
         subtitle: Подзаголовок
-        ingredients: Ингридиенты
+        ingredients: Ингредиенты
         badges: Иконки
+        dish_ingredients: Ингредиенты
+        dish_badges: Иконки
+        lunch_dishes: Блюда для ланча
       ingredient:
         name: Название
         image: Изображение
@@ -61,6 +66,20 @@ ru:
       working_hour:
         starts_at: Начало
         ends_at: Конец
+      edge_point:
+        latitude: Широта
+        longitude: Долгота
+      delivery_point:
+        latitude: Широта
+        longitude: Долгота
+      courier:
+        name: Имя
+        phone_number: Номер телефона
+        password: Пароль
+        delivery_point: Точка доставки
+      lunch_dish:
+        name: Название
+        weight: Вес
     errors:
       models:
         schedule:

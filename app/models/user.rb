@@ -19,17 +19,20 @@
 #  card_number           :string
 #  sms_verification_code :integer
 #  discount              :integer          default(0)
+#  referred_user_id      :integer
 #
 
 class User < ActiveRecord::Base
   REFERRAL_BONUS = 100
   PROMO_CODE_LENGTH = 6
 
-  SMS_VERIFICATION_URL = 'http://sms.ru/sms/send'
-
   before_create :generate_promo_code
 
+  phony_normalize :phone_number, default_country_code: 'RU'
+
   has_many :orders, dependent: :destroy
+
+  belongs_to :referred_user, class_name: 'User'
 
   has_secure_token :api_token
 
@@ -37,35 +40,30 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :phone_number, presence: true, phony_plausible: true
   validates :email, email: true
-  validates :discount, inclusion: { in: 0..100 }
-
-  include Authenticable
+  validates :discount, inclusion: { in: 0..20 }
+  validates :balance, numericality: { greater_than_or_equal_to: 0 }
+  validate :refers_self
 
   def full_name
     "#{first_name} #{last_name}"
   end
 
   def redeem(code)
-    return false if promo_used?
+    return false if promo_used? || code == promo_code
 
     promo = PromoCode.find_by(code: code)
     return redeem_promo_code(promo) if promo
 
     user = User.find_by(promo_code: code)
-    return redeem_user_code(promo) if user
+    update(referred_user: user) if user
 
     return false
   end
 
-  def send_verification_code
-    response = HTTParty.post(SMS_VERIFICATION_URL, body: sms_verification_params).parsed_response
-
-    if response.lines.first.try(:chomp) == '100'
-      update(sms_verification_code: @sms_verification_code)
-    else
-      logger.info "#{Time.zone.now}: SMS verification for #{phone_number} failed.\n#{response}"
-      false
-    end
+  def redeem_user_code
+    return false unless referred_user
+    referred_user.update(balance: referred_user.balance + REFERRAL_BONUS)
+    update(balance: balance + REFERRAL_BONUS, promo_used: true)
   end
 
   private
@@ -75,22 +73,12 @@ class User < ActiveRecord::Base
     self.promo_code = letters.sample(PROMO_CODE_LENGTH).join.upcase unless promo_code
   end
 
-  def redeem_user_code(referred_user)
-    referred_user.update(balance: referred_user.balance + REFERRAL_BONUS)
-    update(balance: balance + REFERRAL_BONUS, promo_used: true)
-  end
-
   def redeem_promo_code(promo)
     update(balance: balance + promo.discount, promo_used: true)
   end
 
-  def sms_verification_params
-    @sms_verification_code = Random.new.rand(1000..9999)
-
-    {
-      api_id: Rails.application.secrets.sms_ru_api_id,
-      text: "Код верификации: #{@sms_verification_code}",
-      to: phone_number
-    }
+  def refers_self
+    return unless referred_user
+    errors.add(:referred_user, 'cannot be equal to self')
   end
 end

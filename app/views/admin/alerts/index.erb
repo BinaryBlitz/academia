@@ -1,0 +1,17 @@
+<h1>Напоминания</h1>
+
+<% unless @menu_present %>
+  <div class="alert alert-warning">
+    Не заполнено меню на ближайшие три дня.
+  </div>
+<% end %>
+
+<% if @unassigned.any? %>
+  <h2>Непринятые заказы</h2>
+  <%= render 'admin/orders/orders', orders: @unassigned %>
+<% end %>
+
+<% if @late.any? %>
+  <h2>Невыполненные заказы</h2>
+  <%= render 'admin/orders/orders', orders: @late %>
+<% end %>

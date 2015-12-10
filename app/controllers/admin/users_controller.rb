@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::AdminController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all.page(params[:page])
+    @users = User.all.order(updated_at: :desc).page(params[:page])
   end
 
   def show
@@ -13,7 +13,7 @@ class Admin::UsersController < Admin::AdminController
 
   def update
     if @user.update(user_params)
-      redirect_to [:admin, @user], notice: 'User was successfully updated.'
+      redirect_to admin_users_url, notice: 'Пользователь успешно обновлен.'
     else
       render :edit
     end
@@ -31,6 +31,6 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def user_params
-    params.require(:user).permit(:balance, :discount, :promo_used)
+    params.require(:user).permit(:balance, :discount)
   end
 end

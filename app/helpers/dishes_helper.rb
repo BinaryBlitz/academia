@@ -12,8 +12,8 @@ module DishesHelper
 
   def grouped_dishes
     [
-      ['Блюда', Dish.dishes.map { |d| [d.name, d.id] } ],
-      ['Ланчи', Dish.lunches.map { |d| [d.name, d.id] } ]
+      ['Блюда', Dish.dishes.map { |d| ["#{d.name}: #{d.id}", d.id] } ],
+      ['Ланчи', Dish.lunches.map { |d| ["#{d.name}: #{d.id}", d.id] } ]
     ]
   end
 end

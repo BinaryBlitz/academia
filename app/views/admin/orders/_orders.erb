@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Адрес</th>
+      <th>Статус</th>
+      <th>Время доставки</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render orders %>
+  </tbody>
+</table>
+
+<% if orders.respond_to?(:total_pages) %>
+  <%= paginate orders %>
+<% end %>

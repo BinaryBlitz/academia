@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128124147) do
+ActiveRecord::Schema.define(version: 20151209170242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,10 +49,38 @@ ActiveRecord::Schema.define(version: 20151128124147) do
   add_index "badges_dishes", ["badge_id"], name: "index_badges_dishes_on_badge_id", using: :btree
   add_index "badges_dishes", ["dish_id"], name: "index_badges_dishes_on_dish_id", using: :btree
 
+  create_table "courier_schedules", force: :cascade do |t|
+    t.integer  "day_id"
+    t.integer  "courier_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "courier_schedules", ["courier_id"], name: "index_courier_schedules_on_courier_id", using: :btree
+  add_index "courier_schedules", ["day_id"], name: "index_courier_schedules_on_day_id", using: :btree
+
+  create_table "couriers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone_number"
+    t.string   "password_digest"
+    t.integer  "delivery_point_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "couriers", ["delivery_point_id"], name: "index_couriers_on_delivery_point_id", using: :btree
+
   create_table "days", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date     "date"
+  end
+
+  create_table "delivery_points", force: :cascade do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "dish_badges", force: :cascade do |t|
@@ -88,6 +116,13 @@ ActiveRecord::Schema.define(version: 20151128124147) do
     t.boolean  "hidden",      default: false
   end
 
+  create_table "edge_points", force: :cascade do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
@@ -107,6 +142,16 @@ ActiveRecord::Schema.define(version: 20151128124147) do
   add_index "line_items", ["dish_id"], name: "index_line_items_on_dish_id", using: :btree
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
 
+  create_table "lunch_dishes", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "weight"
+    t.integer  "dish_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "lunch_dishes", ["dish_id"], name: "index_lunch_dishes_on_dish_id", using: :btree
+
   create_table "orders", force: :cascade do |t|
     t.text     "address"
     t.integer  "user_id"
@@ -116,8 +161,12 @@ ActiveRecord::Schema.define(version: 20151128124147) do
     t.datetime "scheduled_for"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "rating"
+    t.text     "review"
+    t.integer  "courier_id"
   end
 
+  add_index "orders", ["courier_id"], name: "index_orders_on_courier_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
@@ -167,6 +216,17 @@ ActiveRecord::Schema.define(version: 20151128124147) do
     t.string   "card_number"
     t.integer  "sms_verification_code"
     t.integer  "discount",              default: 0
+    t.integer  "referred_user_id"
+  end
+
+  add_index "users", ["referred_user_id"], name: "index_users_on_referred_user_id", using: :btree
+
+  create_table "verification_tokens", force: :cascade do |t|
+    t.string   "token"
+    t.string   "phone_number"
+    t.integer  "code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "working_hours", force: :cascade do |t|
