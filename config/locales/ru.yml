@@ -29,6 +29,7 @@ ru:
       promo_code: Промо код
       working_hour: Интервал
       courier: Курьер
+      lunch_dish: Блюдо для ланча
     attributes:
       day:
         date: Дата
@@ -42,6 +43,7 @@ ru:
         badges: Иконки
         dish_ingredients: Ингредиенты
         dish_badges: Иконки
+        lunch_dishes: Блюда для ланча
       ingredient:
         name: Название
         image: Изображение
@@ -75,6 +77,9 @@ ru:
         phone_number: Номер телефона
         password: Пароль
         delivery_point: Точка доставки
+      lunch_dish:
+        name: Название
+        weight: Вес
     errors:
       models:
         schedule:

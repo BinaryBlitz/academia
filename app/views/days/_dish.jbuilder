@@ -1,8 +1,15 @@
 json.extract! dish, :id, :name, :description, :subtitle, :price, :image_url
 
 if dish.main? || dish.lunch?
-  json.ingredients dish.ingredients do |ingredient|
-    json.extract! ingredient, :id, :name, :weight, :image_url
+  if dish.lunch?
+    json.ingredients dish.lunch_dishes do |lunch_dish|
+      json.extract! lunch_dish, :id, :name, :weight
+      json.image_url nil
+    end
+  else
+    json.ingredients dish.ingredients do |ingredient|
+      json.extract! ingredient, :id, :name, :weight, :image_url
+    end
   end
 
   json.badges dish.badges do |badge|

@@ -33,6 +33,9 @@ class Dish < ActiveRecord::Base
   has_many :badges, through: :dish_badges
   accepts_nested_attributes_for :dish_badges, allow_destroy: true
 
+  has_many :lunch_dishes, dependent: :destroy, inverse_of: :dish
+  accepts_nested_attributes_for :lunch_dishes, allow_destroy: true
+
   # Validations
   validates :name, presence: true, length: { maximum: 30 }
   validates :price, presence: true, numericality: { greter_than: 0 }

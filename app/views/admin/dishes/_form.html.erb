@@ -34,7 +34,7 @@
     <%= f.text_area :subtitle, class: 'form-control' %>
   </div>
 
-  <% if @dish.main? || @dish.lunch? %>
+  <% if @dish.main? %>
     <%= f.label :dish_ingredients %>
 
     <div class="form-group">
@@ -71,6 +71,32 @@
           <%= f.check_box :hidden %> Скрыть
         <% end %>
       </div>
+    </div>
+  <% end %>
+
+  <% if @dish.lunch? %>
+    <%= f.label :lunch_dishes %>
+
+    <div class="form-group">
+      <%= f.add_nested_fields_link :lunch_dishes, 'Добавить', class: 'btn btn-default' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.nested_fields_for :lunch_dishes do |ff| %>
+        <div class="form-group dish-select">
+          <div class="form-group">
+            <%= ff.label :name %>
+            <%= ff.text_field :name, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= ff.label :weight %>
+            <%= ff.number_field :weight, class: 'form-control' %>
+          </div>
+
+          <%= ff.remove_nested_fields_link 'Удалить', class: 'btn btn-danger' %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 
