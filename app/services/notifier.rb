@@ -41,7 +41,7 @@ class Notifier
   def push_ios_notification
     n = Rpush::Apns::Notification.new
     n.app = Rpush::Apns::App.find_by_name('ios_app')
-    n.device_token = @token
+    n.device_token = @device_token
     n.alert = @message
     n.data = @options
     n.save!

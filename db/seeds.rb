@@ -65,7 +65,7 @@ app.save
 
 # iOS notifications
 app = Rpush::Apns::App.new
-app.name = "ios_app"
+app.name = 'ios_app'
 app.certificate = File.read(Rails.root.join('config', 'pushcert.pem'))
 app.environment = 'sandbox'
 app.password = '12345'
