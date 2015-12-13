@@ -21,6 +21,7 @@
 #  discount              :integer          default(0)
 #  referred_user_id      :integer
 #  device_token          :string
+#  platform              :string
 #
 
 class User < ActiveRecord::Base
@@ -44,6 +45,7 @@ class User < ActiveRecord::Base
   validates :email, email: true
   validates :discount, inclusion: { in: 0..20 }
   validates :balance, numericality: { greater_than_or_equal_to: 0 }
+  validates :platform, inclusion: { in: %w(android ios) }, if: 'device_token.present?'
   validate :refers_self
 
   def full_name
