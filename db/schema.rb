@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213154939) do
+ActiveRecord::Schema.define(version: 20151213155957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(version: 20151213154939) do
     t.integer  "sms_verification_code"
     t.integer  "discount",              default: 0
     t.integer  "referred_user_id"
+    t.string   "device_token"
   end
 
   add_index "users", ["referred_user_id"], name: "index_users_on_referred_user_id", using: :btree
