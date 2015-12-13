@@ -20,6 +20,8 @@
 #  sms_verification_code :integer
 #  discount              :integer          default(0)
 #  referred_user_id      :integer
+#  device_token          :string
+#  platform              :string
 #
 
 one:

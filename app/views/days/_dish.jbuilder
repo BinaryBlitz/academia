@@ -1,4 +1,6 @@
-json.extract! dish, :id, :name, :description, :subtitle, :price, :image_url
+json.extract! dish,
+              :id, :name, :description, :subtitle, :price, :image_url,
+              :proteins, :fats, :carbohydrates, :calories
 
 if dish.main? || dish.lunch?
   if dish.lunch?

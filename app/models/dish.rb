@@ -2,17 +2,21 @@
 #
 # Table name: dishes
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :text
-#  price       :integer
-#  image       :string
-#  stuff       :boolean          default(FALSE)
-#  lunch       :boolean          default(FALSE)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  subtitle    :string
-#  hidden      :boolean          default(FALSE)
+#  id            :integer          not null, primary key
+#  name          :string
+#  description   :text
+#  price         :integer
+#  image         :string
+#  stuff         :boolean          default(FALSE)
+#  lunch         :boolean          default(FALSE)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  subtitle      :string
+#  hidden        :boolean          default(FALSE)
+#  proteins      :float
+#  fats          :float
+#  carbohydrates :float
+#  calories      :float
 #
 
 class Dish < ActiveRecord::Base
@@ -43,6 +47,9 @@ class Dish < ActiveRecord::Base
   validates :subtitle, presence: true, if: '!stuff && !lunch'
   validates :subtitle, length: { maximum: 60 }
 
+  validates :proteins, :fats, :carbohydrates, :calories,
+            presence: true, numericality: { greater_than: 0 }, if: 'has_nutrition_info?'
+
   mount_uploader :image, DishUploader
 
   scope :dishes, -> { where(stuff: false).where(lunch: false) }
@@ -53,5 +60,9 @@ class Dish < ActiveRecord::Base
 
   def main?
     !stuff && !lunch
+  end
+
+  def has_nutrition_info?
+    proteins || fats || carbohydrates || calories
   end
 end

@@ -7,7 +7,7 @@
 #  order_id      :integer          not null
 #  alfa_order_id :string
 #  alfa_form_url :string
-#  payed         :boolean
+#  paid          :boolean
 #  use_binding   :boolean
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -47,10 +47,10 @@ class Payment < ActiveRecord::Base
     response = make_status_request.parsed_response
 
     if response["ErrorCode"].to_i == SUCCESS
-      update_attribute(:payed, true)
+      update_attribute(:paid, true)
       order.redeem_balance
       user.redeem_user_code
-      order.update(status: :on_the_way)
+      order.update(status: :new)
       set_user_binding_from_response(response) if response.has_key? "bindingId"
     end
 
