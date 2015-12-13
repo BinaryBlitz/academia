@@ -14,6 +14,7 @@ gem 'enumerize'
 gem 'httparty'
 gem 'validates_overlap'
 gem 'geokit'
+gem 'rpush'
 
 # Auth
 gem 'bcrypt', '~> 3.1.7'

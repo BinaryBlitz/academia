@@ -56,5 +56,21 @@ end
   )
 end
 
+# Android notifications
+app = Rpush::Gcm::App.new
+app.name = 'android_app'
+app.auth_key = Rails.application.secrets.gcm_sender_id || 'gcm_sender_id'
+app.connections = 1
+app.save
+
+# iOS notifications
+app = Rpush::Apns::App.new
+app.name = "ios_app"
+app.certificate = File.read(Rails.root.join('config', 'pushcert.pem'))
+app.environment = 'sandbox'
+app.password = '12345'
+app.connections = 1
+app.save
+
 # Admins
 a = Admin.create!(email: 'foo@bar.com', password: 'qwerty123')
