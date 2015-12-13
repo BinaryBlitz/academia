@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209170242) do
+ActiveRecord::Schema.define(version: 20151213152729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,12 +108,16 @@ ActiveRecord::Schema.define(version: 20151209170242) do
     t.text     "description"
     t.integer  "price"
     t.string   "image"
-    t.boolean  "stuff",       default: false
-    t.boolean  "lunch",       default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "stuff",         default: false
+    t.boolean  "lunch",         default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "subtitle"
-    t.boolean  "hidden",      default: false
+    t.boolean  "hidden",        default: false
+    t.float    "proteins"
+    t.float    "fats"
+    t.float    "carbohydrates"
+    t.float    "calories"
   end
 
   create_table "edge_points", force: :cascade do |t|
