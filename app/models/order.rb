@@ -22,6 +22,7 @@ class Order < ActiveRecord::Base
   MAX_DELIVERY_MINUTES = 40
 
   before_save :ensure_presence_of_line_items
+  before_save :set_status
 
   belongs_to :user
   belongs_to :courier
@@ -38,7 +39,7 @@ class Order < ActiveRecord::Base
   include Geocodable
 
   extend Enumerize
-  enumerize :status, in: [:new, :on_the_way, :delivered, :rejected], default: :new
+  enumerize :status, in: [:unpaid, :new, :on_the_way, :delivered, :rejected], default: :unpaid
 
   scope :visible, -> { where(status: [:on_the_way, :delivered]) }
   scope :delivered, -> { where(status: :delivered) }
@@ -86,5 +87,11 @@ class Order < ActiveRecord::Base
 
   def to_point
     Geokit::LatLng.new(latitude, longitude)
+  end
+
+  def set_status
+    if status == 'new' && courier.present?
+      self.status = :on_the_way
+    end
   end
 end
