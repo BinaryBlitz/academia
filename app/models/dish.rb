@@ -47,7 +47,8 @@ class Dish < ActiveRecord::Base
   validates :subtitle, presence: true, if: '!stuff && !lunch'
   validates :subtitle, length: { maximum: 60 }
 
-  validates :proteins, :fats, :carbohydrates, :calories, presence: true, if: 'has_nutrition_info?'
+  validates :proteins, :fats, :carbohydrates, :calories,
+            presence: true, numericality: { greater_than: 0 }, if: 'has_nutrition_info?'
 
   mount_uploader :image, DishUploader
 
