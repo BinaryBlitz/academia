@@ -11,8 +11,6 @@
 #
 
 class VerificationToken < ActiveRecord::Base
-  SMS_VERIFICATION_URL = 'http://sms.ru/sms/send'
-
   before_validation :generate_code
   after_create :send_verification_code
 
@@ -32,14 +30,7 @@ class VerificationToken < ActiveRecord::Base
   end
 
   def send_verification_code
-    response = HTTParty.post(SMS_VERIFICATION_URL, body: sms_verification_params).parsed_response
-
-    if response.lines.first.try(:chomp) == '100'
-      true
-    else
-      logger.info "#{Time.zone.now}: SMS verification for #{phone_number} failed.\n#{response}"
-      false
-    end
+    SmsSender.new(phone_number, "Код верификации: #{code}")
   end
 
   def as_json(options)
@@ -50,13 +41,5 @@ class VerificationToken < ActiveRecord::Base
 
   def generate_code
     self.code = Random.new.rand(1000..9999)
-  end
-
-  def sms_verification_params
-    {
-      api_id: Rails.application.secrets.sms_ru_api_id,
-      text: "Код верификации: #{code}",
-      to: phone_number
-    }
   end
 end
