@@ -17,6 +17,7 @@
 #  revenue          :integer
 #  discount         :integer
 #  balance_discount :integer
+#  delivered_at     :datetime
 #
 
 class Order < ActiveRecord::Base
@@ -26,6 +27,7 @@ class Order < ActiveRecord::Base
 
   before_save :ensure_presence_of_line_items
   before_save :set_status
+  before_save :set_delivery_time
 
   belongs_to :user
   belongs_to :courier
@@ -102,6 +104,12 @@ class Order < ActiveRecord::Base
     if status == 'new' && courier.present?
       self.status = :on_the_way
       notify_status_change
+    end
+  end
+
+  def set_delivery_time
+    if status == 'delivered'
+      self.delivered_at = Time.zone.now
     end
   end
 

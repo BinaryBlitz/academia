@@ -60,8 +60,25 @@
       <% else %>
       <td><%= @current_rejections.new_orders %></td>
       <td><%= @current_rejections.repeated_orders %></td>
-      <td><%= @current_rejections.total_orders %><td>  
+      <td><%= @current_rejections.total_orders %><td>
       <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Статистика</h2>
+
+<table class="table">
+  <thead>
+    <th>Средний чек</th>
+    <th>Среднее время доставки</th>
+    <th>Проценты повторных продаж</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @current_period.average_sum %></td>
+      <td><%= (@current_period.average_delivery_time / 60).round(2) %> мин</td>
+      <td><%= @current_period.repeated_orders_for_unique_users %>%</td>
     </tr>
   </tbody>
 </table>
