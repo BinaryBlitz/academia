@@ -42,3 +42,26 @@
     </tr>
   </tbody>
 </table>
+
+<h2>Отказы</h2>
+
+<table class="table">
+  <thead>
+    <th>Новые</th>
+    <th>Повторные</th>
+    <th>Всего</th>
+  </thead>
+  <tbody>
+    <tr>
+      <% if @previous_rejections.present? %>
+        <td><%= @current_rejections.new_orders %> (<%= increase_in_percent(@previous_rejections.new_orders, @current_rejections.new_orders) %>%)</td>
+        <td><%= @current_rejections.repeated_orders %> (<%= increase_in_percent(@previous_rejections.repeated_orders, @current_rejections.repeated_orders) %>%)</td>
+        <td><%= @current_rejections.total_orders %> (<%= increase_in_percent(@previous_rejections.total_orders, @current_rejections.total_orders) %>%)</td>
+      <% else %>
+      <td><%= @current_rejections.new_orders %></td>
+      <td><%= @current_rejections.repeated_orders %></td>
+      <td><%= @current_rejections.total_orders %><td>  
+      <% end %>
+    </tr>
+  </tbody>
+</table>

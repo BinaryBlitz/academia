@@ -2,6 +2,9 @@ class Admin::AnalyticsController < Admin::AdminController
   def index
     @current_period = Analytics.new(current_period)
     @previous_period = Analytics.new(previous_period) if params[:period].present?
+
+    @current_rejections = Analytics.new(current_period, false)
+    @previous_rejections = Analytics.new(current_period, false) if params[:period].present?
   end
 
   private
