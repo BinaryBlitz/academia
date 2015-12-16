@@ -101,6 +101,7 @@ ru:
   enumerize:
     order:
       status:
+        unpaid: Неоплачен
         new: Новый
         on_the_way: В пути
         delivered: Доставлен и оплачен
