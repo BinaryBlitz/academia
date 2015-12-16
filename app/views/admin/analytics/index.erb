@@ -22,13 +22,13 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= @current_period.new_orders %> (<%= @current_period.new_orders.to_f / @previous_period.new_orders rescue 0 %>)</td>
-      <td><%= @current_period.repeated_orders %> (<%= @current_period.repeated_orders.to_f / @previous_period.repeated_orders rescue 0 %>)</td>
-      <td><%= @current_period.total_orders %> (<%= @current_period.total_orders.to_f / @previous_period.total_orders rescue 0 %>)</td>
-      <td><%= @current_period.revenue %> (<%= @current_period.revenue.to_f / @previous_period.revenue rescue 0 %>)</td>
-      <td><%= @current_period.discount %> (<%= @current_period.discount.to_f / @previous_period.discount rescue 0 %>)</td>
-      <td><%= @current_period.balance_discount %> (<%= @current_period.balance_discount.to_f / @previous_period.balance_discount rescue 0 %>)</td>
-      <td><%= @current_period.total_sum %> (<%= @current_period.total_sum.to_f / @previous_period.total_sum rescue 0 %>)</td>
+      <td><%= @current_period.new_orders %> (<%= increase(@current_period.new_orders, @previous_period.new_orders) %>%)</td>
+      <td><%= @current_period.repeated_orders %> (<%= increase(@current_period.repeated_orders, @previous_period.repeated_orders) %>%)</td>
+      <td><%= @current_period.total_orders %> (<%= increase(@current_period.total_orders, @previous_period.total_orders) %>%)</td>
+      <td><%= @current_period.revenue %> (<%= increase(@current_period.revenue, @previous_period.revenue) %>%)</td>
+      <td><%= @current_period.discount %> (<%= increase(@current_period.discount, @previous_period.discount) %>%)</td>
+      <td><%= @current_period.balance_discount %> (<%= increase(@current_period.balance_discount, @previous_period.balance_discount) %>%)</td>
+      <td><%= @current_period.total_sum %> (<%= increase(@current_period.total_sum, @previous_period.total_sum) %>%)</td>
     </tr>
   </tbody>
 </table>
