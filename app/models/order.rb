@@ -90,7 +90,7 @@ class Order < ActiveRecord::Base
   end
 
   def inside_delivery_zone?
-    return unless latitude && longitude
+    return unless latitude && longitude && EdgePoint.count > 0
     errors.add(:base, 'outside delivery zone') unless EdgePoint.to_polygon.contains?(to_point)
   end
 
