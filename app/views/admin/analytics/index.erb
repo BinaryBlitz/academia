@@ -1,0 +1,34 @@
+<h1>Аналитика</h1>
+
+<div class="btn-group" role="group" aria-label="...">
+  <%= link_to 'Весь период', {}, class: 'btn btn-default' %>
+  <%= link_to 'Год', { period: 'year' }, class: 'btn btn-default' %>
+  <%= link_to 'Месяц', { period: 'month' }, class: 'btn btn-default' %>
+  <%= link_to 'Неделя', { period: 'week' }, class: 'btn btn-default' %>
+  <%= link_to 'День', { period: 'day' }, class: 'btn btn-default' %>
+</div>
+
+<h2>Выполненные заказы</h2>
+
+<table class="table">
+  <thead>
+    <th>Новые</th>
+    <th>Повторные</th>
+    <th>Всего</th>
+    <th>Выручка</th>
+    <th>Скидки</th>
+    <th>С баланса</th>
+    <th>Итого</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @current_period.new_orders %> (<%= @current_period.new_orders.to_f / @previous_period.new_orders rescue 0 %>)</td>
+      <td><%= @current_period.repeated_orders %> (<%= @current_period.repeated_orders.to_f / @previous_period.repeated_orders rescue 0 %>)</td>
+      <td><%= @current_period.total_orders %> (<%= @current_period.total_orders.to_f / @previous_period.total_orders rescue 0 %>)</td>
+      <td><%= @current_period.revenue %> (<%= @current_period.revenue.to_f / @previous_period.revenue rescue 0 %>)</td>
+      <td><%= @current_period.discount %> (<%= @current_period.discount.to_f / @previous_period.discount rescue 0 %>)</td>
+      <td><%= @current_period.balance_discount %> (<%= @current_period.balance_discount.to_f / @previous_period.balance_discount rescue 0 %>)</td>
+      <td><%= @current_period.total_sum %> (<%= @current_period.total_sum.to_f / @previous_period.total_sum rescue 0 %>)</td>
+    </tr>
+  </tbody>
+</table>
