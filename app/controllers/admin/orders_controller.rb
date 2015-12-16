@@ -2,7 +2,7 @@ class Admin::OrdersController < Admin::AdminController
   before_action :set_admin_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    @orders = Order.where.not(status: [:delivered, :rejected]).order(status: :asc).page(params[:page])
+    @orders = Order.where.not(status: [:delivered, :rejected]).order(status: :asc, created_at: :desc).page(params[:page])
   end
 
   def delivered
