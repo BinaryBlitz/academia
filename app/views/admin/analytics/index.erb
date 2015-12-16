@@ -78,7 +78,7 @@
     <tr>
       <td><%= @current_period.average_sum %></td>
       <td><%= (@current_period.average_delivery_time / 60).round(2) %> мин</td>
-      <td><%= @current_period.repeated_orders_for_unique_users %>%</td>
+      <td><%= @current_period.repeated_orders_for_unique_users.round(2) %>%</td>
     </tr>
   </tbody>
 </table>
