@@ -32,6 +32,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Заказы <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><%= link_to 'Новые', admin_orders_path %></li>
+            <li><%= link_to 'В пути', on_the_way_admin_orders_path %></li>
             <li><%= link_to 'Доставленные', delivered_admin_orders_path %></li>
             <li><%= link_to 'Отказанные', rejected_admin_orders_path %></li>
           </ul>

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :analytics, only: [:index]
     resources :delivery_points, except: [:show, :edit, :update]
     resources :orders do
-      get 'delivered', 'rejected', on: :collection
+      get 'delivered', 'rejected', 'on_the_way', on: :collection
     end
 
     get 'lunches' => 'dishes#lunches'
