@@ -1,5 +1,5 @@
 <tr>
-  <td><%= order.id %></td>
+  <td><%= link_to order.id, [:admin, order] %></td>
   <td><%= order.address %></td>
   <td><%= order.status.text %></td>
   <td><%= order.created_at.try(:to_formatted_s, :short) %></td>

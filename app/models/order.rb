@@ -77,6 +77,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def to_coordinate_s
+    "#{latitude}, #{longitude}"
+  end
+
   private
 
   def line_items_price
