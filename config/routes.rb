@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'edge_points/index'
-
   root 'admin/orders#index'
   devise_for :admins, path: 'admin', skip: :registrations
 
@@ -25,6 +23,13 @@ Rails.application.routes.draw do
     get 'stuff' => 'dishes#stuff'
 
     get 'schedule' => 'days#index'
+  end
+
+  namespace :courier do
+    post 'authenticate' => 'courier/couriers#authenticate'
+    resources :orders do
+      patch 'assign', on: :member
+    end
   end
 
   resource :user, only: [:show, :create, :update]

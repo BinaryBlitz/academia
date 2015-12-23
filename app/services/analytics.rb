@@ -6,9 +6,10 @@ class Analytics
   end
 
   def new_orders
-    return @new_orders if @new_orders
-    users = User.joins(:orders).group('users.id').having('COUNT(orders.id) = ?', 1)
-    @new_orders = @orders.where(user: users).count
+    @new_orders ||= begin
+      users = User.joins(:orders).group('users.id').having('COUNT(orders.id) = ?', 1)
+      @orders.where(user: users).count
+    end
   end
 
   def repeated_orders
@@ -50,9 +51,10 @@ class Analytics
   end
 
   def repeated_orders_for_unique_users
-    return @repeated_orders_for_unique_users if @repeated_orders_for_unique_users
-    return if User.count == 0
-    users = User.joins(:orders).group('users.id').having('COUNT(orders.id) > ?', 2)
-    @repeated_orders_for_unique_users = (users.count.size.to_f / User.count) * 100
+    @repeated_orders_for_unique_users ||= begin
+      return if User.count == 0
+      users = User.joins(:orders).group('users.id').having('COUNT(orders.id) > ?', 2)
+      (users.count.size.to_f / User.count) * 100
+    end
   end
 end
