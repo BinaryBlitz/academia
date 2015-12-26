@@ -25,7 +25,7 @@
 #
 
 class User < ActiveRecord::Base
-  REFERRAL_BONUS = 100
+  REFERRAL_BONUS = 300
   PROMO_CODE_LENGTH = 6
 
   before_create :generate_promo_code
