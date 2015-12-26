@@ -83,6 +83,6 @@ class User < ActiveRecord::Base
 
   def refers_self
     return unless referred_user
-    errors.add(:referred_user, 'cannot be equal to self')
+    errors.add(:referred_user, 'cannot be equal to self') if self == referred_user
   end
 end
