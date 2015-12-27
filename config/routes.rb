@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   end
 
   namespace :courier do
-    post 'authenticate' => 'courier/couriers#authenticate'
+    post 'authenticate' => 'couriers#authenticate'
     resources :orders do
       patch 'assign', on: :member
     end
