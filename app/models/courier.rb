@@ -9,6 +9,7 @@
 #  delivery_point_id :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  api_token         :string
 #
 
 class Courier < ActiveRecord::Base
@@ -22,4 +23,5 @@ class Courier < ActiveRecord::Base
 
   has_secure_password
   validates :password, length: { minimum: 6 }, allow_nil: true
+  has_secure_token :api_token
 end
