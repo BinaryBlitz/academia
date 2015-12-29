@@ -8,4 +8,18 @@ class Courier::OrdersController < Courier::CourierController
     @order.update(courier: current_courier)
     head :ok
   end
+
+  def update
+    if @order.update(order_params)
+      head :ok
+    else
+      render json: @order.errors, status: 422
+    end
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:status)
+  end
 end

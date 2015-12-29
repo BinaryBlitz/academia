@@ -25,10 +25,12 @@ Rails.application.routes.draw do
     get 'schedule' => 'days#index'
   end
 
-  namespace :courier do
-    post 'authenticate' => 'couriers#authenticate'
-    resources :orders do
-      patch 'assign', on: :member
+  scope module: 'courier' do
+    resource :courier, only: [:update] do
+      post 'authenticate', on: :collection
+      resources :orders, only: [:index, :update] do
+        patch 'assign', on: :member
+      end
     end
   end
 
