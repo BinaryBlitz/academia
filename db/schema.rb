@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229173512) do
+ActiveRecord::Schema.define(version: 20151229180522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20151229173512) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "api_token"
+    t.string   "device_token"
+    t.string   "platform"
   end
 
   add_index "couriers", ["delivery_point_id"], name: "index_couriers_on_delivery_point_id", using: :btree

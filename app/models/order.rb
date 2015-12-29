@@ -31,6 +31,8 @@ class Order < ActiveRecord::Base
   before_save :set_delivery_time
   before_save :set_delivery_point
 
+  after_update :notify_couriers
+
   belongs_to :user
   belongs_to :courier
   belongs_to :delivery_point
@@ -128,5 +130,10 @@ class Order < ActiveRecord::Base
   def notify_status_change
     Notifier.new(user, 'Заказ в пути.')
     SmsSender.new(user.phone_number, 'Заказ в пути.')
+  end
+
+  def notify_couriers
+    return unless status == 'new'
+    delivery_point.notify_couriers
   end
 end

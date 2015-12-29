@@ -10,6 +10,8 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  api_token         :string
+#  device_token      :string
+#  platform          :string
 #
 
 class Courier < ActiveRecord::Base
@@ -18,6 +20,7 @@ class Courier < ActiveRecord::Base
   validates :name, presence: true
   validates :phone_number, presence: true, phony_plausible: true
   validates :delivery_point, presence: true
+  validates :platform, inclusion: { in: %w(android ios) }, if: 'device_token.present?'
 
   phony_normalize :phone_number, default_country_code: 'RU'
 
