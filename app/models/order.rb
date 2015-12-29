@@ -2,22 +2,23 @@
 #
 # Table name: orders
 #
-#  id               :integer          not null, primary key
-#  address          :text
-#  user_id          :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  status           :string
-#  scheduled_for    :datetime
-#  latitude         :float
-#  longitude        :float
-#  rating           :integer
-#  review           :text
-#  courier_id       :integer
-#  revenue          :integer
-#  discount         :integer
-#  balance_discount :integer
-#  delivered_at     :datetime
+#  id                :integer          not null, primary key
+#  address           :text
+#  user_id           :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  status            :string
+#  scheduled_for     :datetime
+#  latitude          :float
+#  longitude         :float
+#  rating            :integer
+#  review            :text
+#  courier_id        :integer
+#  revenue           :integer
+#  discount          :integer
+#  balance_discount  :integer
+#  delivered_at      :datetime
+#  delivery_point_id :integer
 #
 
 class Order < ActiveRecord::Base
@@ -28,6 +29,7 @@ class Order < ActiveRecord::Base
   before_save :ensure_presence_of_line_items
   before_save :set_status
   before_save :set_delivery_time
+  before_save :set_delivery_point
 
   belongs_to :user
   belongs_to :courier
@@ -38,6 +40,7 @@ class Order < ActiveRecord::Base
 
   validates :user, presence: true
   validates :address, presence: true
+  validates :delivery_point, presence: true
   validates :rating, inclusion: { in: 1..5 }, allow_blank: true
   validate :inside_delivery_zone?
 
@@ -115,6 +118,10 @@ class Order < ActiveRecord::Base
     if status == 'delivered'
       self.delivered_at = Time.zone.now
     end
+  end
+
+  def set_delivery_point
+    self.delivery_point = DeliveryPoint.closest(to_point)
   end
 
   def notify_status_change

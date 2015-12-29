@@ -24,4 +24,8 @@ class Courier < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }, allow_nil: true
   has_secure_token :api_token
+
+  def orders
+    Order.where(delivery_point: delivery_point)
+  end
 end

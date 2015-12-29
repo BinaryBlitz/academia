@@ -13,7 +13,7 @@ gem 'phony_rails'
 gem 'enumerize'
 gem 'httparty'
 gem 'validates_overlap'
-gem 'geokit'
+gem 'geokit-rails'
 gem 'rpush'
 
 # Auth

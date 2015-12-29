@@ -14,6 +14,8 @@ class DeliveryPoint < ActiveRecord::Base
 
   has_many :couriers
 
+  acts_as_mappable default_units: :kms, lat_column_name: :latitude, lng_column_name: :longitude
+
   def to_s
     "#{latitude}, #{longitude}"
   end
