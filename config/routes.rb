@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resource :courier, only: [:update] do
       post 'authenticate', on: :collection
       resources :orders, only: [:index, :update] do
+        get 'assigned', on: :collection
         patch 'assign', on: :member
       end
     end

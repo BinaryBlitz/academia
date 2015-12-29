@@ -17,6 +17,8 @@
 class Courier < ActiveRecord::Base
   belongs_to :delivery_point
 
+  has_many :orders
+
   validates :name, presence: true
   validates :phone_number, presence: true, phony_plausible: true
   validates :delivery_point, presence: true
@@ -27,8 +29,4 @@ class Courier < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }, allow_nil: true
   has_secure_token :api_token
-
-  def orders
-    Order.where(delivery_point: delivery_point)
-  end
 end

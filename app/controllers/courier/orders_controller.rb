@@ -1,6 +1,10 @@
 class Courier::OrdersController < Courier::CourierController
   def index
-    @orders = current_courier.orders
+    @orders = current_courier.delivery_point.orders.where(status: 'new')
+  end
+
+  def assigned
+    @order = current_courier.orders
   end
 
   def assign
