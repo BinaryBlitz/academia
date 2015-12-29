@@ -33,6 +33,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :courier
+  belongs_to :delivery_point
 
   has_one :payment
   has_many :line_items, dependent: :destroy, inverse_of: :order

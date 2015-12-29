@@ -1,6 +1,6 @@
 class Courier::OrdersController < Courier::CourierController
   def index
-    @orders = Order.unassigned
+    @orders = current_courier.orders
   end
 
   def assign
