@@ -1,5 +1,5 @@
 class Courier::CouriersController < Courier::CourierController
-  skip_before_action :restrict_access, only: [:authenticate]
+  skip_before_action :restrict_courier_access, only: [:authenticate]
 
   def authenticate
     @courier = Courier.find_by(phone_number: params[:phone_number])
