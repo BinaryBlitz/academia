@@ -5,6 +5,7 @@ class Courier::OrdersController < Courier::CourierController
 
   def assigned
     @order = current_courier.orders
+    render :index
   end
 
   def assign
