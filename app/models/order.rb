@@ -124,7 +124,7 @@ class Order < ActiveRecord::Base
   end
 
   def set_delivery_point
-    self.delivery_point = DeliveryPoint.closest(to_point)
+    self.delivery_point = DeliveryPoint.closest(origin: to_point).try(:first)
   end
 
   def notify_status_change

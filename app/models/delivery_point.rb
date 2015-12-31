@@ -21,7 +21,7 @@ class DeliveryPoint < ActiveRecord::Base
     "#{latitude}, #{longitude}"
   end
 
-  def  notify_couriers
+  def notify_couriers
     couriers.each { |courier| Notifier.new(courier, 'Получен новый заказ.') }
   end
 end
