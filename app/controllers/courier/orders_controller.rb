@@ -4,7 +4,7 @@ class Courier::OrdersController < Courier::CourierController
   end
 
   def assigned
-    @order = current_courier.orders
+    @orders = current_courier.orders
     render :index
   end
 
