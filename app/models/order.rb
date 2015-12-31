@@ -26,10 +26,10 @@ class Order < ActiveRecord::Base
   DELIVERY_COST = 200
   MAX_DELIVERY_MINUTES = 40
 
+  before_validation :set_delivery_point
   before_save :ensure_presence_of_line_items
   before_save :set_status
   before_save :set_delivery_time
-  before_save :set_delivery_point
 
   after_update :notify_couriers
 
