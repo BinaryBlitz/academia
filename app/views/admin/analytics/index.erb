@@ -1,0 +1,90 @@
+<h1>Аналитика</h1>
+
+<div class="btn-group" role="group" aria-label="...">
+  <%= link_to 'Весь период', {}, class: 'btn btn-default' %>
+  <%= link_to 'Год', { period: 'year' }, class: 'btn btn-default' %>
+  <%= link_to 'Месяц', { period: 'month' }, class: 'btn btn-default' %>
+  <%= link_to 'Неделя', { period: 'week' }, class: 'btn btn-default' %>
+  <%= link_to 'День', { period: 'day' }, class: 'btn btn-default' %>
+</div>
+
+<h2>Выполненные заказы</h2>
+
+<table class="table">
+  <thead>
+    <th>Новые</th>
+    <th>Повторные</th>
+    <th>Всего</th>
+    <th>Выручка</th>
+    <th>Скидки</th>
+    <th>С баланса</th>
+    <th>Итого</th>
+  </thead>
+  <tbody>
+    <tr>
+      <% if @previous_period.present? %>
+        <td><%= @current_period.new_orders %> (<%= increase_in_percent(@previous_period.new_orders, @current_period.new_orders) %>%)</td>
+        <td><%= @current_period.repeated_orders %> (<%= increase_in_percent(@previous_period.repeated_orders, @current_period.repeated_orders) %>%)</td>
+        <td><%= @current_period.total_orders %> (<%= increase_in_percent(@previous_period.total_orders, @current_period.total_orders) %>%)</td>
+        <td><%= @current_period.revenue %> (<%= increase_in_percent(@previous_period.revenue, @current_period.revenue) %>%)</td>
+        <td><%= @current_period.discount %> (<%= increase_in_percent(@previous_period.discount, @current_period.discount) %>%)</td>
+        <td><%= @current_period.balance_discount %> (<%= increase_in_percent(@previous_period.balance_discount, @current_period.balance_discount) %>%)</td>
+        <td><%= @current_period.total_sum %> (<%= increase_in_percent(@previous_period.total_sum, @current_period.total_sum) %>%)</td>
+      <% else %>
+        <td><%= @current_period.new_orders %></td>
+        <td><%= @current_period.repeated_orders %></td>
+        <td><%= @current_period.total_orders %></td>
+        <td><%= @current_period.revenue %></td>
+        <td><%= @current_period.discount %></td>
+        <td><%= @current_period.balance_discount %></td>
+        <td><%= @current_period.total_sum %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Отказы</h2>
+
+<table class="table">
+  <thead>
+    <th>Новые</th>
+    <th>Повторные</th>
+    <th>Всего</th>
+  </thead>
+  <tbody>
+    <tr>
+      <% if @previous_rejections.present? %>
+        <td><%= @current_rejections.new_orders %> (<%= increase_in_percent(@previous_rejections.new_orders, @current_rejections.new_orders) %>%)</td>
+        <td><%= @current_rejections.repeated_orders %> (<%= increase_in_percent(@previous_rejections.repeated_orders, @current_rejections.repeated_orders) %>%)</td>
+        <td><%= @current_rejections.total_orders %> (<%= increase_in_percent(@previous_rejections.total_orders, @current_rejections.total_orders) %>%)</td>
+      <% else %>
+      <td><%= @current_rejections.new_orders %></td>
+      <td><%= @current_rejections.repeated_orders %></td>
+      <td><%= @current_rejections.total_orders %><td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Статистика</h2>
+
+<table class="table">
+  <thead>
+    <th>Средний чек</th>
+    <th>Среднее время доставки</th>
+    <th>Проценты повторных продаж</th>
+  </thead>
+  <tbody>
+    <tr>
+      <% if @previous_period.present? %>
+        <td><%= @current_period.average_sum %> (<%= increase_in_percent(@previous_period.average_sum, @current_period.average_sum) %>%)</td>
+        <td><%= (@current_period.average_delivery_time / 60).round(2) %> мин (<%= increase_in_percent(@previous_period.average_delivery_time, @current_period.average_delivery_time) %>%)</td>
+        <td><%= @current_period.repeated_orders_for_unique_users.round(2) %>% (<%= increase_in_percent(@previous_period.repeated_orders_for_unique_users, @current_period.repeated_orders_for_unique_users) %>%)</td>
+      <% else %>
+        <td><%= @current_period.average_sum %></td>
+        <td><%= (@current_period.average_delivery_time / 60).round(2) %> мин</td>
+        <td><%= @current_period.repeated_orders_for_unique_users.round(2) %>%</td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

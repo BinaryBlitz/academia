@@ -1,1 +1,48 @@
-<%= link_to 'Изменить', edit_admin_order_path(@order) %>
+<h1>Заказ №<%= @order.id %></h1>
+
+<div class="form-group">
+  <%= link_to 'Изменить', edit_admin_order_path(@order), class: 'btn btn-default' %>
+</div>
+
+<p>
+  <strong>Адрес: </strong> <%= @order.address %>
+</p>
+
+<p>
+  <strong>Пользователь: </strong> <%= @order.user.full_name %>
+</p>
+
+<p>
+  <strong>Статус: </strong> <%= t(@order.status) %>
+</p>
+
+<p>
+  <strong>Координаты: </strong> <%= @order.to_coordinate_s %>
+</p>
+
+<p>
+  <strong>Время доставки: </strong> <%= @order.scheduled_for %>
+</p>
+
+<p>
+  <strong>Курьер: </strong> <%= @order.courier.try(:name) %>
+</p>
+
+<h2>Состав</h2>
+
+<table class="table">
+  <thead>
+    <th>Наименование</th>
+    <th>Количество</th>
+    <th>Цена</th>
+  </thead>
+  <tbody>
+    <% @order.line_items.each do |item| %>
+      <tr>
+        <td><%= item.dish.name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.total_price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

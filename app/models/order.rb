@@ -2,18 +2,23 @@
 #
 # Table name: orders
 #
-#  id            :integer          not null, primary key
-#  address       :text
-#  user_id       :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  status        :string
-#  scheduled_for :datetime
-#  latitude      :float
-#  longitude     :float
-#  rating        :integer
-#  review        :text
-#  courier_id    :integer
+#  id                :integer          not null, primary key
+#  address           :text
+#  user_id           :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  status            :string
+#  scheduled_for     :datetime
+#  latitude          :float
+#  longitude         :float
+#  rating            :integer
+#  review            :text
+#  courier_id        :integer
+#  revenue           :integer
+#  discount          :integer
+#  balance_discount  :integer
+#  delivered_at      :datetime
+#  delivery_point_id :integer
 #
 
 class Order < ActiveRecord::Base
@@ -21,11 +26,16 @@ class Order < ActiveRecord::Base
   DELIVERY_COST = 200
   MAX_DELIVERY_MINUTES = 40
 
+  before_validation :set_delivery_point
   before_save :ensure_presence_of_line_items
   before_save :set_status
+  before_save :set_delivery_time
+
+  after_update :notify_couriers
 
   belongs_to :user
   belongs_to :courier
+  belongs_to :delivery_point
 
   has_one :payment
   has_many :line_items, dependent: :destroy, inverse_of: :order
@@ -33,6 +43,7 @@ class Order < ActiveRecord::Base
 
   validates :user, presence: true
   validates :address, presence: true
+  validates :delivery_point, presence: true
   validates :rating, inclusion: { in: 1..5 }, allow_blank: true
   validate :inside_delivery_zone?
 
@@ -45,31 +56,41 @@ class Order < ActiveRecord::Base
   scope :delivered, -> { where(status: :delivered) }
   scope :rejected, -> { where(status: :rejected) }
   scope :on_the_way, -> { where(status: :on_the_way) }
-  scope :unassigned, -> { on_the_way.where(courier: nil) }
+  scope :unassigned, -> { where(status: :new) }
   scope :late, -> { on_the_way.where('created_at < ?', MAX_DELIVERY_MINUTES.minutes.ago) }
 
   def total_price
-    sum = 0
-    # Items
-    line_items.each { |item| sum += item.total_price }
+    sum = line_items_price
     # Discount
-    sum *= (1.0 - (user.discount / 100.0))
+    self.discount = sum * (user.discount / 100.0)
+    sum -= discount
     # Balance
-    sum = user.balance > sum ? 0 : sum - user.balance
+    self.balance_discount = user.balance > sum ? sum : user.balance
+    sum -= balance_discount
     # Delivery
     sum += DELIVERY_COST if sum < FREE_DELIVERY_FROM
+    self.revenue = sum - discount - balance_discount
+    save
     sum.to_i
   end
 
   def redeem_balance
-    if user.balance > total_price
-      user.update(balance: user.balance - total_price)
-    else
+    if balance_discount > user.balance
       user.update(balance: 0)
+    else
+      user.update(balance: user.balance - balance_discount)
     end
   end
 
+  def to_coordinate_s
+    "#{latitude}, #{longitude}"
+  end
+
   private
+
+  def line_items_price
+    @line_items_price ||= line_items.inject(0) { |a, e| a += e.total_price }
+  end
 
   def ensure_presence_of_line_items
     if line_items.empty?
@@ -81,7 +102,7 @@ class Order < ActiveRecord::Base
   end
 
   def inside_delivery_zone?
-    return unless latitude && longitude
+    return unless latitude && longitude && EdgePoint.count > 0
     errors.add(:base, 'outside delivery zone') unless EdgePoint.to_polygon.contains?(to_point)
   end
 
@@ -96,8 +117,23 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def set_delivery_time
+    if status == 'delivered'
+      self.delivered_at = Time.zone.now
+    end
+  end
+
+  def set_delivery_point
+    self.delivery_point = DeliveryPoint.closest(origin: to_point).try(:first)
+  end
+
   def notify_status_change
     Notifier.new(user, 'Заказ в пути.')
     SmsSender.new(user.phone_number, 'Заказ в пути.')
+  end
+
+  def notify_couriers
+    return unless status == 'new'
+    delivery_point.notify_couriers
   end
 end

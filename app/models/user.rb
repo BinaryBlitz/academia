@@ -25,7 +25,7 @@
 #
 
 class User < ActiveRecord::Base
-  REFERRAL_BONUS = 100
+  REFERRAL_BONUS = 300
   PROMO_CODE_LENGTH = 6
 
   before_create :generate_promo_code
@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
     return redeem_promo_code(promo) if promo
 
     user = User.find_by(promo_code: code)
-    update(referred_user: user) if user
+    return update(referred_user: user) if user
 
     return false
   end
@@ -83,6 +83,6 @@ class User < ActiveRecord::Base
 
   def refers_self
     return unless referred_user
-    errors.add(:referred_user, 'cannot be equal to self')
+    errors.add(:referred_user, 'cannot be equal to self') if self == referred_user
   end
 end

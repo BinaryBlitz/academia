@@ -2,7 +2,11 @@ class Admin::OrdersController < Admin::AdminController
   before_action :set_admin_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    @orders = Order.where.not(status: [:delivered, :rejected]).order(status: :asc).page(params[:page])
+    @orders = Order.unassigned.order(created_at: :desc).page(params[:page])
+  end
+
+  def on_the_way
+    @on_the_way = Order.on_the_way.page(params[:page])
   end
 
   def delivered

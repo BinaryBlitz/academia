@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
 gem 'pg'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rails-i18n'
@@ -13,11 +13,11 @@ gem 'phony_rails'
 gem 'enumerize'
 gem 'httparty'
 gem 'validates_overlap'
-gem 'geokit'
+gem 'geokit-rails'
 gem 'rpush'
 
 # Auth
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 gem 'has_secure_token'
 gem 'devise'
 gem 'devise-i18n'
@@ -42,7 +42,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
   gem 'spring'
   gem 'annotate'
   gem 'capistrano'

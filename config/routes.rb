@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'edge_points/index'
-
   root 'admin/orders#index'
   devise_for :admins, path: 'admin', skip: :registrations
 
@@ -15,15 +13,26 @@ Rails.application.routes.draw do
     resources :edge_points, except: [:show, :edit, :update]
     resources :couriers
     resources :alerts, only: [:index]
+    resources :analytics, only: [:index]
     resources :delivery_points, except: [:show, :edit, :update]
     resources :orders do
-      get 'delivered', 'rejected', on: :collection
+      get 'delivered', 'rejected', 'on_the_way', on: :collection
     end
 
     get 'lunches' => 'dishes#lunches'
     get 'stuff' => 'dishes#stuff'
 
     get 'schedule' => 'days#index'
+  end
+
+  scope module: 'courier' do
+    resource :courier, only: [:update] do
+      post 'authenticate', on: :collection
+      resources :orders, only: [:index, :update] do
+        get 'assigned', on: :collection
+        patch 'assign', on: :member
+      end
+    end
   end
 
   resource :user, only: [:show, :create, :update]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213183620) do
+ActiveRecord::Schema.define(version: 20151231114902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,9 @@ ActiveRecord::Schema.define(version: 20151213183620) do
     t.integer  "delivery_point_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "api_token"
+    t.string   "device_token"
+    t.string   "platform"
   end
 
   add_index "couriers", ["delivery_point_id"], name: "index_couriers_on_delivery_point_id", using: :btree
@@ -82,6 +85,8 @@ ActiveRecord::Schema.define(version: 20151213183620) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "delivery_points", ["latitude", "longitude"], name: "index_delivery_points_on_latitude_and_longitude", using: :btree
 
   create_table "dish_badges", force: :cascade do |t|
     t.integer  "dish_id"
@@ -159,8 +164,8 @@ ActiveRecord::Schema.define(version: 20151213183620) do
   create_table "orders", force: :cascade do |t|
     t.text     "address"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "status"
     t.datetime "scheduled_for"
     t.float    "latitude"
@@ -168,9 +173,15 @@ ActiveRecord::Schema.define(version: 20151213183620) do
     t.integer  "rating"
     t.text     "review"
     t.integer  "courier_id"
+    t.integer  "revenue"
+    t.integer  "discount"
+    t.integer  "balance_discount"
+    t.datetime "delivered_at"
+    t.integer  "delivery_point_id"
   end
 
   add_index "orders", ["courier_id"], name: "index_orders_on_courier_id", using: :btree
+  add_index "orders", ["delivery_point_id"], name: "index_orders_on_delivery_point_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
@@ -301,4 +312,5 @@ ActiveRecord::Schema.define(version: 20151213183620) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "orders", "delivery_points"
 end

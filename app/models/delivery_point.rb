@@ -13,8 +13,15 @@ class DeliveryPoint < ActiveRecord::Base
   include Geocodable
 
   has_many :couriers
+  has_many :orders
+
+  acts_as_mappable default_units: :kms, lat_column_name: :latitude, lng_column_name: :longitude
 
   def to_s
     "#{latitude}, #{longitude}"
+  end
+
+  def notify_couriers
+    couriers.each { |courier| Notifier.new(courier, 'Получен новый заказ.') }
   end
 end

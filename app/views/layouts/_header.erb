@@ -32,6 +32,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Заказы <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><%= link_to 'Новые', admin_orders_path %></li>
+            <li><%= link_to 'В пути', on_the_way_admin_orders_path %></li>
             <li><%= link_to 'Доставленные', delivered_admin_orders_path %></li>
             <li><%= link_to 'Отказанные', rejected_admin_orders_path %></li>
           </ul>
@@ -46,6 +47,9 @@
             <li><%= link_to 'Время работы', admin_working_hours_path %></li>
             <li><%= link_to 'Зона доставки', admin_edge_points_path %></li>
             <li><%= link_to 'Пункты доставки', admin_delivery_points_path %></li>
+            <li><%= link_to 'Пункты доставки', admin_delivery_points_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to 'Аналитика', admin_analytics_path %></li>
           </ul>
         </li>
         <% if admin_signed_in? %>
