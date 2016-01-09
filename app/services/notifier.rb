@@ -26,7 +26,7 @@ class Notifier
 
   private
 
-  def push_android_notifications
+  def push_android_notification
     return if @message.blank? || @device_token.blank?
 
     n = Rpush::Gcm::Notification.new
