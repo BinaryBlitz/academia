@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/mendab1e/alfabank
+  revision: 27e7523ee2b6324ea3e91fc0ba00c6062151b809
+  specs:
+    alfabank (0.1.0)
+      httparty (~> 0.13)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -234,6 +241,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alfabank!
   annotate
   bcrypt
   bootstrap-datepicker-rails

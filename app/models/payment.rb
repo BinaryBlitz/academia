@@ -14,12 +14,7 @@
 #
 
 class Payment < ActiveRecord::Base
-  RUB = 810
-  KOPEYKI_IN_RUB = 100
-  REGISTRATION_URL = "https://test.paymentgate.ru/testpayment/rest/register.do"
-  CHECK_STATUS_URL = "https://test.paymentgate.ru/testpayment/rest/getOrderStatus.do"
-  SUCCESS = 0
-
+  include Alfabank
   belongs_to :order
 
   validates_numericality_of :price, greater_than: 0
