@@ -86,11 +86,11 @@ class Order < ActiveRecord::Base
     "#{latitude}, #{longitude}"
   end
 
-  private
-
   def line_items_price
     @line_items_price ||= line_items.inject(0) { |a, e| a += e.total_price }
   end
+
+  private
 
   def ensure_presence_of_line_items
     if line_items.empty?
