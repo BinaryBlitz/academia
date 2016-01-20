@@ -30,8 +30,7 @@ class Order < ActiveRecord::Base
   before_save :ensure_presence_of_line_items
   before_save :set_status
   before_save :set_delivery_time
-
-  after_update :notify_couriers
+  before_save :notify_couriers
 
   belongs_to :user
   belongs_to :courier
@@ -133,7 +132,7 @@ class Order < ActiveRecord::Base
   end
 
   def notify_couriers
-    return unless status == 'new'
+    return unless status_changed? && status == 'new'
     delivery_point.notify_couriers
   end
 end
