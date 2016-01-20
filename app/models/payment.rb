@@ -14,12 +14,7 @@
 #
 
 class Payment < ActiveRecord::Base
-  RUB = 810
-  KOPEYKI_IN_RUB = 100
-  REGISTRATION_URL = "https://test.paymentgate.ru/testpayment/rest/register.do"
-  CHECK_STATUS_URL = "https://test.paymentgate.ru/testpayment/rest/getOrderStatus.do"
-  SUCCESS = 0
-
+  include Alfabank
   belongs_to :order
 
   validates_numericality_of :price, greater_than: 0
@@ -27,94 +22,12 @@ class Payment < ActiveRecord::Base
 
   before_validation :set_price, on: :create
 
-  delegate :user, to: :order
+  delegate :user_id, to: :order
   delegate :line_items, to: :order
-
-  def register_in_alfa
-    return alfa_form_url if alfa_order_id.present?
-    response = make_registration_request.parsed_response
-
-    if response.has_key? "orderId"
-      set_alfa_data_from_response(response)
-      alfa_form_url
-    else
-      logger.info "#{Time.zone.now.to_s}: p##{id} #{response['errorMessage']}"
-      nil
-    end
-  end
-
-  def check_status
-    response = make_status_request.parsed_response
-
-    if response["ErrorCode"].to_i == SUCCESS
-      update_attribute(:paid, true)
-      order.redeem_balance
-      user.redeem_user_code
-      order.update(status: :new)
-      set_user_binding_from_response(response) if response.has_key? "bindingId"
-    end
-
-    response["ErrorMessage"]
-  end
 
   private
 
   def set_price
     self.price = order.total_price
-  end
-
-  def make_registration_request
-    HTTParty.post(REGISTRATION_URL, body: generate_payment_params, format: :json)
-  end
-
-  def make_status_request
-    HTTParty.post(CHECK_STATUS_URL, body: generate_status_params, format: :json)
-  end
-
-  def generate_status_params
-    {
-      userName: 'zdorovoepitanie-api',
-      password: 'zdorovoepitanie',
-      orderId: alfa_order_id
-    }.map { |k, v| "#{k}=#{v}" }.join('&')
-  end
-
-  def generate_payment_params
-    params = {
-      userName: 'zdorovoepitanie-api',
-      password: 'zdorovoepitanie',
-      description: 'Здоровое питание',
-      language: 'ru',
-      orderNumber: "payment-test#{id}",
-      amount: price * KOPEYKI_IN_RUB, # TODO: add balance
-      currency: RUB,
-      clientId: user.id,
-      returnUrl: 'finish.html'
-    }
-
-    if use_binding?
-      params.merge!(
-        userName: 'zdorovoepitanie_auto-api',
-        bindingId: user.alfa_binding_id
-      )
-    end
-
-    params.map { |k, v| "#{k}=#{v}" }.join('&')
-  end
-
-  def set_alfa_data_from_response(response)
-    update_attributes(
-      alfa_order_id: response["orderId"],
-      alfa_form_url: response["formUrl"]
-    )
-  end
-
-  def set_user_binding_from_response(response)
-    return if response["bindingId"] == user.alfa_binding_id
-
-    user.update_attributes(
-      alfa_binding_id: response["bindingId"],
-      card_number: response["Pan"]
-    )
   end
 end

@@ -30,15 +30,15 @@ class OrdersController < ApplicationController
 
   def payment
     order_payment = (@order.payment || @order.create_payment(payment_params))
-    @url = order_payment.register_in_alfa
+    response = order_payment.register
 
-    render json: {url: @url}, status: :ok
+    render json: response, status: :ok
   end
 
   def payment_status
-    @status = @order.payment.try(:check_status)
+    status = @order.payment.try(:check_status)
 
-    render json: {status: @status}, status: :ok
+    render json: status, status: :ok
   end
 
   private

@@ -36,6 +36,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    alfabank (0.1.0)
+      httparty (~> 0.13)
     annotate (2.7.0)
       activerecord (>= 3.2, < 6.0)
       rake (~> 10.4)
@@ -234,6 +236,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alfabank
   annotate
   bcrypt
   bootstrap-datepicker-rails
