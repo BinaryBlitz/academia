@@ -15,12 +15,14 @@
 
 class Payment < ActiveRecord::Base
   include Alfabank
+
+  before_validation :set_price, on: :create
+  before_validation :set_description, on: :create
+
   belongs_to :order
 
   validates_numericality_of :price, greater_than: 0
   validates_presence_of :order_id
-
-  before_validation :set_price, on: :create
 
   delegate :user_id, to: :order
   delegate :line_items, to: :order
@@ -29,5 +31,9 @@ class Payment < ActiveRecord::Base
 
   def set_price
     self.price = order.total_price
+  end
+
+  def set_description
+    self.description = "Заказ №#{order_id}"
   end
 end
