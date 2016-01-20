@@ -18,12 +18,14 @@ class Payment < ActiveRecord::Base
 
   before_validation :set_price, on: :create
   before_validation :set_description, on: :create
+  after_update :paid_callback
 
   belongs_to :order
 
   validates_numericality_of :price, greater_than: 0
   validates_presence_of :order_id
 
+  delegate :user, to: :order
   delegate :user_id, to: :order
   delegate :line_items, to: :order
 
@@ -35,5 +37,13 @@ class Payment < ActiveRecord::Base
 
   def set_description
     self.description = "Заказ №#{order_id}"
+  end
+
+  def paid_callback
+    return unless paid?
+
+    order.redeem_balance
+    user.redeem_user_code
+    order.update(status: :new)
   end
 end
