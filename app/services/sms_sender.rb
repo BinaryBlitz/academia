@@ -15,7 +15,7 @@ class SmsSender
     if response.lines.first.try(:chomp) == '100'
       true
     else
-      logger.info "#{Time.zone.now}: SMS to #{phone_number} failed.\n#{response}"
+      Rails.logger.info "#{Time.zone.now}: SMS to #{@phone_number} failed.\n#{response}"
       false
     end
   end
