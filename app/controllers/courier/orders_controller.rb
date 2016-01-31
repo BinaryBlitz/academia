@@ -2,7 +2,7 @@ class Courier::OrdersController < Courier::CourierController
   before_action :set_order, only: [:assign, :update]
 
   def index
-    @orders = current_courier.delivery_point.orders.includes(:user).where(status: 'new')
+    @orders = current_courier.delivery_point.orders.includes(:user).where(status: 'new').order(created_at: :desc)
   end
 
   def assigned
