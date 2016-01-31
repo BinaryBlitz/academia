@@ -60,15 +60,18 @@ class Order < ActiveRecord::Base
 
   def total_price
     sum = line_items_price
+    # Delivery
+    sum += DELIVERY_COST if sum < FREE_DELIVERY_FROM
     # Discount
     self.discount = sum * (user.discount / 100.0)
     sum -= discount
     # Balance
     self.balance_discount = user.balance > sum ? sum : user.balance
     sum -= balance_discount
-    # Delivery
-    sum += DELIVERY_COST if sum < FREE_DELIVERY_FROM
+    # Stats
     self.revenue = sum - discount - balance_discount
+    # No zero  payments
+    sum = 1 if sum <= 0
     save
     sum.to_i
   end
