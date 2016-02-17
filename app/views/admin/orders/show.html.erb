@@ -25,6 +25,10 @@
 </p>
 
 <p>
+  <strong>Телефон заказчика: </strong> <%= @order.user.phone_number %>
+</p>
+
+<p>
   <strong>Курьер: </strong> <%= @order.courier.try(:name) %>
 </p>
 
