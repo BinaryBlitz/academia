@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120141700) do
+ActiveRecord::Schema.define(version: 20160218213145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20160120141700) do
     t.float    "fats"
     t.float    "carbohydrates"
     t.float    "calories"
+    t.boolean  "out_of_stock",  default: false
   end
 
   create_table "edge_points", force: :cascade do |t|

@@ -1,5 +1,5 @@
 json.array!(@dishes) do |dish|
-  json.extract! dish, :id, :name, :description, :subtitle, :price, :image_url
+  json.extract! dish, :id, :name, :description, :subtitle, :price, :image_url, :out_of_stock
 
   if dish.main?
     json.ingredients dish.ingredients do |ingredient|
