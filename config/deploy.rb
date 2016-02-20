@@ -28,6 +28,8 @@ after 'deploy:update_code', roles: :app do
   # Config
   run "rm -f #{current_release}/config/secrets.yml"
   run "ln -nfs #{deploy_to}/shared/config/secrets.yml #{current_release}/config/secrets.yml"
+  run "rm -f #{current_release}/config/initializers/alfabank.rb"
+  run "ln -nfs #{deploy_to}/shared/config/initializers/alfabank.rb #{current_release}/config/initializers/alfabank.rb"
 
   # Uploads
   run "rm -f #{current_release}/public/uploads"
