@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500' rel='stylesheet' type='text/css'>
+  <title></title>
+  <style type="text/css">
+    table td {
+      border-collapse: collapse !important;
+    }
+    table {
+      border-collapse: collapse !important;
+      mso-table-lspace: 0pt !important;
+      mso-table-rspace: 0pt !important;
+    }
+    img {
+      display: block;
+      outline: none;
+      text-decoration: none;
+      -ms-interpolation-mode: bicubic !important;
+    }
+    a img {
+      border: none !important;
+    }
+    a {
+      text-decoration: none !important;
+    }
+    * {
+      -webkit-box-sizing: border-box !important;
+      -moz-box-sizing: border-box !important;
+      box-sizing: border-box !important;
+      -webkit-font-smoothing: antialiased !important;
+      -moz-font-smoothing: antialiased !important;
+      -moz-osx-font-smoothing: grayscale !important;
+    }
+    html,
+    body {
+      height: 100%;
+    }
+    body {
+      -webkit-font-smoothing: antialiased !important;
+      -moz-font-smoothing: antialiased !important;
+      -moz-osx-font-smoothing: grayscale !important;
+    }
+  </style>
+  <!--[if gte mso 9]>
+ <style>
+ /* Target Outlook 2007 and 2010 */
+ </style>
+<![endif]-->
+</head>
+
+<body style="width:100%; margin:0; padding:0; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;">
+  <!-- body wrapper -->
+  <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto; padding:0; width:100%; line-height: 100% !important;">
+    <tr>
+      <td valign="top">
+        <!-- edge wrapper -->
+        <table cellpadding="0" cellspacing="0" border="0" align="center" style="background: #efefef; width: 600px; border: 1px #dddddd solid; overflow: hidden;">
+          <tr>
+            <td valign="top">
+              <!-- content wrapper -->
+              <table cellpadding="0" cellspacing="0" border="0" align="center" style="background: #fff; width: 600px;">
+                <tr>
+                  <td valign="top" style="vertical-align: top;">
+                    <!-- ///////////////////////////////////////////////////// -->
+                    <table cellpadding="0" cellspacing="0" border="0" align="center" style="width: 100%;">
+                      <tr>
+                        <td valign="top" style="vertical-align: top; text-align: center; background: #fff; padding: 22px 20px 22px 20px;">
+                          <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; line-height: 17px;">Если письмо отображается некорректно, откройте его по <a href="#" style="color:#009549; text-decoration: underline !important;">этой ссылке</a></span>
+                        </td>
+                      </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" align="center" style="width: 100%;">
+                      <tr>
+                        <td valign="top" style="vertical-align: top; text-align: center; background: #009549; padding: 15px 0;">
+                          <span style="color: #fff; font-family: 'Roboto', sans-serif; font-size: 22px; font-weight: 400; line-height: 17px; padding-left: 135px;">ZP - Zdorovoe Pitanie</span><a href="#" style="color:#fff; text-decoration: underline !important; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; line-height: 17px; padding-left: 80px;">zpdelivery.ru</a>
+                        </td>
+                      </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" align="center" style="width: 600px; height: 220px; background-image: url(http://s101.fotosklad.org.ua/20160212/f/58b40d7189d14c6b249da2ec1a844cda.jpg); background-size: 100%;">
+                      <tr>
+                        <td valign="top" style="vertical-align: top;">
+                          <img src="http://s101.fotosklad.org.ua/20160203/f/0a4dece4eed966956a6078548d08df17.png" style="width: 90px;display: inline-block;margin: 10px 0 0 30px; " alt="" />
+                        </td>
+                      </tr>
+                      <tr style="width: 100%;">
+                        <td style="width: 100%; background-color: rgba(0, 149, 73, 0.7); height: 78px; text-align: center;">
+                          <span style="color: #fff; font-family: 'Roboto', sans-serif; font-size: 20px; font-weight: 400; line-height: 17px;">Здравствуйте, <%= "#{@order.user.first_name} #{@order.user.last_name}" %>!</span>
+                          <br />
+                          <br />
+                          <span style="color: #fff; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; line-height: 17px;">Ваш заказ принят, благодарим Вас за выбор !</span>
+                        </td>
+                      </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" align="center" style="width: 100%;">
+                      <tr>
+                        <td valign="top" style="vertical-align: top; text-align: left; background: #fff; padding: 22px 20px 16px 20px;">
+                          <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; line-height: 17px;">Заказ был сделан</span><span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; line-height: 17px; padding-left: 14px;"><%=  localize(@order.created_at, format: :short) %></span><span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; line-height: 17px; padding-left: 14px;"></span>
+                        </td>
+                      </tr>
+                    </table>
+                    <table align="center" style="width: 94%; border-collapse: collapse;">
+                      <tr style="border-top: 1px solid #1E1E1E; border-bottom: 1px solid #1E1E1E;">
+                        <td valign="top" style="vertical-align: top; background: #fff; width: 65%; ">
+                          <table align="center" style="width: 100%; border-collapse: collapse;">
+                            <tr style="border-right: 1px solid #1E1E1E;border-bottom: 1px solid #1E1E1E;">
+                              <td style=" padding: 10px 15px 45px 15px;">
+                                <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;">Вы заказали:</span>
+                                <br />
+                                <br />
+                                <br />
+                                <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;"><strong style="font-weight: 500;font-size: 18px;">№</strong> <%= @order.id %></span>
+                                <br />
+                                <br />
+                                <% @order.line_items.each do |line_item| %>
+                                  <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 500; line-height: 17px;"><%= line_item.dish.name %></span><span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px; padding-left: 50px;"><strong style="font-weight: 500;font-size: 18px;"> <%= line_item.quantity %></strong> шт.</span><span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px; padding-left: 50px;"><strong style="font-weight: 500;font-size: 18px;"> <%= line_item.dish.price %></strong> р.</span>
+                                <% end %>
+                              </td>
+                            </tr>
+                            <tr style="border-right: 1px solid #1E1E1E;">
+                              <td style=" padding: 20px 15px;">
+                                <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;">Сумма заказа: <strong style="font-weight: 500;font-size: 18px; padding-left: 10px;"><%= @order.line_items_price %></strong> руб.</span>
+                                <br />
+                                <br />
+                                <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;">
+                                  Стоимость доставки:
+                                  <strong style="font-weight: 500;font-size: 18px; padding-left: 10px;"><%= @order.line_items_price > Order::FREE_DELIVERY_FROM ? 0 : Order::DELIVERY_COST %></strong> руб.
+                                </span>
+                                <br />
+                                <br />
+                                <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;">Скидка: <strong style="font-weight: 500;font-size: 18px; padding-left: 10px;"><%= @order.discount %></strong> руб.</span>
+                                <br />
+                                <br />
+                                <span style="color: #009549; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;">Списано бонусов<strong style="font-weight: 500;font-size: 18px;"> <%= @order.balance_discount %></strong></span>
+                                <br />
+                                <br />
+                                <br />
+                                <span style="color: #009549; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;"><strong style="font-weight: 500;font-size: 18px;">Итого:</strong><strong style="font-weight: 500;font-size: 18px; padding-left: 10px;"> <%= @order.total_price %></strong> руб.</span>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td valign="top" style="vertical-align: top; background: #fff; width: 35%;">
+                          <table cellpadding="0" cellspacing="0" border="0" align="center" style="width: 100%;">
+                            <tr>
+                              <td>
+                                <img src="http://s101.fotosklad.org.ua/20160212/f/1acb6e501126743c92a0cab35ca0da3a.jpg" style="width: 206px;" alt="" />
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    <table align="center" style="width: 94%; border-collapse: collapse;">
+                      <tr style="border-bottom: 3px solid #009549;">
+                        <td valign="top" style="vertical-align: top; text-align: left; background: #fff; padding: 22px 20px 16px 20px;">
+                          <img src="http://s101.fotosklad.org.ua/20160203/f/bfa9d3d7a9fd946a7a95e59383a7e05f.jpg" alt="" style="width: 20px; display: inline-block; vertical-align: middle;" /><span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px; padding-left: 20px;">Адрес доставки:</span><span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; line-height: 17px; padding-left: 20px;"><%= @order.address %></span>
+                        </td>
+                      </tr>
+                    </table>
+                    <table align="center" style="width: 94%; border-collapse: collapse;">
+                      <tr style="border-bottom: 10px solid #009549;">
+                        <td valign="top" style="vertical-align: top; text-align: left; background: #fff; padding: 22px 20px 16px 20px; width: 70%;">
+                          <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; line-height: 17px;">ООО “Здоровое питание”</span>
+                          <br />
+                          <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; line-height: 17px;">ОГРН 1157746941692</span>
+                          <br />
+                          <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; line-height: 17px;">ИНН/КПП 7713406126/7713101001</span>
+                          <br />
+                          <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; line-height: 17px;">Юр. Адрес: г. Москва, Дубнинская ул., д.4, корп. 1</span>
+                          <br />
+                        </td>
+                        <td valign="top" style="vertical-align: top; text-align: left; background: #fff; padding: 60px 5px 16px 5px; width: 30%;">
+                          <a href="#" style="display: inline-block; padding-right: 10px;"><img src="http://s101.fotosklad.org.ua/20160203/f/828ffec5684cd8e71d366754d578e23c.png" alt="" style="width: 30px;" />
+                          </a>
+                          <a href="#" style="display: inline-block; padding-right: 10px;"><img src="http://s101.fotosklad.org.ua/20160203/f/c3e4a5e6ee41d47bc356177774ed56a41454511899.png" alt="" style="width: 24.5px;" />
+                          </a>
+                          <a href="#" style="display: inline-block; padding-right: 10px;"><img src="http://s101.fotosklad.org.ua/20160203/f/b8cc29c0a7e753a0ebe1356f0c08df771454511907.png" alt="" style="width: 28px;" />
+                          </a>
+                          <a href="#" style="display: inline-block;"><img src="http://s101.fotosklad.org.ua/20160203/f/e302ff7a5957a0182e7a02e169d66c47.png" alt="" style="width: 25px;" />
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" align="center" style="width: 100%;">
+                      <tr>
+                        <td>
+                          <br />
+                          <br />
+                          <br />
+                        </td>
+                      </tr>
+                    </table>
+                    <!-- //////////// -->
+                  </td>
+                </tr>
+              </table>
+              <!-- / content wrapper -->
+            </td>
+          </tr>
+        </table>
+        <!-- / edge wrapper -->
+      </td>
+    </tr>
+  </table>
+  <!-- / page wrapper -->
+</body>
+
+</html>
