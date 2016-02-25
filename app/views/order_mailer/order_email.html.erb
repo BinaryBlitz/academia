@@ -68,13 +68,6 @@
                     <!-- ///////////////////////////////////////////////////// -->
                     <table cellpadding="0" cellspacing="0" border="0" align="center" style="width: 100%;">
                       <tr>
-                        <td valign="top" style="vertical-align: top; text-align: center; background: #fff; padding: 22px 20px 22px 20px;">
-                          <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; line-height: 17px;">Если письмо отображается некорректно, откройте его по <a href="#" style="color:#009549; text-decoration: underline !important;">этой ссылке</a></span>
-                        </td>
-                      </tr>
-                    </table>
-                    <table cellpadding="0" cellspacing="0" border="0" align="center" style="width: 100%;">
-                      <tr>
                         <td valign="top" style="vertical-align: top; text-align: center; background: #009549; padding: 15px 0;">
                           <span style="color: #fff; font-family: 'Roboto', sans-serif; font-size: 22px; font-weight: 400; line-height: 17px; padding-left: 135px;">ZP - Zdorovoe Pitanie</span><a href="#" style="color:#fff; text-decoration: underline !important; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; line-height: 17px; padding-left: 80px;">zpdelivery.ru</a>
                         </td>
@@ -112,9 +105,6 @@
                                 <br />
                                 <br />
                                 <br />
-                                <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;"><strong style="font-weight: 500;font-size: 18px;">№</strong> <%= @order.id %></span>
-                                <br />
-                                <br />
                                 <% @order.line_items.each do |line_item| %>
                                   <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 500; line-height: 17px;"><%= line_item.dish.name %></span><span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px; padding-left: 50px;"><strong style="font-weight: 500;font-size: 18px;"> <%= line_item.quantity %></strong> шт.</span><span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px; padding-left: 50px;"><strong style="font-weight: 500;font-size: 18px;"> <%= line_item.dish.price %></strong> р.</span>
                                 <% end %>
@@ -131,10 +121,10 @@
                                 </span>
                                 <br />
                                 <br />
-                                <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;">Скидка: <strong style="font-weight: 500;font-size: 18px; padding-left: 10px;"><%= @order.discount %></strong> руб.</span>
+                                <span style="color: #1E1E1E; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;">Скидка: <strong style="font-weight: 500;font-size: 18px; padding-left: 10px;"><%= @order.discount || 0 %></strong> руб.</span>
                                 <br />
                                 <br />
-                                <span style="color: #009549; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;">Списано бонусов<strong style="font-weight: 500;font-size: 18px;"> <%= @order.balance_discount %></strong></span>
+                                <span style="color: #009549; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 300; line-height: 17px;">Списано бонусов<strong style="font-weight: 500;font-size: 18px;"> <%= @order.balance_discount || 0 %></strong></span>
                                 <br />
                                 <br />
                                 <br />
