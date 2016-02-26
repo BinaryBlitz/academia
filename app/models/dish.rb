@@ -58,6 +58,7 @@ class Dish < ActiveRecord::Base
   scope :visible, -> { where(hidden: false) }
   scope :lunches, -> { where(lunch: true) }
   scope :stuff, -> { where(stuff: true) }
+  scope :visible, -> { where(hidden: false) }
 
   def main?
     !stuff && !lunch

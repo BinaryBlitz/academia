@@ -12,7 +12,7 @@ class Day < ActiveRecord::Base
   DAYS_BEFORE_ALERT = 3
 
   has_many :schedules, dependent: :destroy, inverse_of: :day
-  has_many :dishes, through: :schedules
+  has_many :dishes, -> { visible }, through: :schedules
 
   has_many :courier_schedules, dependent: :destroy, inverse_of: :day
   has_many :couriers, through: :courier_schedules
