@@ -40,7 +40,9 @@ class Day < ActiveRecord::Base
     earliset = WorkingHour.earliest
     return nil unless next_working_day
 
-    next_working_day.date.to_time.change(hour: earliset.hour, min: earliset.min)
+    next_working_day.date
+      .to_time.in_time_zone(Time.zone.name)
+      .change(hour: earliset.hour, min: earliset.min)
   end
 
   def self.today
