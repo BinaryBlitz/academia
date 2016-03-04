@@ -17,7 +17,6 @@
 #  fats          :float
 #  carbohydrates :float
 #  calories      :float
-#  out_of_stock  :boolean          default(FALSE)
 #
 
 class Dish < ActiveRecord::Base
