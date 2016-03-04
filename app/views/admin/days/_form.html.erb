@@ -27,6 +27,14 @@
       <%= ff.select(:dish_id, grouped_options_for_select(grouped_dishes, ff.object.dish_id), { include_blank: true }, class: 'form-control') %>
       <%= ff.remove_nested_fields_link 'Удалить', class: 'btn btn-danger' %>
     </div>
+
+    <div class="form-group">
+      <div class="checkbox">
+        <%= ff.label :out_of_stock do %>
+          <%= ff.check_box :out_of_stock %> Закончилось
+        <% end %>
+      </div>
+    </div>
   <% end %>
 
   <h3>Курьеры</h3>
