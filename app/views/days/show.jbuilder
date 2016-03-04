@@ -16,6 +16,6 @@ if Day.today
   end
 
   json.stuff do
-    json.partial! 'dish', collection: Dish.stuff, as: :dish, out_of_stock: false
+    json.partial! 'dish', collection: Dish.stuff.visible, as: :dish, out_of_stock: false
   end
 end
