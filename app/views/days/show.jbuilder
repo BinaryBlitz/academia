@@ -4,14 +4,18 @@ json.opens_at Day.opens_at
 
 if Day.today
   json.dishes do
-    json.partial! 'dish', collection: @day.dishes.main, as: :dish
+    @day.schedules.joins(:dish).where(dish: Dish.main).each do |schedule|
+      json.partial! 'dish', dish: schedule.dish, out_of_stock: schedule.out_of_stock
+    end
   end
 
   json.lunches do
-    json.partial! 'dish', collection: @day.dishes.lunches, as: :dish
+    @day.schedules.joins(:dish).where(dish: Dish.lunches).each do |schedule|
+      json.partial! 'dish', dish: schedule.dish, out_of_stock: schedule.out_of_stock
+    end
   end
 
   json.stuff do
-    json.partial! 'dish', collection: Dish.stuff, as: :dish
+    json.partial! 'dish', collection: Dish.stuff, as: :dish, out_of_stock: false
   end
 end
