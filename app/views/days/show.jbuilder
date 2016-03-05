@@ -3,16 +3,12 @@ json.is_open Day.open?
 json.opens_at Day.opens_at
 
 if Day.today
-  json.dishes do
-    @day.schedules.joins(:dish).where(dish: Dish.main).each do |schedule|
-      json.partial! 'dish', dish: schedule.dish, out_of_stock: schedule.out_of_stock
-    end
+  json.dishes @day.schedules.joins(:dish).where(dish: Dish.main) do |schedule|
+    json.partial! 'dish', dish: schedule.dish, out_of_stock: schedule.out_of_stock
   end
 
-  json.lunches do
-    @day.schedules.joins(:dish).where(dish: Dish.lunches).each do |schedule|
-      json.partial! 'dish', dish: schedule.dish, out_of_stock: schedule.out_of_stock
-    end
+  json.lunches @day.schedules.joins(:dish).where(dish: Dish.lunches) do |schedule|
+    json.partial! 'dish', dish: schedule.dish, out_of_stock: schedule.out_of_stock
   end
 
   json.stuff do
