@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'admin/orders#index'
+  get 'home/index'
+
+  root 'home#index'
   devise_for :admins, path: 'admin', skip: :registrations
 
   namespace :admin do
