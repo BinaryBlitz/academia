@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'home/index'
-
   root 'home#index'
+
   devise_for :admins, path: 'admin', skip: :registrations
+  get 'admin', to: 'admin/days#index'
 
   namespace :admin do
     resources :ingredients, except: :show
