@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304155619) do
+ActiveRecord::Schema.define(version: 20160318221802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -287,9 +287,9 @@ ActiveRecord::Schema.define(version: 20160304155619) do
     t.string   "api_token"
     t.boolean  "promo_used",            default: false
     t.integer  "balance",               default: 0
-    t.string   "promo_code"
     t.string   "alfa_binding_id"
     t.string   "card_number"
+    t.string   "promo_code"
     t.integer  "sms_verification_code"
     t.integer  "discount",              default: 0
     t.integer  "referred_user_id"
@@ -314,5 +314,4 @@ ActiveRecord::Schema.define(version: 20160304155619) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "orders", "delivery_points"
 end
