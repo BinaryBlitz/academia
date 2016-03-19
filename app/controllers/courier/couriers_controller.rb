@@ -15,7 +15,7 @@ class Courier::CouriersController < Courier::CourierController
     if current_courier.update(courier_params)
       head :ok
     else
-      render json: @courier.errors, status: 422
+      render json: current_courier.errors, status: 422
     end
   end
 
