@@ -31,7 +31,6 @@ class Order < ActiveRecord::Base
   before_save :set_status
   before_save :set_delivery_time
   before_save :notify_couriers
-  before_save :send_email
 
   belongs_to :user
   belongs_to :courier
@@ -93,6 +92,11 @@ class Order < ActiveRecord::Base
     @line_items_price ||= line_items.inject(0) { |a, e| a += e.total_price }
   end
 
+  def send_email
+    return unless status_changed? && status == 'new'
+    OrderMailer.order_email(self).deliver_now
+  end
+
   private
 
   def ensure_presence_of_line_items
@@ -138,10 +142,5 @@ class Order < ActiveRecord::Base
   def notify_couriers
     return unless status_changed? && status == 'new'
     delivery_point.notify_couriers
-  end
-
-  def send_email
-    return unless status_changed? && status == 'new'
-    OrderMailer.order_email(self).deliver_now
   end
 end
