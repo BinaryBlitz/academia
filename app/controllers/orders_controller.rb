@@ -38,6 +38,8 @@ class OrdersController < ApplicationController
   def payment_status
     status = @order.payment.try(:check_status)
 
+    status[:error_message] = '(╯°□°）╯︵ ┻━┻' unless @order.payment.try(:paid?)
+
     render json: status, status: :ok
   end
 
