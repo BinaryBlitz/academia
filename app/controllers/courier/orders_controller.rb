@@ -11,8 +11,11 @@ class Courier::OrdersController < Courier::CourierController
   end
 
   def assign
-    @order.update(courier: current_courier)
-    head :ok
+    if @order.update(courier: current_courier)
+      head :ok
+    else
+      render json: @order.errors, status: 422
+    end
   end
 
   def update
