@@ -47,5 +47,7 @@ class Notifier
     n.save!
 
     Rails.logger.debug "#{Time.zone.now} iOS notification: #{@message}, user: #{@user.id}"
+  rescue
+    Rails.logger.error "#{Time.zone.now} iOS notification failed: #{@message}, user: #{@user.id}"
   end
 end
