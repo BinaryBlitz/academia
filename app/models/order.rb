@@ -31,7 +31,7 @@ class Order < ActiveRecord::Base
   before_save :set_status
   before_save :set_delivery_time
   before_save :notify_couriers
-  after_create :send_email
+  before_save :send_email
 
   belongs_to :user
   belongs_to :courier
@@ -141,6 +141,7 @@ class Order < ActiveRecord::Base
   end
 
   def send_email
+    return unless status_changed? && status == 'new'
     OrderMailer.order_email(self).deliver_now
   end
 end
