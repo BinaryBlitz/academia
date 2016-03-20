@@ -24,4 +24,10 @@ class DeliveryPoint < ActiveRecord::Base
   def notify_couriers
     couriers.each { |courier| Notifier.new(courier, 'Получен новый заказ.') }
   end
+
+  def available_orders
+    orders.includes(:user)
+      .where(status: 'new')
+      .order(created_at: :desc)
+  end
 end
