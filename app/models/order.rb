@@ -122,12 +122,20 @@ class Order < ActiveRecord::Base
       self.status = :on_the_way
       notify_status_change
     end
+    true
   end
 
   def set_delivery_time
     if status == 'delivered'
       self.delivered_at = Time.zone.now
     end
+    true
+  end
+
+  def notify_couriers
+    return unless status_changed? && status == 'new'
+    delivery_point.notify_couriers
+    true
   end
 
   def set_delivery_point
@@ -137,10 +145,5 @@ class Order < ActiveRecord::Base
   def notify_status_change
     Notifier.new(user, 'Заказ в пути.')
     SmsSender.new(user.phone_number, 'Заказ в пути.')
-  end
-
-  def notify_couriers
-    return unless status_changed? && status == 'new'
-    delivery_point.notify_couriers
   end
 end
