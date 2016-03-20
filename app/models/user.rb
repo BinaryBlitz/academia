@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def redeem_user_code
-    return false unless referred_user
+    return false unless referred_user && !promo_used
     referred_user.update(balance: referred_user.balance + REFERRAL_BONUS)
     update(balance: balance + REFERRAL_BONUS, promo_used: true)
   end
