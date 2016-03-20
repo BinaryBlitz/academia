@@ -53,6 +53,9 @@ Rails.application.routes.draw do
     end
   end
   resources :edge_points, only: :index
+  resources :payments, only: [] do
+    get 'status', on: :collection
+  end
   post 'promo_codes/redeem'
 
   # The priority is based upon order of creation: first created -> highest priority.
