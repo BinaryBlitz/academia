@@ -34,7 +34,7 @@ class Day < ActiveRecord::Base
     working_hour = WorkingHour.order(starts_at: :asc).where('starts_at > ?', current_minute).first
 
     if today.present? && working_hour
-      return Time.new(now.year, now.month, now.day, working_hour.hour, working_hour.min)
+      return Time.zone.local(now.year, now.month, now.day, working_hour.hour, working_hour.min)
     end
 
     earliset = WorkingHour.earliest
