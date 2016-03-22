@@ -1,35 +1,52 @@
-<manifest alg="2" build="2015.1.1.343" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive" exportTarget="other" domain="zpdelivery.com" resolutions="1x,2x" timestamp="1458203007427">
+<manifest alg="2" build="2015.1.1.343" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive" exportTarget="other" domain="zpdelivery.com" resolutions="1x,2x" timestamp="1458632273663">
   <folder name="css">
     <file name="site_global.css" crc="114327363"/>
-    <file name="index.css" crc="3986392333" ref="index"/>
-    <file name="iefonts_index.css" crc="374301675" ref="index"/>
+    <file name="index.css" crc="491981574" ref="index"/>
+    <file name="iefonts_index.css" crc="4084700256" ref="index"/>
+  </folder>
+  <folder name="assets">
+    <file name="new-здоровое-питание-правила-конфиденциальности_март.doc" crc="4050958064" seo="true" mt="1458629518000"/>
+    <file name="new_здоровое-питание_правила-пользования_март.doc" crc="4063710660" seo="true" mt="1458629518000"/>
+    <file name="zp-new.doc" crc="3760130837" seo="true" mt="1458629518000"/>
   </folder>
   <folder name="scripts">
-    <file name="jquery-1.8.3.min.js" crc="484278746" ref="index"/>
-    <file name="museutils.js" crc="531812214" ref="index"/>
-    <file name="whatinput.js" crc="84559013" ref="index"/>
-    <file name="jquery.musepolyfill.bgsize.js" crc="120190942" ref="index"/>
-    <file name="pie.js" crc="3827607177" ref="index"/>
+    <file name="jquery-1.8.3.min.js" crc="484278746" ref="phone>index:index"/>
+    <file name="museutils.js" crc="531812214" ref="phone>index:index"/>
+    <file name="whatinput.js" crc="84559013" ref="phone>index:index"/>
+    <file name="jquery.musepolyfill.bgsize.js" crc="120190942" ref="phone>index:index"/>
+    <file name="pie.js" crc="3827607177" ref="phone>index:index"/>
+    <file name="jquery.watch.js" crc="3866665977" ref="phone>index:index"/>
+    <file name="museredirect.js" crc="524071285" ref="index"/>
     <file name="webpro.js" crc="4156477058" ref="index"/>
     <file name="musewpslideshow.js" crc="4058618124" ref="index"/>
     <file name="jquery.museoverlay.js" crc="3810062583" ref="index"/>
     <file name="touchswipe.js" crc="4174436727" ref="index"/>
-    <file name="jquery.watch.js" crc="3866665977" ref="index"/>
     <file name="jquery.scrolleffects.js" crc="3975164813" ref="index"/>
   </folder>
   <folder name="images">
+    <file name="логотип-u4644-fr.png" crc="354433824" ref="phone>index:index"/>
+    <file name="логотип-u4644-fr_2x.png" crc="4044278076" ref="phone>index:index"/>
+    <file name="k4whdseipdg-u4623-fr.png" crc="250767620" ref="phone>index:index"/>
+    <file name="k4whdseipdg-u4623-fr_2x.png" crc="484229187" ref="phone>index:index"/>
+    <file name="app_store.png" crc="198075769" ref="phone>index:index"/>
+    <file name="google.png" crc="3830671459" ref="phone>index:index"/>
+    <file name="facebook.png" crc="3847915111" seo="true" ref="phone>index:index"/>
+    <file name="facebook_2x.png" crc="474224033" seo="true" ref="phone>index:index"/>
+    <file name="instagram.png" crc="3797107859" seo="true" ref="phone>index:index"/>
+    <file name="instagram_2x.png" crc="3873462478" seo="true" ref="phone>index:index"/>
+    <file name="twitter.png" crc="225406422" seo="true" ref="phone>index:index"/>
+    <file name="twitter_2x.png" crc="499674237" seo="true" ref="phone>index:index"/>
+    <file name="vkcom.png" crc="3983060256" seo="true" ref="phone>index:index"/>
+    <file name="vkcom_2x.png" crc="3768808967" seo="true" ref="phone>index:index"/>
     <file name="img_2016-03-08 12-55-48.jpg" crc="257343591" ref="index"/>
     <file name="img_2016-03-08 12-55-48_2x.jpg" crc="3869265040" ref="index"/>
     <file name="img_2016-03-17 10-28-46.jpg" crc="163674289" ref="index"/>
     <file name="img_2016-03-17 10-28-46_2x.jpg" crc="3848417149" ref="index"/>
     <file name="img_2016-03-17 10-28-34.jpg" crc="482150494" ref="index"/>
     <file name="img_2016-03-17 10-28-34_2x.jpg" crc="302977161" ref="index"/>
-    <file name="логотип-u3614-fr.png" crc="40380235" ref="index"/>
-    <file name="логотип-u3614-fr_2x.png" crc="4114660344" ref="index"/>
-    <file name="fence-texture_201309_marieplocharz-u3254-fr.png" crc="3890663628" ref="index"/>
-    <file name="app_store.png" crc="198075769" ref="index"/>
-    <file name="google.png" crc="3830671459" ref="index"/>
     <file name="iphone@2x.png" crc="138131425" seo="true" ref="index"/>
+    <file name="circled 1-2.png" crc="4142778043" seo="true" ref="index"/>
+    <file name="circled 1-2_2x.png" crc="4043185758" seo="true" ref="index"/>
     <file name="circled 2 .png" crc="489825956" seo="true" ref="index"/>
     <file name="circled 2 _2x.png" crc="476724999" seo="true" ref="index"/>
     <file name="circled 3 .png" crc="516324895" seo="true" ref="index"/>
@@ -40,8 +57,6 @@
     <file name="img_2016-03-17 10-19-38_2x.jpg" crc="19387141" ref="index"/>
     <file name="img_2016-03-17 10-20-11.jpg" crc="376128243" ref="index"/>
     <file name="img_2016-03-17 10-20-11_2x.jpg" crc="4055790226" ref="index"/>
-    <file name="circled 1-2.png" crc="4142778043" seo="true" ref="index"/>
-    <file name="circled 1-2_2x.png" crc="4043185758" seo="true" ref="index"/>
     <file name="dietmeal-2.jpg" crc="490166999" ref="index"/>
     <file name="1.png" crc="213059981" seo="true" ref="index"/>
     <file name="2.png" crc="202037967" seo="true" ref="index"/>
@@ -53,16 +68,15 @@
     <file name="dietmeal-3.jpg" crc="3828268178" ref="index"/>
     <file name="dietmeal-3_2x.jpg" crc="4199780369" ref="index"/>
     <file name="veggiemeal.jpg" crc="4195747806" ref="index"/>
-    <file name="facebook.png" crc="3847915111" seo="true" ref="index"/>
-    <file name="facebook_2x.png" crc="474224033" seo="true" ref="index"/>
-    <file name="instagram.png" crc="3797107859" seo="true" ref="index"/>
-    <file name="instagram_2x.png" crc="3873462478" seo="true" ref="index"/>
-    <file name="twitter.png" crc="225406422" seo="true" ref="index"/>
-    <file name="twitter_2x.png" crc="499674237" seo="true" ref="index"/>
-    <file name="vkcom.png" crc="3983060256" seo="true" ref="index"/>
-    <file name="vkcom_2x.png" crc="3768808967" seo="true" ref="index"/>
     <file name="логотип-u4337-fr.png" crc="193463987" ref="index"/>
     <file name="логотип-u4337-fr_2x.png" crc="3805743158" ref="index"/>
   </folder>
-  <file name="index.html" crc="4240013376" seo="true" mt="1458201975295" redirect="true"/>
+  <folder name="phone">
+    <folder name="css">
+      <file name="index.css" crc="4196668609" ref="phone>index"/>
+      <file name="iefonts_index.css" crc="3876626884" ref="phone>index"/>
+    </folder>
+    <file name="index.html" crc="395239164" seo="true" mt="1458631777761" redirect="true"/>
+  </folder>
+  <file name="index.html" crc="4202664848" seo="true" mt="1458632157463" redirect="true"/>
 </manifest>
