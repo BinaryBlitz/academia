@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "noreply@zpdelivery.ru"
+  default from: 'orders@zpdelivery.ru'
   layout 'mailer'
 end
