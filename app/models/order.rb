@@ -93,7 +93,7 @@ class Order < ActiveRecord::Base
   end
 
   def send_email
-    return unless status_changed? && status == 'new'
+    return unless status == 'new'
     OrderMailer.order_email(self).deliver_now
   end
 
