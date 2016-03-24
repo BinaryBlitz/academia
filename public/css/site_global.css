@@ -96,28 +96,34 @@ body
 	font-feature-settings: 'liga';
 }
 
+a
+{
+	color: inherit;
+	text-decoration: inherit;
+}
+
 a:link
 {
-	color: #0000FF;
-	text-decoration: underline;
+	color: #FF3A52;
+	text-decoration: inherit;
 }
 
 a:visited
 {
-	color: #800080;
-	text-decoration: underline;
+	color: #00AC5F;
+	text-decoration: inherit;
 }
 
 a:hover
 {
-	color: #0000FF;
-	text-decoration: underline;
+	color: #FF3A52;
+	text-decoration: inherit;
 }
 
 a:active
 {
 	color: #EE0000;
-	text-decoration: underline;
+	text-decoration: inherit;
 }
 
 a.nontext /* used to override default properties of 'a' tag */
