@@ -24,20 +24,8 @@
 #  platform              :string
 #
 
-one:
-  first_name: MyString
-  last_name: MyString
-  email: MyString
-  phone_number: MyString
-  password_digest: MyString
-  vk_id: MyString
-  fb_id: MyString
-
-two:
-  first_name: MyString
-  last_name: MyString
-  email: MyString
-  phone_number: MyString
-  password_digest: MyString
-  vk_id: MyString
-  fb_id: MyString
+foo:
+  first_name: Foo
+  last_name: Bar
+  email: foo@bar.com
+  phone_number: +79991112233

@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id                :integer          not null, primary key
+#  address           :text
+#  user_id           :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  status            :string
+#  scheduled_for     :datetime
+#  latitude          :float
+#  longitude         :float
+#  rating            :integer
+#  review            :text
+#  courier_id        :integer
+#  revenue           :integer
+#  discount          :integer
+#  balance_discount  :integer
+#  delivered_at      :datetime
+#  delivery_point_id :integer
+#
+
+order:
+  address: address
+  user: foo
+  status: new
+  scheduled_for: <%= 1.day.from_now %>
+  latitude: 45.0
+  longitude: 45.0
+  rating: 5
+  review: Review
+  courier: courier
+  revenue: 100
+  discount: 100
+  balance_discount: 100
+  delivered_at:
+  delivery_point: delivery_point
