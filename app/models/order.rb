@@ -127,7 +127,7 @@ class Order < ActiveRecord::Base
 
   def set_status
     if status == 'new' && courier.present?
-      self.status = :on_the_way
+      self.status = 'on_the_way'
       notify_status_change
     end
     true

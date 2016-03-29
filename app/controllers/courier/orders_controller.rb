@@ -2,11 +2,11 @@ class Courier::OrdersController < Courier::CourierController
   before_action :set_order, only: [:assign, :update]
 
   def index
-    @orders = current_courier.available_orders
+    @orders = current_courier.available_orders.order(scheduled_for: :asc)
   end
 
   def assigned
-    @orders = current_courier.orders.includes(:user)
+    @orders = current_courier.orders.on_the_way.includes(:user)
     render :index
   end
 
