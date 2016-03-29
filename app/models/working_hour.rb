@@ -19,14 +19,7 @@ class WorkingHour < ActiveRecord::Base
   validates :starts_at, :ends_at, presence: true
   validates :starts_at, :ends_at, overlap: true
 
-  def self.open_now?
-    time = Time.zone.now
-    all.detect { |hour| (hour.starts_at..hour.ends_at).include?(time.hour * 60 + time.min) }
-  end
-
-  def self.earliest
-    order(starts_at: :asc).first
-  end
+  scope :greater_than, -> (minute) { where('starts_at > ?', minute) }
 
   def from
     "#{starts_at / 60} ч #{starts_at % 60} мин"
@@ -42,6 +35,10 @@ class WorkingHour < ActiveRecord::Base
 
   def min
     starts_at % 60
+  end
+
+  def to_range
+    starts_at..ends_at
   end
 
   private

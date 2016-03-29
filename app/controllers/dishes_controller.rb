@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
   def index
-    @day = Day.today
+    @day = Store.new.today
     @dishes = @day.dishes
   end
 

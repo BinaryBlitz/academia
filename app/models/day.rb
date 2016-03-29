@@ -22,43 +22,11 @@ class Day < ActiveRecord::Base
 
   validates :date, presence: true, uniqueness: true
 
-  def self.open?
-    !!(today.present? && WorkingHour.open_now?)
-  end
-
-  def self.opens_at
-    return nil if open?
-
-    now = Time.zone.now
-    current_minute = now.hour * 60 + now.min
-    working_hour = WorkingHour.order(starts_at: :asc).where('starts_at > ?', current_minute).first
-
-    if today.present? && working_hour
-      return Time.zone.local(now.year, now.month, now.day, working_hour.hour, working_hour.min)
-    end
-
-    earliset = WorkingHour.earliest
-    return nil unless next_working_day
-
-    next_working_day.date
-      .to_time.in_time_zone(Time.zone.name)
-      .change(hour: earliset.hour, min: earliset.min)
-  end
-
-  def self.today
-    Day.find_by(date: Date.today)
-  end
-
-  def self.present_for_the_next_three_days?
-    dates = (1..DAYS_BEFORE_ALERT).map { |day| Date.today + day.days }
-    where(date: dates).count == DAYS_BEFORE_ALERT
-  end
-
-  def self.next_working_day
-    Day.where('date > ?', Date.today).order(date: :asc).first
-  end
-
   def to_s
     I18n.localize(date, format: :long)
+  end
+
+  def to_time
+    date.to_time.in_time_zone(Time.zone.name)
   end
 end
