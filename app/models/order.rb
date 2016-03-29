@@ -44,6 +44,7 @@ class Order < ActiveRecord::Base
   validates :address, presence: true
   validates :delivery_point, presence: true
   validates :rating, inclusion: { in: 1..5 }, allow_blank: true
+  validate :valid_delivery_time?, on: :create
   validate :inside_delivery_zone?
 
   include Geocodable
@@ -110,7 +111,14 @@ class Order < ActiveRecord::Base
 
   def inside_delivery_zone?
     return unless latitude && longitude && EdgePoint.count > 0
+
     errors.add(:base, 'outside delivery zone') unless EdgePoint.to_polygon.contains?(to_point)
+  end
+
+  def valid_delivery_time?
+    return unless scheduled_for
+
+    errors.add(:scheduled_for, 'must be greater than now') if scheduled_for <= Time.zone.now
   end
 
   def to_point
