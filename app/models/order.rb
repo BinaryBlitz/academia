@@ -28,6 +28,7 @@ class Order < ActiveRecord::Base
   MAX_DELIVERY_MINUTES = 40
 
   before_validation :set_delivery_point
+  before_validation :set_deliver_now
   before_save :ensure_presence_of_line_items
   before_save :set_status
   before_save :set_delivery_time
@@ -46,6 +47,7 @@ class Order < ActiveRecord::Base
   validates :delivery_point, presence: true
   validates :rating, inclusion: { in: 1..5 }, allow_blank: true
   validates :scheduled_for, presence: true, unless: 'deliver_now?', on: :create
+  validates :scheduled_for, presence: true, if: 'status.new?', on: :update
   validate :valid_delivery_time?, on: :create
   validate :inside_delivery_zone?
 
@@ -150,6 +152,12 @@ class Order < ActiveRecord::Base
 
   def set_delivery_point
     self.delivery_point = DeliveryPoint.closest(origin: to_point).try(:first)
+  end
+
+  def set_deliver_now
+    return unless new_record?
+
+    self.deliver_now = false if scheduled_for.present?
   end
 
   def notify_status_change
