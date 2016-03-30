@@ -26,6 +26,7 @@ class Order < ActiveRecord::Base
   FREE_DELIVERY_FROM = 1000
   DELIVERY_COST = 200
   MAX_DELIVERY_MINUTES = 40
+  DELIVERY_TIME = 30
 
   before_validation :set_delivery_point
   before_validation :set_deliver_now
@@ -97,12 +98,19 @@ class Order < ActiveRecord::Base
     @line_items_price ||= line_items.inject(0) { |a, e| a += e.total_price }
   end
 
+  def set_paid
+    self.scheduled_for = DELIVERY_TIME.minutes.from_now
+    self.status = 'new'
+    save
+    send_email
+  end
+
+  private
+
   def send_email
     return unless status == 'new'
     OrderMailer.order_email(self).deliver_now
   end
-
-  private
 
   def ensure_presence_of_line_items
     if line_items.empty?
