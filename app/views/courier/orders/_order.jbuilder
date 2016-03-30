@@ -10,6 +10,6 @@ json.line_items order.line_items do |line_item|
   json.extract! line_item, :id, :quantity
 
   json.dish do
-    json.extract! line_item.dish, :id, :name, :price
+    json.extract! line_item.dish, :id, :name, :price, :description
   end
 end
