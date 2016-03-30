@@ -151,7 +151,7 @@ class Order < ActiveRecord::Base
   end
 
   def notify_status_change
-    Notifier.new(user, 'Заказ в пути.')
-    SmsSender.new(user.phone_number, 'Заказ в пути.')
+    Notifier.new(user, 'Курьер в пути.')
+    SmsSender.new(user.phone_number, 'Курьер в пути.')
   end
 end
