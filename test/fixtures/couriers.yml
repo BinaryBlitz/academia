@@ -19,6 +19,15 @@ courier:
   phone_number: +79991112233
   password_digest: <%= SecureRandom.base64 %>
   delivery_point: delivery_point
-  api_token: <%= SecureRandom.base64 %>
+  api_token: foobar
+  device_token: <%= SecureRandom.base64 %>
+  platform: android
+
+baz:
+  name: Baz
+  phone_number: +79998887766
+  password_digest: <%= SecureRandom.base64 %>
+  delivery_point: delivery_point
+  api_token: bazqux
   device_token: <%= SecureRandom.base64 %>
   platform: android

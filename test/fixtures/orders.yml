@@ -22,7 +22,7 @@
 #
 
 order:
-  address: address
+  address: Address
   user: foo
   status: new
   scheduled_for: <%= 1.day.from_now %>
@@ -35,4 +35,13 @@ order:
   discount: 100
   balance_discount: 100
   delivered_at:
+  delivery_point: delivery_point
+
+new_order:
+  address: Address
+  user: foo
+  status: new
+  scheduled_for: <%= 1.day.from_now %>
+  latitude: 45.0
+  longitude: 45.0
   delivery_point: delivery_point
