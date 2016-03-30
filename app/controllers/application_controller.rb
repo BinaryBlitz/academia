@@ -30,4 +30,14 @@ class ApplicationController < ActionController::Base
   def set_layout
     devise_controller? ? 'admin' : false
   end
+
+  include Pundit
+  protected :pundit_policy_authorized?, :pundit_policy_scoped?
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  private
+
+  def user_not_authorized
+    head :forbidden
+  end
 end
