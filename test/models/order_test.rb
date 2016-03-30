@@ -40,4 +40,15 @@ class OrderTest < ActiveSupport::TestCase
     @order.scheduled_for = 1.minute.ago
     assert @order.valid?
   end
+
+  test 'delivery time is present' do
+    order = orders(:deliver_now).dup
+
+    order.scheduled_for = 1.day.from_now
+    assert order.valid?
+
+    order.deliver_now = false
+    order.scheduled_for = nil
+    assert order.invalid?
+  end
 end

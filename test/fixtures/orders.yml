@@ -19,6 +19,7 @@
 #  balance_discount  :integer
 #  delivered_at      :datetime
 #  delivery_point_id :integer
+#  deliver_now       :boolean          default(TRUE)
 #
 
 order:
@@ -42,6 +43,15 @@ new_order:
   user: foo
   status: new
   scheduled_for: <%= 1.day.from_now %>
+  latitude: 45.0
+  longitude: 45.0
+  delivery_point: delivery_point
+
+deliver_now:
+  address: Address
+  user: foo
+  status: new
+  deliver_now: true
   latitude: 45.0
   longitude: 45.0
   delivery_point: delivery_point

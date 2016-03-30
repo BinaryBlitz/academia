@@ -19,6 +19,7 @@
 #  balance_discount  :integer
 #  delivered_at      :datetime
 #  delivery_point_id :integer
+#  deliver_now       :boolean          default(TRUE)
 #
 
 class Order < ActiveRecord::Base
@@ -44,6 +45,7 @@ class Order < ActiveRecord::Base
   validates :address, presence: true
   validates :delivery_point, presence: true
   validates :rating, inclusion: { in: 1..5 }, allow_blank: true
+  validates :scheduled_for, presence: true, unless: 'deliver_now?', on: :create
   validate :valid_delivery_time?, on: :create
   validate :inside_delivery_zone?
 
