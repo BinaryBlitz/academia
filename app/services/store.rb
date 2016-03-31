@@ -22,7 +22,9 @@ class Store
   end
 
   def today
-    @today ||= Day.find_by(date: Date.today)
+    @today ||= if working_now? || next_working_hour.present?
+      Day.find_by(date: Date.today)
+    end
   end
 
   def menu_filled?
