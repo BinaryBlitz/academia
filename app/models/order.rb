@@ -99,7 +99,7 @@ class Order < ActiveRecord::Base
   end
 
   def set_paid
-    self.scheduled_for = DELIVERY_TIME.minutes.from_now
+    self.scheduled_for = DELIVERY_TIME.minutes.from_now if deliver_now?
     self.status = 'new'
     save
     send_email
