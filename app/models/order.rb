@@ -166,6 +166,7 @@ class Order < ActiveRecord::Base
     return unless new_record?
 
     self.deliver_now = false if scheduled_for.present?
+    return
   end
 
   def notify_status_change
