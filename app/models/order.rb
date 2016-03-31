@@ -19,14 +19,17 @@
 #  balance_discount  :integer
 #  delivered_at      :datetime
 #  delivery_point_id :integer
+#  deliver_now       :boolean          default(TRUE)
 #
 
 class Order < ActiveRecord::Base
   FREE_DELIVERY_FROM = 1000
   DELIVERY_COST = 200
   MAX_DELIVERY_MINUTES = 40
+  DELIVERY_TIME = 30
 
   before_validation :set_delivery_point
+  before_validation :set_deliver_now
   before_save :ensure_presence_of_line_items
   before_save :set_status
   before_save :set_delivery_time
@@ -44,6 +47,8 @@ class Order < ActiveRecord::Base
   validates :address, presence: true
   validates :delivery_point, presence: true
   validates :rating, inclusion: { in: 1..5 }, allow_blank: true
+  validates :scheduled_for, presence: true, unless: 'deliver_now?', on: :create
+  validates :scheduled_for, presence: true, if: 'status.new?', on: :update
   validate :valid_delivery_time?, on: :create
   validate :inside_delivery_zone?
 
@@ -93,12 +98,19 @@ class Order < ActiveRecord::Base
     @line_items_price ||= line_items.inject(0) { |a, e| a += e.total_price }
   end
 
+  def set_paid
+    self.scheduled_for = DELIVERY_TIME.minutes.from_now if deliver_now?
+    self.status = 'new'
+    save
+    send_email
+  end
+
+  private
+
   def send_email
     return unless status == 'new'
     OrderMailer.order_email(self).deliver_now
   end
-
-  private
 
   def ensure_presence_of_line_items
     if line_items.empty?
@@ -127,7 +139,7 @@ class Order < ActiveRecord::Base
 
   def set_status
     if status == 'new' && courier.present?
-      self.status = :on_the_way
+      self.status = 'on_the_way'
       notify_status_change
     end
     true
@@ -150,8 +162,15 @@ class Order < ActiveRecord::Base
     self.delivery_point = DeliveryPoint.closest(origin: to_point).try(:first)
   end
 
+  def set_deliver_now
+    return unless new_record?
+
+    self.deliver_now = false if scheduled_for.present?
+    return
+  end
+
   def notify_status_change
-    Notifier.new(user, 'Заказ в пути.')
-    SmsSender.new(user.phone_number, 'Заказ в пути.')
+    Notifier.new(user, 'Курьер в пути.')
+    SmsSender.new(user.phone_number, 'Курьер в пути.')
   end
 end

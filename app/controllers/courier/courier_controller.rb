@@ -19,4 +19,10 @@ class Courier::CourierController < ApplicationController
 
     @current_courier = Courier.find_by_api_token(params[:api_token])
   end
+
+  private
+
+  def pundit_user
+    current_courier
+  end
 end

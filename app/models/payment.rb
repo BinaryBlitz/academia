@@ -45,7 +45,6 @@ class Payment < ActiveRecord::Base
 
     order.redeem_balance
     user.redeem_user_code
-    order.update(status: :new)
-    order.send_email
+    order.set_paid
   end
 end

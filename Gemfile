@@ -16,6 +16,7 @@ gem 'validates_overlap'
 gem 'geokit-rails'
 gem 'rpush'
 gem 'alfabank'
+gem 'pundit'
 
 # Auth
 gem 'bcrypt'

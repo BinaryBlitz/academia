@@ -31,9 +31,11 @@
   </thead>
   <tbody>
     <% @day.couriers.each do |courier| %>
-      <td><%= courier.name %></td>
-      <td><%= courier.phone_number %></td>
-      <td><%= courier.delivery_point %></td>
+      <tr>
+        <td><%= courier.name %></td>
+        <td><%= courier.phone_number %></td>
+        <td><%= courier.delivery_point %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>
