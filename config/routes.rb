@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :couriers
     resources :alerts, only: [:index]
     resources :analytics, only: [:index]
+    resources :reviews, only: [:index]
     resources :delivery_points, except: [:show, :edit, :update]
     resources :orders do
       get 'delivered', 'rejected', 'on_the_way', on: :collection
