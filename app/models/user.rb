@@ -59,13 +59,14 @@ class User < ActiveRecord::Base
     return redeem_promo_code(promo) if promo
 
     user = User.find_by(promo_code: code)
-    return update(referred_by: user, balance: balance + REFERRAL_BONUS) if user
+    return update(referred_by: user, balance: balance + REFERRAL_BONUS, promo_used: true) if user
 
     return false
   end
 
-  def redeem_user_code
-    return false unless referred_by && !promo_used
+  def activate_referral_bonus
+    return false unless referred_by
+
     referred_by.update(balance: referred_by.balance + REFERRAL_BONUS)
   end
 
