@@ -14,12 +14,12 @@
 #  api_token             :string
 #  promo_used            :boolean          default(FALSE)
 #  balance               :integer          default(0)
-#  promo_code            :string
 #  alfa_binding_id       :string
 #  card_number           :string
+#  promo_code            :string
 #  sms_verification_code :integer
 #  discount              :integer          default(0)
-#  referred_user_id      :integer
+#  referred_by_id        :integer
 #  device_token          :string
 #  platform              :string
 #

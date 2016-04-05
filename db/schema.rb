@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330183810) do
+ActiveRecord::Schema.define(version: 20160405064058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -295,12 +295,12 @@ ActiveRecord::Schema.define(version: 20160330183810) do
     t.string   "promo_code"
     t.integer  "sms_verification_code"
     t.integer  "discount",              default: 0
-    t.integer  "referred_user_id"
+    t.integer  "referred_by_id"
     t.string   "device_token"
     t.string   "platform"
   end
 
-  add_index "users", ["referred_user_id"], name: "index_users_on_referred_user_id", using: :btree
+  add_index "users", ["referred_by_id"], name: "index_users_on_referred_by_id", using: :btree
 
   create_table "verification_tokens", force: :cascade do |t|
     t.string   "token"

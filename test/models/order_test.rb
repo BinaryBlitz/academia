@@ -19,6 +19,7 @@
 #  balance_discount  :integer
 #  delivered_at      :datetime
 #  delivery_point_id :integer
+#  deliver_now       :boolean          default(TRUE)
 #
 
 require 'test_helper'
