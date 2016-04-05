@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   end
 
   resource :day, only: :show
+  resources :working_hours, only: :index
 
   resources :orders, except: [:new, :edit] do
     member do
