@@ -78,6 +78,7 @@ class User < ActiveRecord::Base
   end
 
   def redeem_promo_code(promo)
+    promo.update(activations: promo.activations + 1)
     update(balance: balance + promo.discount, promo_used: true)
   end
 
