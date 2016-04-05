@@ -59,7 +59,7 @@ class Order < ActiveRecord::Base
 
   scope :visible, -> { where(status: [:on_the_way, :delivered]) }
   scope :delivered, -> { where(status: :delivered) }
-  scope :rejected, -> { where(status: :rejected) }
+  scope :unpaid, -> { where(status: :unpaid) }
   scope :on_the_way, -> { where(status: :on_the_way) }
   scope :unassigned, -> { where(status: :new) }
   scope :with_reviews, -> { where('rating IS NOT NULL OR review IS NOT NULL') }

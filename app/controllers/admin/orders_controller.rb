@@ -13,8 +13,8 @@ class Admin::OrdersController < Admin::AdminController
     @delivered = Order.delivered.page(params[:page])
   end
 
-  def rejected
-    @rejected = Order.rejected.page(params[:page])
+  def unpaid
+    @unpaid = Order.unpaid.page(params[:page])
   end
 
   def show
