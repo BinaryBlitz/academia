@@ -2,7 +2,7 @@ class Analytics
   def initialize(period, delivered = true)
     @orders = Order.all
     @orders = Order.where(created_at: period) if period
-    @orders = delivered ? @orders.delivered : @orders.rejected
+    @orders = (delivered ? @orders.delivered : @orders.rejected)
   end
 
   def new_orders
@@ -47,7 +47,7 @@ class Analytics
     return @average_delivery_time if @average_delivery_time
     delivered_orders = @orders.delivered.pluck(:created_at, :delivered_at)
     return 0 if delivered_orders.count == 0
-    @average_delivery_time = delivered_orders.map { |order| order[1] - order[0] }.sum / delivered_orders.count
+    @average_delivery_time = delivered_orders.map { |order| order[1] - order[0] }.sum / 60 / delivered_orders.count
   end
 
   def repeated_orders_for_unique_users
