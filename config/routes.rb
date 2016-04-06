@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :orders do
       get 'unpaid', 'delivered', 'on_the_way', on: :collection
     end
+    resource :welcome_screen, controller: 'welcome_screen', only: [:show, :update]
 
     get 'lunches' => 'dishes#lunches'
     get 'stuff' => 'dishes#stuff'

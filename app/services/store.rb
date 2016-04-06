@@ -33,6 +33,16 @@ class Store
     Day.where(date: date_interval).count == DAYS_BEFORE_ALERT
   end
 
+  def welcome_screen_image_url
+    welcome_screen = WelcomeScreen.instance
+
+    if working_today? && working_now?
+      welcome_screen.image_open_url if welcome_screen.image_open_enabled?
+    else
+      welcome_screen.image_closed_url if welcome_screen.image_closed_enabled?
+    end
+  end
+
   private
 
   def working_now?
