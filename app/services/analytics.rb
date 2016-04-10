@@ -13,9 +13,10 @@ class Analytics
   end
 
   def repeated_orders
-    return @repeated_orders if @repeated_orders
-    users = User.joins(:orders).group('users.id').having('COUNT(orders.id) > ?', 1)
-    @repeated_orders = @orders.where(user: users).count
+    @repeated_orders ||= begin
+      users = User.joins(:orders).group('users.id').having('COUNT(orders.id) > ?', 1)
+      @orders.where(user: users).count
+    end
   end
 
   def total_orders
@@ -44,10 +45,11 @@ class Analytics
   end
 
   def average_delivery_time
-    return @average_delivery_time if @average_delivery_time
-    delivered_orders = @orders.delivered.pluck(:created_at, :delivered_at)
-    return 0 if delivered_orders.count == 0
-    @average_delivery_time = delivered_orders.map { |order| order[1] - order[0] }.sum / 60 / delivered_orders.count
+    @average_delivery_time ||= begin
+      delivered_orders = @orders.delivered.pluck(:created_at, :delivered_at)
+      return 0 if delivered_orders.count == 0
+      delivered_orders.map { |order| order[1] - order[0] }.sum / 60 / delivered_orders.count
+    end
   end
 
   def repeated_orders_for_unique_users
