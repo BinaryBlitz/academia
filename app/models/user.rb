@@ -67,7 +67,10 @@ class User < ActiveRecord::Base
   def activate_referral_bonus
     return false unless referred_by
 
-    referred_by.update(balance: referred_by.balance + REFERRAL_BONUS)
+    transaction do
+      referred_by.update(balance: referred_by.balance + REFERRAL_BONUS)
+      update(referred_by: nil)
+    end
   end
 
   private
