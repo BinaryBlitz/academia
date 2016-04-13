@@ -14,7 +14,7 @@ class Admin::OrdersController < Admin::AdminController
   end
 
   def unpaid
-    @unpaid = Order.unpaid.page(params[:page])
+    @unpaid = Order.unpaid.order(scheduled_for: :desc).page(params[:page])
   end
 
   def show
