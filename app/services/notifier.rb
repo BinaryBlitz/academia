@@ -36,6 +36,8 @@ class Notifier
     n.save!
 
     Rails.logger.debug "#{Time.zone.now} GCM notification: #{@message}, user: #{@user.id}"
+  rescue
+    Rails.logger.error "#{Time.zone.now} GCM notification failed: #{@message}, user: #{@user.id}"
   end
 
   def push_ios_notification

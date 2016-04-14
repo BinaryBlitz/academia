@@ -35,9 +35,11 @@ class ApplicationController < ActionController::Base
   protected :pundit_policy_authorized?, :pundit_policy_scoped?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  private
-
   def user_not_authorized
     head :forbidden
+  end
+
+  def after_sign_in_path_for(resource)
+    admin_orders_path
   end
 end

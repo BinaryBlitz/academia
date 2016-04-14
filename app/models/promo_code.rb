@@ -2,11 +2,12 @@
 #
 # Table name: promo_codes
 #
-#  id         :integer          not null, primary key
-#  code       :string
-#  discount   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  code        :string
+#  discount    :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  activations :integer          default(0)
 #
 
 class PromoCode < ActiveRecord::Base

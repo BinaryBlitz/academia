@@ -59,9 +59,11 @@ class Order < ActiveRecord::Base
 
   scope :visible, -> { where(status: [:on_the_way, :delivered]) }
   scope :delivered, -> { where(status: :delivered) }
-  scope :rejected, -> { where(status: :rejected) }
+  scope :unpaid, -> { where(status: :unpaid) }
   scope :on_the_way, -> { where(status: :on_the_way) }
+  scope :rejected, -> { where(status: :rejected) }
   scope :unassigned, -> { where(status: :new) }
+  scope :with_reviews, -> { where('rating IS NOT NULL OR review IS NOT NULL') }
   scope :late, -> { on_the_way.where('created_at < ?', MAX_DELIVERY_MINUTES.minutes.ago) }
 
   def total_price

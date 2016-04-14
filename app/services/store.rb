@@ -22,13 +22,25 @@ class Store
   end
 
   def today
-    @today ||= Day.find_by(date: Date.today)
+    @today ||= if working_now? || next_working_hour.present?
+      Day.find_by(date: Date.today)
+    end
   end
 
   def menu_filled?
     tomorrow = Date.today + 1.day
     date_interval = (tomorrow)..(tomorrow + DAYS_BEFORE_ALERT)
     Day.where(date: date_interval).count == DAYS_BEFORE_ALERT
+  end
+
+  def welcome_screen_image_url
+    welcome_screen = WelcomeScreen.instance
+
+    if working_today? && working_now?
+      welcome_screen.image_open_url if welcome_screen.image_open_enabled?
+    else
+      welcome_screen.image_closed_url if welcome_screen.image_closed_enabled?
+    end
   end
 
   private

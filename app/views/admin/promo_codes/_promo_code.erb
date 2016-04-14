@@ -1,6 +1,7 @@
 <tr>
   <td><%= promo_code.code %></td>
   <td><%= promo_code.discount %></td>
+  <td><%= promo_code.activations %></td>
   <td>
     <%= link_to 'Изменить', edit_admin_promo_code_path(promo_code), class: 'btn btn-default' %>
     <%= link_to 'Удалить', [:admin, promo_code], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>

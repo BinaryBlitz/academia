@@ -23,16 +23,16 @@
   <tbody>
     <tr>
       <% if @previous_period.present? %>
+      <td><%= @current_period.repeated_orders %> (<%= increase_in_percent(@previous_period.repeated_orders, @current_period.repeated_orders) %>%)</td>
         <td><%= @current_period.new_orders %> (<%= increase_in_percent(@previous_period.new_orders, @current_period.new_orders) %>%)</td>
-        <td><%= @current_period.repeated_orders %> (<%= increase_in_percent(@previous_period.repeated_orders, @current_period.repeated_orders) %>%)</td>
         <td><%= @current_period.total_orders %> (<%= increase_in_percent(@previous_period.total_orders, @current_period.total_orders) %>%)</td>
         <td><%= @current_period.revenue %> (<%= increase_in_percent(@previous_period.revenue, @current_period.revenue) %>%)</td>
         <td><%= @current_period.discount %> (<%= increase_in_percent(@previous_period.discount, @current_period.discount) %>%)</td>
         <td><%= @current_period.balance_discount %> (<%= increase_in_percent(@previous_period.balance_discount, @current_period.balance_discount) %>%)</td>
         <td><%= @current_period.total_sum %> (<%= increase_in_percent(@previous_period.total_sum, @current_period.total_sum) %>%)</td>
       <% else %>
-        <td><%= @current_period.new_orders %></td>
         <td><%= @current_period.repeated_orders %></td>
+        <td><%= @current_period.new_orders %></td>
         <td><%= @current_period.total_orders %></td>
         <td><%= @current_period.revenue %></td>
         <td><%= @current_period.discount %></td>
@@ -54,12 +54,12 @@
   <tbody>
     <tr>
       <% if @previous_rejections.present? %>
+      <td><%= @current_rejections.repeated_orders %> (<%= increase_in_percent(@previous_rejections.repeated_orders, @current_rejections.repeated_orders) %>%)</td>
         <td><%= @current_rejections.new_orders %> (<%= increase_in_percent(@previous_rejections.new_orders, @current_rejections.new_orders) %>%)</td>
-        <td><%= @current_rejections.repeated_orders %> (<%= increase_in_percent(@previous_rejections.repeated_orders, @current_rejections.repeated_orders) %>%)</td>
         <td><%= @current_rejections.total_orders %> (<%= increase_in_percent(@previous_rejections.total_orders, @current_rejections.total_orders) %>%)</td>
       <% else %>
-      <td><%= @current_rejections.new_orders %></td>
       <td><%= @current_rejections.repeated_orders %></td>
+      <td><%= @current_rejections.new_orders %></td>
       <td><%= @current_rejections.total_orders %><td>
       <% end %>
     </tr>

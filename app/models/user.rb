@@ -14,12 +14,12 @@
 #  api_token             :string
 #  promo_used            :boolean          default(FALSE)
 #  balance               :integer          default(0)
-#  promo_code            :string
 #  alfa_binding_id       :string
 #  card_number           :string
+#  promo_code            :string
 #  sms_verification_code :integer
 #  discount              :integer          default(0)
-#  referred_user_id      :integer
+#  referred_by_id        :integer
 #  device_token          :string
 #  platform              :string
 #
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   has_many :orders, dependent: :destroy
 
-  belongs_to :referred_user, class_name: 'User'
+  belongs_to :referred_by, class_name: 'User'
 
   has_secure_token :api_token
   has_secure_token :device_token
@@ -59,15 +59,18 @@ class User < ActiveRecord::Base
     return redeem_promo_code(promo) if promo
 
     user = User.find_by(promo_code: code)
-    return update(referred_user: user) if user
+    return update(referred_by: user, balance: balance + REFERRAL_BONUS, promo_used: true) if user
 
     return false
   end
 
-  def redeem_user_code
-    return false unless referred_user && !promo_used
-    referred_user.update(balance: referred_user.balance + REFERRAL_BONUS)
-    update(balance: balance + REFERRAL_BONUS, promo_used: true)
+  def activate_referral_bonus
+    return false unless referred_by
+
+    transaction do
+      referred_by.update(balance: referred_by.balance + REFERRAL_BONUS)
+      update(referred_by: nil)
+    end
   end
 
   private
@@ -78,11 +81,12 @@ class User < ActiveRecord::Base
   end
 
   def redeem_promo_code(promo)
+    promo.update(activations: promo.activations + 1)
     update(balance: balance + promo.discount, promo_used: true)
   end
 
   def refers_self
-    return unless referred_user
-    errors.add(:referred_user, 'cannot be equal to self') if self == referred_user
+    return unless referred_by
+    errors.add(:referred_by, 'cannot be equal to self') if self == referred_by
   end
 end

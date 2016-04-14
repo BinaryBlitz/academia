@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330183810) do
+ActiveRecord::Schema.define(version: 20160406084112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,8 +202,9 @@ ActiveRecord::Schema.define(version: 20160330183810) do
   create_table "promo_codes", force: :cascade do |t|
     t.string   "code"
     t.integer  "discount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "activations", default: 0
   end
 
   create_table "rpush_apps", force: :cascade do |t|
@@ -295,12 +296,12 @@ ActiveRecord::Schema.define(version: 20160330183810) do
     t.string   "promo_code"
     t.integer  "sms_verification_code"
     t.integer  "discount",              default: 0
-    t.integer  "referred_user_id"
+    t.integer  "referred_by_id"
     t.string   "device_token"
     t.string   "platform"
   end
 
-  add_index "users", ["referred_user_id"], name: "index_users_on_referred_user_id", using: :btree
+  add_index "users", ["referred_by_id"], name: "index_users_on_referred_by_id", using: :btree
 
   create_table "verification_tokens", force: :cascade do |t|
     t.string   "token"
@@ -308,6 +309,15 @@ ActiveRecord::Schema.define(version: 20160330183810) do
     t.integer  "code"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "welcome_screens", force: :cascade do |t|
+    t.string   "image_open"
+    t.boolean  "image_open_enabled",   default: false
+    t.string   "image_closed"
+    t.boolean  "image_closed_enabled", default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "working_hours", force: :cascade do |t|

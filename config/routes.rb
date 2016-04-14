@@ -16,10 +16,12 @@ Rails.application.routes.draw do
     resources :couriers
     resources :alerts, only: [:index]
     resources :analytics, only: [:index]
+    resources :reviews, only: [:index]
     resources :delivery_points, except: [:show, :edit, :update]
     resources :orders do
-      get 'delivered', 'rejected', 'on_the_way', on: :collection
+      get 'unpaid', 'delivered', 'on_the_way', on: :collection
     end
+    resource :welcome_screen, controller: 'welcome_screen', only: [:show, :update]
 
     get 'lunches' => 'dishes#lunches'
     get 'stuff' => 'dishes#stuff'
@@ -45,6 +47,7 @@ Rails.application.routes.draw do
   end
 
   resource :day, only: :show
+  resources :working_hours, only: :index
 
   resources :orders, except: [:new, :edit] do
     member do

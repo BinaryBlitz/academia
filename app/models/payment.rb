@@ -43,8 +43,10 @@ class Payment < ActiveRecord::Base
   def paid_callback
     return unless paid?
 
-    order.redeem_balance
-    user.redeem_user_code
-    order.set_paid
+    ActiveRecord::Base.transaction do
+      order.redeem_balance
+      user.activate_referral_bonus if order.status.unpaid?
+      order.set_paid
+    end
   end
 end

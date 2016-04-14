@@ -21,14 +21,6 @@ class WorkingHour < ActiveRecord::Base
 
   scope :greater_than, -> (minute) { where('starts_at > ?', minute) }
 
-  def from
-    "#{starts_at / 60} ч #{starts_at % 60} мин"
-  end
-
-  def to
-    "#{ends_at / 60} ч #{ends_at % 60} мин"
-  end
-
   def hour
     starts_at / 60
   end

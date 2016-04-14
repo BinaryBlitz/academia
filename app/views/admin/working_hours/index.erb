@@ -13,8 +13,8 @@
   <tbody>
     <% @working_hours.each do |working_hour| %>
       <tr>
-        <td><%= working_hour.from %></td>
-        <td><%= working_hour.to %></td>
+        <td><%= start_time_from_working_hour(working_hour) %></td>
+        <td><%= end_time_from_working_hour(working_hour) %></td>
         <td>
           <%= link_to 'Удалить', [:admin, working_hour], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
         </td>

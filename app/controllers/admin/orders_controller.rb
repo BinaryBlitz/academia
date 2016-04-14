@@ -2,7 +2,7 @@ class Admin::OrdersController < Admin::AdminController
   before_action :set_admin_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    @orders = Order.unassigned.order(scheduled_for: :asc).page(params[:page])
+    @orders = Order.unassigned.order(scheduled_for: :desc).page(params[:page])
   end
 
   def on_the_way
@@ -13,8 +13,8 @@ class Admin::OrdersController < Admin::AdminController
     @delivered = Order.delivered.page(params[:page])
   end
 
-  def rejected
-    @rejected = Order.rejected.page(params[:page])
+  def unpaid
+    @unpaid = Order.unpaid.order(scheduled_for: :desc).page(params[:page])
   end
 
   def show
