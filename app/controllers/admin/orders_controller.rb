@@ -6,11 +6,11 @@ class Admin::OrdersController < Admin::AdminController
   end
 
   def on_the_way
-    @on_the_way = Order.on_the_way.page(params[:page])
+    @on_the_way = Order.on_the_way.order(scheduled_for: :desc).page(params[:page])
   end
 
   def delivered
-    @delivered = Order.delivered.page(params[:page])
+    @delivered = Order.delivered.order(scheduled_for: :desc).page(params[:page])
   end
 
   def unpaid
