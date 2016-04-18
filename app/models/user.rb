@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
   phony_normalize :phone_number, default_country_code: 'RU'
 
   has_many :orders, dependent: :destroy
+  has_many :payment_cards, dependent: :destroy
+  has_many :payment_registrations, dependent: :destroy
 
   belongs_to :referred_by, class_name: 'User'
 
