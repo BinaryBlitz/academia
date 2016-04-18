@@ -15,7 +15,7 @@ gem 'httparty'
 gem 'validates_overlap'
 gem 'geokit-rails'
 gem 'rpush'
-gem 'alfabank'
+gem 'alfabank', github: 'mendab1e/alfabank', branch: 'bindings'
 gem 'pundit'
 
 # Auth
