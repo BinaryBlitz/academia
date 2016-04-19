@@ -8,3 +8,5 @@ Alfabank.setup do |config|
   config.binding_username = 'zdorovoepitanie_auto-api'
   config.mode = :test # :production
 end
+
+Alfabank.logger = Rails.logger
