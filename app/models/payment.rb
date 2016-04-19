@@ -30,6 +30,10 @@ class Payment < ActiveRecord::Base
   delegate :user_id, to: :order
   delegate :line_items, to: :order
 
+  def to_order_number
+    id
+  end
+
   private
 
   def set_price
@@ -41,11 +45,11 @@ class Payment < ActiveRecord::Base
   end
 
   def paid_callback
-    return unless paid?
+    return unless paid? && order.status.unpaid?
 
     ActiveRecord::Base.transaction do
       order.redeem_balance
-      user.activate_referral_bonus if order.status.unpaid?
+      user.activate_referral_bonus
       order.set_paid
     end
   end

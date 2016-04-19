@@ -49,7 +49,10 @@ Rails.application.routes.draw do
   resource :day, only: :show
   resources :working_hours, only: :index
 
+  resources :payment_cards, only: [:index, :create]
+
   resources :orders, except: [:new, :edit] do
+    resources :payments, only: [:create]
     member do
       post 'payment'
       get 'payment_status'
