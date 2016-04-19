@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419132621) do
+ActiveRecord::Schema.define(version: 20160419161710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,6 +202,8 @@ ActiveRecord::Schema.define(version: 20160419132621) do
     t.boolean  "paid",          default: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.string   "binding_id"
+    t.string   "card_number"
   end
 
   add_index "payment_registrations", ["user_id"], name: "index_payment_registrations_on_user_id", using: :btree

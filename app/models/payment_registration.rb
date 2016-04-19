@@ -9,6 +9,8 @@
 #  paid          :boolean          default(FALSE)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  binding_id    :string
+#  card_number   :string
 #
 
 class PaymentRegistration < ActiveRecord::Base
@@ -45,9 +47,6 @@ class PaymentRegistration < ActiveRecord::Base
   end
 
   def payment_card_params
-    payment_card_params ||= begin
-      status = check_status
-      { binding_id: status[:binding_id], number: status[:card_number] }
-    end
+    { binding_id: binding_id, number: card_number }
   end
 end
