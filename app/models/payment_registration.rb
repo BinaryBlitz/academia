@@ -12,16 +12,24 @@
 #
 
 class PaymentRegistration < ActiveRecord::Base
+  PAYMENT_REGISTRATION_OFFSET = 10000000
+
   include Alfabank
 
   after_update :paid_callback
+
+  belongs_to :user
+
+  def description
+    "Регистрация платежа №#{id}"
+  end
 
   def price
     1
   end
 
   def to_order_number
-    "payment-registration-#{id}"
+    PAYMENT_REGISTRATION_OFFSET + id
   end
 
   private
