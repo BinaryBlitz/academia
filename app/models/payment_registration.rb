@@ -30,6 +30,10 @@ class PaymentRegistration < ActiveRecord::Base
     1
   end
 
+  def use_binding?
+    false
+  end
+
   def to_order_number
     PAYMENT_REGISTRATION_OFFSET + id
   end
