@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   end
   resources :edge_points, only: :index
   resources :payments, only: [] do
-    get 'status', on: :collection
+    get 'status', 'sakses', 'feylur', on: :collection
   end
   post 'promo_codes/redeem'
 
