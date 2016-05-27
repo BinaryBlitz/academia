@@ -36,6 +36,7 @@
 
 <table class="table">
   <thead>
+    <th>ID</th>
     <th>Наименование</th>
     <th>Описание</th>
     <th>Количество</th>
@@ -44,6 +45,7 @@
   <tbody>
     <% @order.line_items.each do |item| %>
       <tr>
+        <td><%= item.dish.id %></td>
         <td><%= item.dish.name %></td>
         <td><%= truncate(item.dish.description, length: 15) %></td>
         <td><%= item.quantity %></td>
