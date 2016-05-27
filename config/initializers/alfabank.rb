@@ -9,3 +9,5 @@ Alfabank.setup do |config|
   config.binding_password = 'zdorovoepitanie'
   config.mode = :test # :production
 end
+
+Alfabank.logger = Rails.logger

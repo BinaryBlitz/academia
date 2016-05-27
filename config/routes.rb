@@ -49,7 +49,10 @@ Rails.application.routes.draw do
   resource :day, only: :show
   resources :working_hours, only: :index
 
+  resources :payment_cards, only: [:index, :create]
+
   resources :orders, except: [:new, :edit] do
+    resources :payments, only: [:create]
     member do
       post 'payment'
       get 'payment_status'
@@ -57,7 +60,7 @@ Rails.application.routes.draw do
   end
   resources :edge_points, only: :index
   resources :payments, only: [] do
-    get 'status', on: :collection
+    get 'status', 'sakses', 'feylur', on: :collection
   end
   post 'promo_codes/redeem'
 
