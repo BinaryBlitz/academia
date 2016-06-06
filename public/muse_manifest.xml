@@ -1,8 +1,8 @@
-<manifest alg="2" build="2015.1.2.344" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive" exportTarget="other" domain="zpdelivery.com" resolutions="1x,2x" timestamp="1460645248105">
+<manifest alg="2" build="2015.1.2.344" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive" exportTarget="other" domain="zpdelivery.com" resolutions="1x,2x" timestamp="1465208664788">
   <folder name="css">
-    <file name="site_global.css" crc="424544453"/>
-    <file name="index.css" crc="4060660618" ref="index"/>
-    <file name="iefonts_index.css" crc="3781637004" ref="index"/>
+    <file name="site_global.css" crc="313032797"/>
+    <file name="index.css" crc="20666891" ref="index"/>
+    <file name="iefonts_index.css" crc="243308267" ref="index"/>
   </folder>
   <folder name="assets">
     <file name="new-здоровое-питание-правила-конфиденциальности_март.doc" crc="4050958064" seo="true" mt="1458629518000"/>
@@ -27,8 +27,8 @@
     <file name="jquery.scrolleffects.js" crc="4219894366" ref="index"/>
   </folder>
   <folder name="images">
-    <file name="логотип-u4644-fr.png" crc="4011944078" ref="phone>index"/>
-    <file name="логотип-u4644-fr_2x.png" crc="267705004" ref="phone>index"/>
+    <file name="логотип.png" crc="176521023" ref="phone>index"/>
+    <file name="логотип_2x.png" crc="23135177" ref="phone>index"/>
     <file name="dietmeal-3-u4623-fr.png" crc="207884810" ref="phone>index"/>
     <file name="dietmeal-3-u4623-fr_2x.png" crc="493001412" ref="phone>index"/>
     <file name="app_store.png" crc="198075769" ref="phone>index:index"/>
@@ -53,8 +53,8 @@
     <file name="img_2016-03-17 10-20-11_2x.jpg" crc="4055790226" ref="index"/>
     <file name="circled 3 .png" crc="516324895" seo="true" ref="index"/>
     <file name="circled 3 _2x.png" crc="225943358" seo="true" ref="index"/>
-    <file name="логотип-u3614-fr.png" crc="354433824" ref="index"/>
-    <file name="логотип-u3614-fr_2x.png" crc="4044278076" ref="index"/>
+    <file name="логотип-u3614-fr.png" crc="4000682518" ref="index"/>
+    <file name="логотип-u3614-fr_2x.png" crc="176521023" ref="index"/>
     <file name="dietmeal-2.jpg" crc="490166999" ref="index"/>
     <file name="1.png" crc="213059981" seo="true" ref="index"/>
     <file name="2.png" crc="202037967" seo="true" ref="index"/>
@@ -62,6 +62,8 @@
     <file name="4.png" crc="3792428806" seo="true" ref="index"/>
     <file name="5.png" crc="198483523" seo="true" ref="index"/>
     <file name="6.png" crc="3987109471" seo="true" ref="index"/>
+    <file name="-370eb0ecpng-.jpg" crc="256768593" ref="index"/>
+    <file name="-370eb0ecpng-_2x.jpg" crc="3791970742" ref="index"/>
     <file name="veggiemeal-2.jpg" crc="8198170" ref="index"/>
     <file name="dietmeal-3.jpg" crc="3828268178" ref="index"/>
     <file name="dietmeal-3_2x.jpg" crc="4199780369" ref="index"/>
@@ -74,14 +76,14 @@
     <file name="twitter_2x.png" crc="499674237" seo="true" ref="index"/>
     <file name="vkcom.png" crc="3983060256" seo="true" ref="index"/>
     <file name="vkcom_2x.png" crc="3768808967" seo="true" ref="index"/>
-    <file name="логотип-u4337-fr.png" crc="193463987" ref="index"/>
-    <file name="логотип-u4337-fr_2x.png" crc="3805743158" ref="index"/>
+    <file name="логотип-u4337-fr.png" crc="320009106" ref="index"/>
+    <file name="логотип-u4337-fr_2x.png" crc="251254988" ref="index"/>
   </folder>
   <folder name="phone">
     <folder name="css">
-      <file name="index.css" crc="4094221390" ref="phone>index"/>
+      <file name="index.css" crc="3857376461" ref="phone>index"/>
     </folder>
-    <file name="index.html" crc="516985612" seo="true" mt="1458767735306" redirect="true"/>
+    <file name="index.html" crc="516985612" seo="true" mt="1464958081554" redirect="true"/>
   </folder>
-  <file name="index.html" crc="3810439347" seo="true" mt="1460644260660" redirect="true"/>
+  <file name="index.html" crc="211988844" seo="true" mt="1465208603421" redirect="true"/>
 </manifest>
