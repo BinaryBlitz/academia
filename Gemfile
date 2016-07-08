@@ -54,4 +54,8 @@ group :development do
   gem 'rvm-capistrano', require: false
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 gem 'ffaker', group: [:development, :staging]
