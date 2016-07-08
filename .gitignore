@@ -13,8 +13,7 @@
 /tmp
 
 .DS_Store
+
 .byebug_history
 
 public/uploads/
-config/database.yml
-config/secrets.yml
