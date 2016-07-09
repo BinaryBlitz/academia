@@ -56,6 +56,7 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'fog-aws'
 end
 
 gem 'ffaker', group: [:development, :staging]
