@@ -1,4 +1,4 @@
-class Admin::AdminController < ActionController::Base
+class Admin::AdminController < ApplicationController
   skip_before_action :restrict_access
   before_action :authenticate_admin!
 
