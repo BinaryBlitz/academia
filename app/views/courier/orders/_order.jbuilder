@@ -11,5 +11,9 @@ json.line_items order.line_items do |line_item|
 
   json.dish do
     json.extract! line_item.dish, :id, :name, :price, :description
+
+    json.ingredients line_item.dish.ingredients do |ingredient|
+      json.extract! ingredient, :id, :name
+    end
   end
 end
