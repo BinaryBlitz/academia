@@ -16,7 +16,7 @@ set :normalize_asset_timestamps, false
 set :rvm_ruby_string, 'ruby-2.2.3@zpapp'
 
 set :scm, :git
-set :repository, 'git@github.com:BinaryBlitz/zp_app.git'
+set :repository, 'git@github.com:BinaryBlitz/zp.git'
 
 set :deploy_via, :remote_cache
 
