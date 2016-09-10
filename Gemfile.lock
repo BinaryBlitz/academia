@@ -284,7 +284,7 @@ DEPENDENCIES
   kaminari-i18n
   mini_magick
   nested_form_fields
-  pg
+  pg (~> 0.18)
   phony_rails
   puma (~> 3.0)
   pundit
