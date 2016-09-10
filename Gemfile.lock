@@ -51,7 +51,7 @@ GEM
       rake (>= 10.4, < 12.0)
     ansi (1.5.0)
     arel (7.1.1)
-    autoprefixer-rails (6.4.0.3)
+    autoprefixer-rails (6.4.1)
       execjs
     bcrypt (3.1.11)
     bootstrap-datepicker-rails (1.6.4.1)
@@ -61,14 +61,6 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.5)
-    capistrano (2.15.9)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
-    capistrano-ext (1.2.1)
-      capistrano (>= 1.0.0)
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -125,7 +117,6 @@ GEM
       activesupport (>= 4.1.0)
     has_secure_token (1.0.0)
       activerecord (>= 3.0)
-    highline (1.7.8)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
@@ -164,24 +155,18 @@ GEM
       jquery-rails
       rails (>= 3.2.0)
     net-http-persistent (2.9.4)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-sftp (2.1.2)
-      net-ssh (>= 2.6.5)
-    net-ssh (3.2.0)
-    net-ssh-gateway (1.2.0)
-      net-ssh (>= 2.6.5)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
     pg (0.18.4)
-    phony (2.15.28)
+    phony (2.15.29)
     phony_rails (0.14.2)
       activesupport (>= 3.0)
       phony (~> 2.12)
     pkg-config (1.1.7)
+    puma (3.6.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.1)
@@ -229,8 +214,6 @@ GEM
       net-http-persistent
       railties
       thor (>= 0.18.1, < 2.0)
-    rvm-capistrano (1.5.6)
-      capistrano (~> 2.15.4)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -242,7 +225,7 @@ GEM
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.1.1)
+    sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
@@ -282,8 +265,6 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-sass
   byebug
-  capistrano
-  capistrano-ext
   carrierwave
   coffee-rails
   devise
@@ -297,7 +278,7 @@ DEPENDENCIES
   geokit-rails
   has_secure_token
   httparty
-  jbuilder
+  jbuilder (~> 2.6)
   jquery-rails
   kaminari
   kaminari-i18n
@@ -305,12 +286,12 @@ DEPENDENCIES
   nested_form_fields
   pg
   phony_rails
+  puma (~> 3.0)
   pundit
   rails (~> 5.0.0)
   rails-i18n
   rails_12factor
   rpush
-  rvm-capistrano
   sass-rails
   spring
   turbolinks

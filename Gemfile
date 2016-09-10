@@ -3,8 +3,9 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'rails', '~> 5.0.0'
-gem 'pg'
-gem 'jbuilder'
+gem 'pg', '~> 0.18'
+gem 'puma', '~> 3.0'
+gem 'jbuilder', '~> 2.6'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rails-i18n'
@@ -49,9 +50,6 @@ group :development do
   gem 'web-console'
   gem 'spring'
   gem 'annotate'
-  gem 'capistrano'
-  gem 'capistrano-ext'
-  gem 'rvm-capistrano', require: false
 end
 
 group :production do
