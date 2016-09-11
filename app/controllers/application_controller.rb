@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :restrict_access
 
   # Devise configuration
-  skip_before_filter :restrict_access, if: :devise_controller?
+  skip_before_action :restrict_access, if: :devise_controller?
   layout :set_layout
 
   attr_reader :current_user
