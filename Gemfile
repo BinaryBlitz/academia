@@ -20,6 +20,7 @@ gem 'geokit-rails'
 gem 'rpush'
 gem 'alfabank', github: 'mendab1e/alfabank', branch: 'bindings'
 gem 'pundit'
+gem 'net-http-persistent', '~> 2.9'
 
 # Auth
 gem 'bcrypt'
