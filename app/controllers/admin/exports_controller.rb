@@ -11,8 +11,11 @@ class Admin::ExportsController < Admin::AdminController
   private
 
   def set_export
-    @export = Export.new(params[:from], params[:to]) if params[:from].present? && params[:to].present?
-    @export = Export.new(params[:from]) if params[:from].present?
+    from = Date.parse(params[:from]) rescue nil
+    to = Date.parse(params[:to]) rescue nil
+
+    @export = Export.new(from, to) if from.present? && to.present?
+    @export = Export.new(from) if from.present?
     @export = Export.new
   end
 end
