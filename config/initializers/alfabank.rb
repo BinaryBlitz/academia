@@ -1,13 +1,13 @@
 Alfabank.setup do |config|
-  config.username = 'zdorovoepitanie-api'
-  config.password = 'zdorovoepitanie'
+  config.username = Rails.application.secrets.alfabank_username
+  config.password = Rails.application.secrets.alfabank_password
   config.language = 'ru'
   config.return_url = 'finish.html'
   config.currency = Alfabank::Currency::RUB
   config.order_number_prefix = 'test-payment-'
-  config.binding_username = 'zdorovoepitanie_auto-api'
-  config.binding_password = 'zdorovoepitanie'
-  config.mode = :test # :production
+  config.binding_username = Rails.application.secrets.alfabank_binding_username
+  config.binding_password = Rails.application.secrets.alfabank_binding_password
+  config.mode = Rails.application.secrets.alfabank_mode || :test
 end
 
 Alfabank.logger = Rails.logger
