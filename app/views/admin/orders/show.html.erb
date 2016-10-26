@@ -21,7 +21,7 @@
 </p>
 
 <p>
-  <strong>Время доставки: </strong> <%= @order.scheduled_for %>
+  <strong>Время доставки: </strong> <%= l(@order.scheduled_for, format: :long) %>
 </p>
 
 <p>
