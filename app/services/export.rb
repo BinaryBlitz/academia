@@ -1,7 +1,7 @@
 class Export
-  def initialize(from = Date.new(2015, 1, 1), to = Date.today)
+  def initialize(from = Date.new(2015, 1, 1), to = Date.today + 1.day)
     @orders = Order.all
-    @orders = @orders.where(scheduled_for: from..to) if from.present? && to.present?
+    @orders = @orders.where(scheduled_for: from..(to + 1.day)) if from.present? && to.present?
   end
 
   def to_csv
