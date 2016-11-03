@@ -80,7 +80,7 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-bootstrap-views (0.0.9)
-    devise-i18n (1.1.0)
+    devise-i18n (1.1.1)
     devise-i18n-views (0.3.7)
     email_validator (1.6.0)
       activemodel
@@ -247,7 +247,7 @@ GEM
       rails (>= 3.0.0)
     warden (1.2.6)
       rack (>= 1.0)
-    web-console (3.3.1)
+    web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       debug_inspector
@@ -306,4 +306,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
