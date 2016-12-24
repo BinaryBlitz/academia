@@ -25,7 +25,7 @@ gem 'nested_form_fields'
 gem 'bootstrap-datepicker-rails'
 
 # Image processing
-gem 'carrierwave'
+gem 'carrierwave', '~> 0.11'
 gem 'mini_magick'
 
 # I18n
@@ -64,7 +64,7 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'fog-aws'
+  gem 'fog-aws', '~> 0.13'
 end
 
 gem 'ffaker', group: [:development, :staging]
