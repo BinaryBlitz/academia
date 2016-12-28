@@ -40,6 +40,7 @@ class VerificationToken < ActiveRecord::Base
   private
 
   def generate_code
-    self.code = Random.new.rand(1000..9999)
+    # self.code = Random.new.rand(1000..9999)
+    self.code = 1111
   end
 end
