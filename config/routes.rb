@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  root 'home#index'
-
   devise_for :admins, path: 'admin', skip: :registrations
   get 'admin', to: 'admin/days#index'
 
