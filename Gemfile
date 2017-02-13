@@ -46,8 +46,8 @@ gem 'validates_overlap', '~> 0.8'
 gem 'geokit-rails', '~> 2.2'
 
 # Push notifications
-gem 'rpush', '~> 2.7'
-gem 'net-http-persistent', '~> 2.9' # FIXME: fixed in master, wait for new version
+gem 'houston', '~> 2.2'
+gem 'gcm', '~> 0.1'
 
 # Payments
 gem 'alfabank', github: 'mendab1e/alfabank', branch: 'bindings'
