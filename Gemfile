@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '~> 2.3.3'
+ruby '~> 2.4.0'
 
 gem 'rails', '~> 5.0.1'
 gem 'pg', '~> 0.18'
@@ -20,31 +20,32 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'bootstrap-sass'
-gem 'nested_form_fields'
-gem 'bootstrap-datepicker-rails'
+
+gem 'bootstrap-sass', '~> 3.3'
+gem 'nested_form_fields', '~> 0.8'
+gem 'bootstrap-datepicker-rails', '~> 1.6'
 
 # Image processing
 gem 'carrierwave', '~> 0.11'
-gem 'mini_magick'
+gem 'mini_magick', '~> 4.6'
 
 # I18n
-gem 'rails-i18n'
-gem 'devise-i18n'
-gem 'devise-i18n-views'
-gem 'kaminari-i18n'
+gem 'rails-i18n', '~> 5.0'
+gem 'devise-i18n', '~> 1.1'
+gem 'devise-i18n-views', '~> 0.3'
+gem 'kaminari-i18n', '~> 0.4'
 
 # Utilities
-gem 'kaminari'
-gem 'email_validator'
-gem 'phony_rails'
-gem 'enumerize'
-gem 'httparty'
-gem 'validates_overlap'
-gem 'geokit-rails'
+gem 'kaminari', '~> 0.17'
+gem 'email_validator', '~> 1.6'
+gem 'phony_rails', '~> 0.14'
+gem 'enumerize', '~> 2.0'
+gem 'httparty', '~> 0.14'
+gem 'validates_overlap', '~> 0.8'
+gem 'geokit-rails', '~> 2.2'
 
 # Push notifications
-gem 'rpush'
+gem 'rpush', '~> 2.7'
 gem 'net-http-persistent', '~> 2.9' # FIXME: fixed in master, wait for new version
 
 # Payments
