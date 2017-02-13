@@ -7,12 +7,12 @@
 #  description   :text
 #  price         :integer
 #  image         :string
-#  stuff         :boolean          default(FALSE)
-#  lunch         :boolean          default(FALSE)
+#  stuff         :boolean          default("false")
+#  lunch         :boolean          default("false")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  subtitle      :string
-#  hidden        :boolean          default(FALSE)
+#  hidden        :boolean          default("false")
 #  proteins      :float
 #  fats          :float
 #  carbohydrates :float

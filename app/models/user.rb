@@ -12,13 +12,13 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  api_token             :string
-#  promo_used            :boolean          default(FALSE)
-#  balance               :integer          default(0)
+#  promo_used            :boolean          default("false")
+#  balance               :integer          default("0")
 #  alfa_binding_id       :string
 #  card_number           :string
 #  promo_code            :string
 #  sms_verification_code :integer
-#  discount              :integer          default(0)
+#  discount              :integer          default("0")
 #  referred_by_id        :integer
 #  device_token          :string
 #  platform              :string

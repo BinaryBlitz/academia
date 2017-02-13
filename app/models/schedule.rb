@@ -7,7 +7,7 @@
 #  dish_id      :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  out_of_stock :boolean          default(FALSE)
+#  out_of_stock :boolean          default("false")
 #
 
 class Schedule < ActiveRecord::Base

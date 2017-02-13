@@ -6,7 +6,7 @@
 #  user_id       :integer
 #  alfa_order_id :string
 #  alfa_form_url :string
-#  paid          :boolean          default(FALSE)
+#  paid          :boolean          default("false")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  binding_id    :string
