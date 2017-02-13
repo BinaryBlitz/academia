@@ -7,21 +7,22 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'jbuilder', '~> 2.6'
 
-# Auth
-gem 'bcrypt'
-gem 'has_secure_token'
-gem 'devise'
-gem 'devise-bootstrap-views'
-gem 'pundit'
-
-# Front end
+# Front-end
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 
+# Auth
+gem 'devise', '~> 4.2'
+gem 'pundit', '~> 1.1'
+gem 'bcrypt'
+gem 'has_secure_token'
+
+# Views
 gem 'bootstrap-sass', '~> 3.3'
+gem 'devise-bootstrap-views', '~> 0.0'
 gem 'nested_form_fields', '~> 0.8'
 gem 'bootstrap-datepicker-rails', '~> 1.6'
 

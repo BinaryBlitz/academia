@@ -271,8 +271,8 @@ DEPENDENCIES
   byebug
   carrierwave (~> 0.11)
   coffee-rails
-  devise
-  devise-bootstrap-views
+  devise (~> 4.2)
+  devise-bootstrap-views (~> 0.0)
   devise-i18n (~> 1.1)
   devise-i18n-views (~> 0.3)
   email_validator (~> 1.6)
@@ -293,7 +293,7 @@ DEPENDENCIES
   pg (~> 0.18)
   phony_rails (~> 0.14)
   puma (~> 3.0)
-  pundit
+  pundit (~> 1.1)
   rails (~> 5.0.1)
   rails-i18n (~> 5.0)
   rails_12factor
