@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419161710) do
+ActiveRecord::Schema.define(version: 20170213123153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +28,9 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "badges", force: :cascade do |t|
     t.string   "name"
@@ -44,20 +42,18 @@ ActiveRecord::Schema.define(version: 20160419161710) do
   create_table "badges_dishes", id: false, force: :cascade do |t|
     t.integer "badge_id"
     t.integer "dish_id"
+    t.index ["badge_id"], name: "index_badges_dishes_on_badge_id", using: :btree
+    t.index ["dish_id"], name: "index_badges_dishes_on_dish_id", using: :btree
   end
-
-  add_index "badges_dishes", ["badge_id"], name: "index_badges_dishes_on_badge_id", using: :btree
-  add_index "badges_dishes", ["dish_id"], name: "index_badges_dishes_on_dish_id", using: :btree
 
   create_table "courier_schedules", force: :cascade do |t|
     t.integer  "day_id"
     t.integer  "courier_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["courier_id"], name: "index_courier_schedules_on_courier_id", using: :btree
+    t.index ["day_id"], name: "index_courier_schedules_on_day_id", using: :btree
   end
-
-  add_index "courier_schedules", ["courier_id"], name: "index_courier_schedules_on_courier_id", using: :btree
-  add_index "courier_schedules", ["day_id"], name: "index_courier_schedules_on_day_id", using: :btree
 
   create_table "couriers", force: :cascade do |t|
     t.string   "name"
@@ -69,9 +65,8 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.string   "api_token"
     t.string   "device_token"
     t.string   "platform"
+    t.index ["delivery_point_id"], name: "index_couriers_on_delivery_point_id", using: :btree
   end
-
-  add_index "couriers", ["delivery_point_id"], name: "index_couriers_on_delivery_point_id", using: :btree
 
   create_table "days", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -84,29 +79,26 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.float    "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["latitude", "longitude"], name: "index_delivery_points_on_latitude_and_longitude", using: :btree
   end
-
-  add_index "delivery_points", ["latitude", "longitude"], name: "index_delivery_points_on_latitude_and_longitude", using: :btree
 
   create_table "dish_badges", force: :cascade do |t|
     t.integer  "dish_id"
     t.integer  "badge_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["badge_id"], name: "index_dish_badges_on_badge_id", using: :btree
+    t.index ["dish_id"], name: "index_dish_badges_on_dish_id", using: :btree
   end
-
-  add_index "dish_badges", ["badge_id"], name: "index_dish_badges_on_badge_id", using: :btree
-  add_index "dish_badges", ["dish_id"], name: "index_dish_badges_on_dish_id", using: :btree
 
   create_table "dish_ingredients", force: :cascade do |t|
     t.integer  "dish_id"
     t.integer  "ingredient_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["dish_id"], name: "index_dish_ingredients_on_dish_id", using: :btree
+    t.index ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id", using: :btree
   end
-
-  add_index "dish_ingredients", ["dish_id"], name: "index_dish_ingredients_on_dish_id", using: :btree
-  add_index "dish_ingredients", ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id", using: :btree
 
   create_table "dishes", force: :cascade do |t|
     t.string   "name"
@@ -146,10 +138,9 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.integer  "quantity",   default: 1
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.index ["dish_id"], name: "index_line_items_on_dish_id", using: :btree
+    t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
   end
-
-  add_index "line_items", ["dish_id"], name: "index_line_items_on_dish_id", using: :btree
-  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
 
   create_table "lunch_dishes", force: :cascade do |t|
     t.string   "name"
@@ -157,9 +148,8 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.integer  "dish_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_lunch_dishes_on_dish_id", using: :btree
   end
-
-  add_index "lunch_dishes", ["dish_id"], name: "index_lunch_dishes_on_dish_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.text     "address"
@@ -179,11 +169,10 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.datetime "delivered_at"
     t.integer  "delivery_point_id"
     t.boolean  "deliver_now",       default: true
+    t.index ["courier_id"], name: "index_orders_on_courier_id", using: :btree
+    t.index ["delivery_point_id"], name: "index_orders_on_delivery_point_id", using: :btree
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
-
-  add_index "orders", ["courier_id"], name: "index_orders_on_courier_id", using: :btree
-  add_index "orders", ["delivery_point_id"], name: "index_orders_on_delivery_point_id", using: :btree
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "payment_cards", force: :cascade do |t|
     t.integer  "user_id"
@@ -191,9 +180,8 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.string   "binding_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payment_cards_on_user_id", using: :btree
   end
-
-  add_index "payment_cards", ["user_id"], name: "index_payment_cards_on_user_id", using: :btree
 
   create_table "payment_registrations", force: :cascade do |t|
     t.integer  "user_id"
@@ -204,9 +192,8 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.datetime "updated_at",                    null: false
     t.string   "binding_id"
     t.string   "card_number"
+    t.index ["user_id"], name: "index_payment_registrations_on_user_id", using: :btree
   end
-
-  add_index "payment_registrations", ["user_id"], name: "index_payment_registrations_on_user_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.integer  "price",         null: false
@@ -218,9 +205,8 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "description"
+    t.index ["order_id"], name: "index_payments_on_order_id", using: :btree
   end
-
-  add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
 
   create_table "promo_codes", force: :cascade do |t|
     t.string   "code"
@@ -230,77 +216,15 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.integer  "activations", default: 0
   end
 
-  create_table "rpush_apps", force: :cascade do |t|
-    t.string   "name",                                null: false
-    t.string   "environment"
-    t.text     "certificate"
-    t.string   "password"
-    t.integer  "connections",             default: 1, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "type",                                null: false
-    t.string   "auth_key"
-    t.string   "client_id"
-    t.string   "client_secret"
-    t.string   "access_token"
-    t.datetime "access_token_expiration"
-  end
-
-  create_table "rpush_feedback", force: :cascade do |t|
-    t.string   "device_token", limit: 64, null: false
-    t.datetime "failed_at",               null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "app_id"
-  end
-
-  add_index "rpush_feedback", ["device_token"], name: "index_rpush_feedback_on_device_token", using: :btree
-
-  create_table "rpush_notifications", force: :cascade do |t|
-    t.integer  "badge"
-    t.string   "device_token",      limit: 64
-    t.string   "sound",                        default: "default"
-    t.text     "alert"
-    t.text     "data"
-    t.integer  "expiry",                       default: 86400
-    t.boolean  "delivered",                    default: false,     null: false
-    t.datetime "delivered_at"
-    t.boolean  "failed",                       default: false,     null: false
-    t.datetime "failed_at"
-    t.integer  "error_code"
-    t.text     "error_description"
-    t.datetime "deliver_after"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "alert_is_json",                default: false
-    t.string   "type",                                             null: false
-    t.string   "collapse_key"
-    t.boolean  "delay_while_idle",             default: false,     null: false
-    t.text     "registration_ids"
-    t.integer  "app_id",                                           null: false
-    t.integer  "retries",                      default: 0
-    t.string   "uri"
-    t.datetime "fail_after"
-    t.boolean  "processing",                   default: false,     null: false
-    t.integer  "priority"
-    t.text     "url_args"
-    t.string   "category"
-    t.boolean  "content_available",            default: false
-    t.text     "notification"
-  end
-
-  add_index "rpush_notifications", ["delivered", "failed"], name: "index_rpush_notifications_multi", where: "((NOT delivered) AND (NOT failed))", using: :btree
-
   create_table "schedules", force: :cascade do |t|
     t.integer  "day_id"
     t.integer  "dish_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.boolean  "out_of_stock", default: false
+    t.index ["day_id"], name: "index_schedules_on_day_id", using: :btree
+    t.index ["dish_id"], name: "index_schedules_on_dish_id", using: :btree
   end
-
-  add_index "schedules", ["day_id"], name: "index_schedules_on_day_id", using: :btree
-  add_index "schedules", ["dish_id"], name: "index_schedules_on_dish_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -322,9 +246,8 @@ ActiveRecord::Schema.define(version: 20160419161710) do
     t.integer  "referred_by_id"
     t.string   "device_token"
     t.string   "platform"
+    t.index ["referred_by_id"], name: "index_users_on_referred_by_id", using: :btree
   end
-
-  add_index "users", ["referred_by_id"], name: "index_users_on_referred_by_id", using: :btree
 
   create_table "verification_tokens", force: :cascade do |t|
     t.string   "token"
