@@ -19,7 +19,7 @@
 #  balance_discount  :integer
 #  delivered_at      :datetime
 #  delivery_point_id :integer
-#  deliver_now       :boolean          default("true")
+#  deliver_now       :boolean          default(TRUE)
 #
 
 class Order < ActiveRecord::Base
