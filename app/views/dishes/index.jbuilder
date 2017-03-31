@@ -3,7 +3,7 @@ json.array!(@dishes) do |dish|
 
   if dish.main?
     json.ingredients dish.ingredients do |ingredient|
-      json.extract! ingredient, :id, :name, :image_url
+      json.extract! ingredient, :id, :name
     end
 
     json.badges dish.badges do |badge|

@@ -23,7 +23,7 @@ ru:
   activerecord:
     models:
       dish: Блюдо
-      ingredient: Ингридиент
+      ingredient: Ингредиент
       order: Заказ
       day: День
       promo_code: Промо код

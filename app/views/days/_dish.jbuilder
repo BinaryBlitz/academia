@@ -12,7 +12,7 @@ if dish.main? || dish.lunch?
     end
   else
     json.ingredients dish.ingredients do |ingredient|
-      json.extract! ingredient, :id, :name, :weight, :image_url
+      json.extract! ingredient, :id, :name, :weight
     end
   end
 
