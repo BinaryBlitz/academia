@@ -17,9 +17,12 @@
 #  fats          :float
 #  carbohydrates :float
 #  calories      :float
+#  category_id   :integer
 #
 
 class Dish < ActiveRecord::Base
+  belongs_to :category
+
   # Schedules
   has_many :schedules, dependent: :destroy
   has_many :days, through: :schedules
@@ -41,6 +44,7 @@ class Dish < ActiveRecord::Base
   accepts_nested_attributes_for :lunch_dishes, allow_destroy: true
 
   # Validations
+  validates :category, presence: true
   validates :name, presence: true, length: { maximum: 30 }
   validates :price, presence: true, numericality: { greter_than: 0 }
   validates :image, presence: true

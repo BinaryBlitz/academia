@@ -29,6 +29,7 @@ dish:
   fats: 100
   carbohydrates: 100
   calories: 100
+  category: category
 
 lunch:
   name: Lunch
@@ -41,6 +42,7 @@ lunch:
   fats: 100
   carbohydrates: 100
   calories: 100
+  category: category
 
 stuff:
   name: Stuff
@@ -53,3 +55,4 @@ stuff:
   fats: 100
   carbohydrates: 100
   calories: 100
+  category: category
