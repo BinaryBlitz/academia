@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331163145) do
+ActiveRecord::Schema.define(version: 20170402115350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,12 @@ ActiveRecord::Schema.define(version: 20170331163145) do
     t.integer "dish_id"
     t.index ["badge_id"], name: "index_badges_dishes_on_badge_id", using: :btree
     t.index ["dish_id"], name: "index_badges_dishes_on_dish_id", using: :btree
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "courier_schedules", force: :cascade do |t|
@@ -115,6 +121,8 @@ ActiveRecord::Schema.define(version: 20170331163145) do
     t.float    "fats"
     t.float    "carbohydrates"
     t.float    "calories"
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_dishes_on_category_id", using: :btree
   end
 
   create_table "edge_points", force: :cascade do |t|
@@ -272,6 +280,7 @@ ActiveRecord::Schema.define(version: 20170331163145) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "dishes", "categories"
   add_foreign_key "payment_cards", "users"
   add_foreign_key "payment_registrations", "users"
 end

@@ -48,6 +48,7 @@ ru:
         dish_ingredients: Ингредиенты
         dish_badges: Иконки
         lunch_dishes: Блюда для ланча
+        category: Категория
       ingredient:
         name: Название
         image: Изображение
