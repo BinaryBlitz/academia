@@ -39,9 +39,7 @@ Rails.application.routes.draw do
   resources :verification_tokens, only: [:create, :update], param: :token
 
   resources :categories, only: [:index] do
-    resources :dishes, only: [:index] do
-      get 'stuff', on: :collection
-    end
+    resources :dishes, only: [:index]
   end
 
   resource :day, only: :show
