@@ -51,6 +51,9 @@ gem 'gcm', '~> 0.1'
 # Payments
 gem 'alfabank', github: 'mendab1e/alfabank', branch: 'bindings'
 
+# Monitoring
+gem 'rollbar'
+
 group :development, :test do
   gem 'byebug'
 end
