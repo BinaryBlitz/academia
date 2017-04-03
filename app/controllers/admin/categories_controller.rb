@@ -19,7 +19,7 @@ class Admin::CategoriesController < Admin::AdminController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to [:admin, @category], notice: 'Категория успешно создано.'
+      redirect_to [:admin, @category], notice: 'Категория успешно созданa.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admin::CategoriesController < Admin::AdminController
 
   def update
     if @category.update(category_params)
-      redirect_to [:admin, @category], notice: 'Категория было успешно обновлено.'
+      redirect_to [:admin, @category], notice: 'Категория было успешно обновлена.'
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class Admin::CategoriesController < Admin::AdminController
 
   def destroy
     @category.destroy
-    redirect_to admin_categories_url, notice: 'Категория успешно удалено.'
+    redirect_to admin_categories_url, notice: 'Категория успешно удалена.'
   end
 
   private
