@@ -290,7 +290,7 @@ DEPENDENCIES
   phony_rails (~> 0.14)
   puma (~> 3.0)
   pundit (~> 1.1)
-  rails (~> 5.0.1)
+  rails (~> 5.0.2)
   rails-i18n (~> 5.0)
   rails_12factor
   rollbar
@@ -303,7 +303,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.4.1p111
 
 BUNDLED WITH
    1.14.6
