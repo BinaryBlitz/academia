@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :badges, except: :show
     resources :dishes
     resources :days
+    resources :categories
     resources :users, except: [:new, :create]
     resources :promo_codes, except: [:show]
     resources :working_hours, except: [:show, :edit, :update]

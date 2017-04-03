@@ -9,7 +9,7 @@ class Admin::DishesController < Admin::AdminController
   end
 
   def new
-    @dish = Dish.new(new_dish_params)
+    @dish = Dish.new
   end
 
   def edit
