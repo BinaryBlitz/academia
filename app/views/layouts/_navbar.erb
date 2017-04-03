@@ -1,0 +1,68 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <div class="container">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= link_to 'Академия', admin_orders_path, class: 'navbar-brand' %>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Заказы
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to 'Новые', admin_orders_path, class: 'dropdown-item' %>
+            <%= link_to 'В пути', on_the_way_admin_orders_path, class: 'dropdown-item' %>
+            <%= link_to 'Доставленные', delivered_admin_orders_path, class: 'dropdown-item' %>
+            <%= link_to 'Неоплаченные', unpaid_admin_orders_path, class: 'dropdown-item' %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Меню
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to 'Расписание', admin_schedule_path, class: 'dropdown-item' %>
+            <%= link_to 'Блюда', admin_dishes_path, class: 'dropdown-item' %>
+            <%= link_to 'Категории', admin_categories_path, class: 'dropdown-item' %>
+            <%= link_to 'Ингредиенты', admin_ingredients_path, class: 'dropdown-item' %>
+            <%= link_to 'Иконки', admin_badges_path, class: 'dropdown-item' %>
+          </div>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Пользователи', admin_users_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Отзывы', admin_reviews_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Промо коды', admin_promo_codes_path, class: 'nav-link' %>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Настройки
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to 'Время работы', admin_working_hours_path, class: 'dropdown-item' %>
+            <%= link_to 'Зона доставки', admin_edge_points_path, class: 'dropdown-item' %>
+            <%= link_to 'Пункты доставки', admin_delivery_points_path, class: 'dropdown-item' %>
+            <%= link_to 'Приветственный экран', admin_welcome_screen_path, class: 'dropdown-item' %>
+            <%= link_to 'Курьеры', admin_couriers_path, class: 'dropdown-item' %>
+            <%= link_to 'Аналитика', admin_analytics_path, class:' dropdown-item' %>
+            <%= link_to 'Экспорт', admin_exports_path, class:' dropdown-item' %>
+            <%= link_to 'Напоминания', admin_alerts_path, class: 'dropdown-item' %>
+          </div>
+        </li>
+        <li class="nav-item">
+          <% if admin_signed_in? %>
+            <%= link_to 'Выход', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+          <% else %>
+            <%= link_to 'Вход', new_admin_session_path, class: 'nav-link' %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
