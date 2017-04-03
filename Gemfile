@@ -17,8 +17,6 @@ gem 'turbolinks'
 # Auth
 gem 'devise', '~> 4.2'
 gem 'pundit', '~> 1.1'
-gem 'bcrypt'
-gem 'has_secure_token'
 
 # Views
 gem 'bootstrap-sass', '~> 3.3'
