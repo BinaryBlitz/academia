@@ -5,7 +5,7 @@
   <td><%= order.created_at.try(:to_formatted_s, :short) %></td>
   <td><%= order.scheduled_for.try(:to_formatted_s, :short) %></td>
   <td>
-    <%= link_to 'Изменить', edit_admin_order_path(order), class: 'btn btn-default' %>
+    <%= link_to 'Изменить', edit_admin_order_path(order), class: 'btn btn-primary' %>
     <%= link_to 'Удалить', [:admin, order], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
   </td>
 </tr>

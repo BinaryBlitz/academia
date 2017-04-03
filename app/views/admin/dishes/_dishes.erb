@@ -19,7 +19,7 @@
         <td><%= dish.price %> р.</td>
         <td><%= dish.image.present? %></td>
         <td>
-          <%= link_to 'Изменить', edit_admin_dish_path(dish), class: 'btn btn-default' %>
+          <%= link_to 'Изменить', edit_admin_dish_path(dish), class: 'btn btn-primary' %>
           <%= link_to 'Удалить', [:admin, dish], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
         </td>
       </tr>

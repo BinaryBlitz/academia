@@ -1,6 +1,6 @@
 <h1>Иконки</h1>
 
-<%= link_to 'Новая иконка', new_admin_badge_path, class: 'btn btn-default' %>
+<%= link_to 'Новая иконка', new_admin_badge_path, class: 'btn btn-primary' %>
 
 <table class="table">
   <thead>
@@ -17,7 +17,7 @@
         <td><%= badge.name %></td>
         <td><%= image_tag badge.image_url %></td>
         <td>
-          <%= link_to 'Изменить', edit_admin_badge_path(badge), class: 'btn btn-default' %>
+          <%= link_to 'Изменить', edit_admin_badge_path(badge), class: 'btn btn-primary' %>
           <%= link_to 'Удалить', [:admin, badge], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
         </td>
       </tr>

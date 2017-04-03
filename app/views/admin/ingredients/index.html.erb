@@ -1,7 +1,7 @@
 <h1>Ингредиенты</h1>
 
 <div class="form-group">
-  <%= link_to 'Новый ингредиент', new_admin_ingredient_path, class: 'btn btn-default' %>
+  <%= link_to 'Новый ингредиент', new_admin_ingredient_path, class: 'btn btn-primary' %>
 </div>
 
 <table class="table">
@@ -17,7 +17,7 @@
       <tr>
         <td><%= ingredient.name %></td>
         <td>
-          <%= link_to 'Изменить', edit_admin_ingredient_path(ingredient), class: 'btn btn-default' %>
+          <%= link_to 'Изменить', edit_admin_ingredient_path(ingredient), class: 'btn btn-primary' %>
           <%= link_to 'Удалить', [:admin, ingredient], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
         </td>
       </tr>

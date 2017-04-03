@@ -19,7 +19,7 @@
   <h3>Блюда</h3>
 
   <div class="form-group">
-    <%= f.add_nested_fields_link :schedules, 'Добавить', class: 'btn btn-default' %>
+    <%= f.add_nested_fields_link :schedules, 'Добавить', class: 'btn btn-primary' %>
   </div>
 
   <%= f.nested_fields_for :schedules do |ff| %>
@@ -40,7 +40,7 @@
   <h3>Курьеры</h3>
 
   <div class="form-group">
-    <%= f.add_nested_fields_link :courier_schedules, 'Добавить', class: 'btn btn-default' %>
+    <%= f.add_nested_fields_link :courier_schedules, 'Добавить', class: 'btn btn-primary' %>
   </div>
 
   <%= f.nested_fields_for :courier_schedules do |ff| %>
@@ -52,7 +52,7 @@
 
   <div class="form-group">
     <div class="actions">
-      <%= f.submit class: 'btn btn-default' %>
+      <%= f.submit class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>
