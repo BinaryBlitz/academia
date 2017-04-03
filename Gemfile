@@ -19,8 +19,8 @@ gem 'devise', '~> 4.2'
 gem 'pundit', '~> 1.1'
 
 # Views
-gem 'bootstrap-sass', '~> 3.3'
-gem 'devise-bootstrap-views', '~> 0.0'
+gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'devise-bootstrap-views', '~> 1.0.0.alpha1'
 gem 'nested_form_fields', '~> 0.8'
 gem 'bootstrap-datepicker-rails', '~> 1.6'
 
