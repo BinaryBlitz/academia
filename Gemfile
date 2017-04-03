@@ -44,6 +44,7 @@ gem 'enumerize', '~> 2.0'
 gem 'httparty', '~> 0.14'
 gem 'validates_overlap', '~> 0.8'
 gem 'geokit-rails', '~> 2.2'
+gem 'ffaker', '~> 2.5'
 
 # Push notifications
 gem 'houston', '~> 2.2'
@@ -70,5 +71,3 @@ group :production do
   gem 'rails_12factor'
   gem 'fog-aws', '~> 1.3'
 end
-
-gem 'ffaker', group: [:development, :staging]
