@@ -2,7 +2,7 @@ class Admin::DishesController < Admin::AdminController
   before_action :set_dish, only: [:show, :edit, :update, :destroy]
 
   def index
-    @dishes = Dish.dishes.page(params[:page])
+    @dishes = Dish.all.page(params[:page])
   end
 
   def show
@@ -52,7 +52,6 @@ class Admin::DishesController < Admin::AdminController
         :proteins, :fats, :carbohydrates, :calories, :category_id,
         dish_ingredients_attributes: [:id, :ingredient_id, :_destroy],
         dish_badges_attributes: [:id, :badge_id, :_destroy],
-        lunch_dishes_attributes: [:id, :name, :weight, :_destroy]
       )
   end
 end
