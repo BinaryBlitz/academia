@@ -24,6 +24,7 @@ day = Day.create!(date: Date.today)
   Category.create!(name: FFaker::HealthcareIpsum.word)
 end
 
+# Dishes
 5.times do
   dish = Dish.create!(
     name: FFaker::Food.vegetable,
@@ -34,30 +35,6 @@ end
     remote_image_url: 'http://lorempixel.com/450/800/food/'
   )
   dish.ingredients << Ingredient.order('RANDOM()').limit(5)
-end
-
-# Lunches
-5.times do
-  dish = Dish.create!(
-    name: FFaker::Food.vegetable,
-    category: Category.order('RANDOM()').first,
-    description: FFaker::BaconIpsum.sentence,
-    price: rand(500) + 1,
-    remote_image_url: 'http://lorempixel.com/450/800/food/',
-    lunch: true
-  )
-  dish.ingredients << Ingredient.order('RANDOM()').limit(5)
-end
-
-# Stuff
-5.times do
-  Dish.create!(
-    name: FFaker::Food.vegetable,
-    description: FFaker::BaconIpsum.sentence,
-    price: rand(500) + 1,
-    remote_image_url: 'http://lorempixel.com/450/800/food/',
-    stuff: true
-  )
 end
 
 # Admins
