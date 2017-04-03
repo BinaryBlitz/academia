@@ -12,14 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require bootstrap-sprockets
 //= require nested_form_fields
 //= require bootstrap-datepicker
+//= require datepicker
 //= require_tree .
-
-$(document).on('ready page:load', function() {
-  $('.input-group.date').datepicker({
-    format: 'yyyy-mm-dd',
-    autoclose: true
-  });
-});
