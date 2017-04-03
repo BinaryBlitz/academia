@@ -1,12 +1,13 @@
 <table class="table">
   <thead>
     <tr>
-      <th>id</th>
+      <th>№</th>
       <th>Название</th>
       <th>Описание</th>
       <th>Цена</th>
       <th>Изображение</th>
-      <th colspan="2"></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -16,11 +17,18 @@
         <td><%= dish.id %></td>
         <td><%= link_to dish.name, [:admin, dish] %></td>
         <td><%= dish.description %></td>
-        <td><%= dish.price %> р.</td>
-        <td><%= dish.image.present? %></td>
+        <td><%= dish.price %> ₽</td>
+        <td><%= dish.image.present? ? 'Да' : 'Нет' %></td>
         <td>
-          <%= link_to 'Изменить', edit_admin_dish_path(dish), class: 'btn btn-primary' %>
-          <%= link_to 'Удалить', [:admin, dish], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+          <%= link_to 'Изменить',
+                      edit_admin_dish_path(dish),
+                      class: 'btn btn-sm btn-primary' %>
+        </td>
+        <td>
+          <%= link_to 'Удалить',
+                      [:admin, dish], method: :delete,
+                      data: { confirm: 'Вы уверены?' },
+                      class: 'btn btn-sm btn-danger' %>
         </td>
       </tr>
     <% end %>

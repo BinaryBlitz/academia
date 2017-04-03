@@ -17,8 +17,8 @@
         <td><%= badge.name %></td>
         <td><%= image_tag badge.image_url %></td>
         <td>
-          <%= link_to 'Изменить', edit_admin_badge_path(badge), class: 'btn btn-primary' %>
-          <%= link_to 'Удалить', [:admin, badge], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+          <%= link_to 'Изменить', edit_admin_badge_path(badge), class: 'btn btn-sm btn-primary' %>
+          <%= link_to 'Удалить', [:admin, badge], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-sm btn-danger' %>
         </td>
       </tr>
     <% end %>
