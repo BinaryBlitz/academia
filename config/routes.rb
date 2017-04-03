@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :badges, except: :show
     resources :dishes
     resources :days
+    resources :categories
     resources :users, except: [:new, :create]
     resources :promo_codes, except: [:show]
     resources :working_hours, except: [:show, :edit, :update]
@@ -21,9 +22,6 @@ Rails.application.routes.draw do
       get 'unpaid', 'delivered', 'on_the_way', on: :collection
     end
     resource :welcome_screen, controller: 'welcome_screen', only: [:show, :update]
-
-    get 'lunches' => 'dishes#lunches'
-    get 'stuff' => 'dishes#stuff'
 
     get 'schedule' => 'days#index'
   end
@@ -42,9 +40,7 @@ Rails.application.routes.draw do
   resources :verification_tokens, only: [:create, :update], param: :token
 
   resources :categories, only: [:index] do
-    resources :dishes, only: [:index] do
-      get 'stuff', on: :collection
-    end
+    resources :dishes, only: [:index]
   end
 
   resource :day, only: :show

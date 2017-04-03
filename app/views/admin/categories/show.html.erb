@@ -1,0 +1,9 @@
+<h1><%= @category.name %> : <%= @category.id %></h1>
+
+<div class="form-group">
+  <%= link_to 'Изменить', edit_admin_category_path(@category), class: 'btn btn-default' %>
+</div>
+
+<div class="form-group">
+  <strong>Название:</strong> <%= @category.name %>
+</div>
