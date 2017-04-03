@@ -7,8 +7,6 @@
 #  description   :text
 #  price         :integer
 #  image         :string
-#  stuff         :boolean          default(FALSE)
-#  lunch         :boolean          default(FALSE)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  subtitle      :string
@@ -17,6 +15,7 @@
 #  fats          :float
 #  carbohydrates :float
 #  calories      :float
+#  category_id   :integer
 #
 
 require 'test_helper'

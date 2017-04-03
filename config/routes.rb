@@ -22,9 +22,6 @@ Rails.application.routes.draw do
     end
     resource :welcome_screen, controller: 'welcome_screen', only: [:show, :update]
 
-    get 'lunches' => 'dishes#lunches'
-    get 'stuff' => 'dishes#stuff'
-
     get 'schedule' => 'days#index'
   end
 
