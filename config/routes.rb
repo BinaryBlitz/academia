@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :analytics, only: [:index]
     resources :reviews, only: [:index]
     resources :delivery_points, except: [:show, :edit, :update]
-    resources :exports, only: [:index, :create]
+    resources :exports, only: [:new, :create]
     resources :orders do
       get 'unpaid', 'delivered', 'on_the_way', on: :collection
     end
