@@ -31,7 +31,6 @@ gem 'mini_magick', '~> 4.6'
 # I18n
 gem 'rails-i18n', '~> 5.0'
 gem 'devise-i18n', '~> 1.1'
-gem 'devise-i18n-views', '~> 0.3'
 gem 'kaminari-i18n', '~> 0.4'
 
 # Utilities
