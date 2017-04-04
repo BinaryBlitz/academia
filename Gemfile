@@ -18,6 +18,11 @@ gem 'turbolinks'
 gem 'devise', '~> 4.2'
 gem 'pundit', '~> 1.1'
 
+# I18n
+gem 'rails-i18n', '~> 5.0'
+gem 'devise-i18n', '~> 1.1'
+gem 'kaminari-i18n', '~> 0.4'
+
 # Views
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'devise-bootstrap-views', '~> 1.0.0.alpha1'
@@ -27,11 +32,6 @@ gem 'bootstrap-datepicker-rails', '~> 1.6'
 # Image processing
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick', '~> 4.6'
-
-# I18n
-gem 'rails-i18n', '~> 5.0'
-gem 'devise-i18n', '~> 1.1'
-gem 'kaminari-i18n', '~> 0.4'
 
 # Utilities
 gem 'kaminari', '~> 0.17'
