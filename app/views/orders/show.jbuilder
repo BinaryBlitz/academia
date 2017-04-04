@@ -7,4 +7,3 @@ json.line_items @order.line_items do |line_item|
     json.partial! 'dishes/dish', dish: line_item.dish
   end
 end
-

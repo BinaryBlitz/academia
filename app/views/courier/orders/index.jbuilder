@@ -2,14 +2,14 @@ json.array! @orders do |order|
   json.partial! 'order', order: order
 
   json.user do
-    json.extract! order.user, :id, :first_name, :last_name, :phone_number
+    json.partial! 'users/user', user: order.user
   end
 
   json.line_items order.line_items do |line_item|
-    json.extract! line_item, :id, :quantity
+    json.partial! 'line_items/line_item', line_item: line_item
 
     json.dish do
-      json.extract! line_item.dish, :id, :name, :price, :description, :subtitle
+      json.partial! 'dishes/dish', dish: line_item.dish
     end
   end
 end
