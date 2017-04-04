@@ -4,4 +4,14 @@
   <%= link_to 'Новый курьер', new_admin_courier_path, class: 'btn btn-primary' %>
 </div>
 
-<%= render 'couriers', couriers: @couriers %>
+<table class="table">
+  <thead>
+    <th>Имя</th>
+    <th>Телефон</th>
+    <th>Точка</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <%= render @couriers %>
+  </tbody>
+</table>

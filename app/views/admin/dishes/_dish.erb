@@ -1,0 +1,21 @@
+  <% cache [:admin, dish] do %>
+    <tr>
+      <td><%= dish.id %></td>
+      <td><%= link_to dish.name, [:admin, dish] %></td>
+      <td><%= dish.description %></td>
+      <td><%= dish.price %> ₽</td>
+      <td><%= dish.image.present? ? 'Да' : 'Нет' %></td>
+      <td>
+        <%= link_to 'Изменить',
+                    edit_admin_dish_path(dish),
+                    class: 'btn btn-sm btn-primary' %>
+      </td>
+      <td>
+        <%= link_to 'Удалить',
+                    [:admin, dish], method: :delete,
+                    data: { confirm: 'Вы уверены?' },
+                    class: 'btn btn-sm btn-danger' %>
+      </td>
+    </tr>
+  <% end %>
+

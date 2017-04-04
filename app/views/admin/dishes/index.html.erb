@@ -4,4 +4,21 @@
   <%= link_to 'Новое блюдо', new_admin_dish_path, class: 'btn btn-primary' %>
 </div>
 
-<%= render 'dishes' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Цена</th>
+      <th>Изображение</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @dishes %>
+  </tbody>
+</table>
+
+<%= paginate @dishes %>
