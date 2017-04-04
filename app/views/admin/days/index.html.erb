@@ -13,14 +13,6 @@
   </thead>
 
   <tbody>
-    <% @days.each do |day| %>
-      <tr>
-        <td><%= link_to day, [:admin, day] %></td>
-        <td>
-          <%= link_to 'Изменить', edit_admin_day_path(day), class: 'btn btn-sm btn-primary' %>
-          <%= link_to 'Удалить', [:admin, day], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-sm btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+    <%= render partial: 'admin/days/day', collection: @days, cached: true %>
   </tbody>
 </table>

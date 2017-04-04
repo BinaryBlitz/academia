@@ -68,6 +68,8 @@ group :development do
 end
 
 group :production do
-  gem 'rails_12factor'
+  # AWS adapter for CarrierWave
   gem 'fog-aws', '~> 1.3'
+  # Use Redis for caching and background jobs
+  gem 'redis-rails', '~> 5.0'
 end

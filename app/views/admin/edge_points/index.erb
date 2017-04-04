@@ -11,14 +11,6 @@
     <th></th>
   </thead>
   <tbody>
-    <% @edge_points.each do |edge_point| %>
-      <tr>
-        <td><%= edge_point.latitude %></td>
-        <td><%= edge_point.longitude %></td>
-        <td>
-          <%= link_to 'Удалить', [:admin, edge_point], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+    <%= render partial: 'admin/edge_points/edge_point', collection: @edge_points, cached: true %>
   </tbody>
 </table>

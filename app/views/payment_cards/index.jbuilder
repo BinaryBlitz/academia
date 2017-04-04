@@ -1,3 +1,3 @@
 json.array! @payment_cards do |payment_card|
-  json.extract! payment_card, :id, :binding_id, :number, :created_at, :updated_at
+  json.partial! 'payment_card', payment_card: payment_card
 end

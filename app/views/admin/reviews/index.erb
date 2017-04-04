@@ -9,13 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= link_to order.id, [:admin, order] %></td>
-        <td><%= order.rating %></td>
-        <td><%= order.review %></td>
-      </tr>
-    <% end %>
+    <%= render partial: 'admin/orders/order', collection: @orders, cached: true %>
   </tbody>
 </table>
 

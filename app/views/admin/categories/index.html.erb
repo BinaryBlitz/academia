@@ -4,4 +4,17 @@
   <%= link_to 'Новая категория', new_admin_category_path, class: 'btn btn-primary' %>
 </div>
 
-<%= render 'categories' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Название</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'admin/categories/category', collection: @categories, cached: true %>
+  </tbody>
+</table>
+
+<%= paginate @categories %>
