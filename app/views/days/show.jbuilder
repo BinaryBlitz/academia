@@ -4,15 +4,15 @@ json.opens_at @store.opens_at
 json.welcome_screen_image_url @store.welcome_screen_image_url
 
 if @store.today
-  json.dishes @store.today.schedules.joins(:dish).where(dish: Dish.main) do |schedule|
+  json.dishes @store.today.schedules do |schedule|
     json.partial! 'dish', dish: schedule.dish, out_of_stock: schedule.out_of_stock
-  end
 
-  json.lunches @store.today.schedules.joins(:dish).where(dish: Dish.lunches) do |schedule|
-    json.partial! 'dish', dish: schedule.dish, out_of_stock: schedule.out_of_stock
-  end
+    json.ingredients schedule.dish.ingredients do |ingredient|
+      json.extract! ingredient, :id, :name, :weight
+    end
 
-  json.stuff do
-    json.partial! 'dish', collection: Dish.stuff.visible, as: :dish, out_of_stock: false
+    json.badges schedule.dish.badges do |badge|
+      json.extract! badge, :id, :name, :image_url
+    end
   end
 end
