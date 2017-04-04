@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <%= render @dishes %>
+    <%= render partial: 'admin/dishes/dish', collection: @dishes, cached: true %>
   </tbody>
 </table>
 

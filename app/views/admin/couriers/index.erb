@@ -12,6 +12,6 @@
     <th></th>
   </thead>
   <tbody>
-    <%= render @couriers %>
+    <%= render partial: 'admin/couriers/courier', collection: @couriers, cached: true %>
   </tbody>
 </table>

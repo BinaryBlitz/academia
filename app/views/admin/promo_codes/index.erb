@@ -12,6 +12,6 @@
     <th></th>
   </thead>
   <tbody>
-    <%= render @promo_codes %>
+    <%= render partial: 'admin/promo_codes/promo_code', collection: @promo_codes, cached: true %>
   </tbody>
 </table>
