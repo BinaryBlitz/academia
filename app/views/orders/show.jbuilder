@@ -1,10 +1,10 @@
 json.partial! 'order', order: @order
 
 json.line_items @order.line_items do |line_item|
-  json.extract! line_item, :id, :quantity
+  json.partial! 'line_items/line_item', line_item: line_item
 
   json.dish do
-    json.extract! line_item.dish, :id, :name, :description, :price, :image_url
+    json.partial! 'dishes/dish', dish: line_item.dish
   end
 end
 
