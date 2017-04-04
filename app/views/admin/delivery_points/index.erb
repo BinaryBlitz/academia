@@ -11,14 +11,6 @@
     <th></th>
   </thead>
   <tbody>
-    <% @delivery_points.each do |delivery_point| %>
-      <tr>
-        <td><%= delivery_point.latitude %></td>
-        <td><%= delivery_point.longitude %></td>
-        <td>
-          <%= link_to 'Удалить', [:admin, delivery_point], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+    <%= render partial: 'admin/delivery_points/delivery_point', collection: @delivery_points, cached: true %>
   </tbody>
 </table>

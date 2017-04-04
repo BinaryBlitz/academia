@@ -1,0 +1,7 @@
+<% cache [:admin, order] do%>
+  <tr>
+    <td><%= link_to order.id, [:admin, order] %></td>
+    <td><%= order.rating %></td>
+    <td><%= order.review %></td>
+  </tr>
+<% end %>

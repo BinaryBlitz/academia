@@ -1,0 +1,9 @@
+<% cache [:admin, ingredient] do %>
+  <tr>
+    <td><%= ingredient.name %></td>
+    <td>
+      <%= link_to 'Изменить', edit_admin_ingredient_path(ingredient), class: 'btn btn-sm btn-primary' %>
+      <%= link_to 'Удалить', [:admin, ingredient], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-sm btn-danger' %>
+    </td>
+  </tr>
+<% end %>
