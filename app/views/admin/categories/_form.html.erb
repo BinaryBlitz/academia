@@ -16,7 +16,12 @@
     <%= f.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="form-group actions">
+  <div class="form-group">
+    <%= f.label :stuff %>
+    <%= f.check_box :stuff, class: 'checkbox' %>
+  </div>
+
+ <div class="form-group actions">
     <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
