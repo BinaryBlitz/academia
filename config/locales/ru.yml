@@ -87,7 +87,7 @@ ru:
         weight: Вес
       category:
         name: Название
-        stuff: Дополнительные блюда
+        complementary: Дополнительные блюда
     errors:
       models:
         schedule:
