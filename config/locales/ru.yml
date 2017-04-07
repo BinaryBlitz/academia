@@ -85,6 +85,9 @@ ru:
       lunch_dish:
         name: Название
         weight: Вес
+      category:
+        name: Название
+        stuff: Дополнительные блюда
     errors:
       models:
         schedule:
