@@ -1,7 +1,7 @@
 <h1><%= @dish.name %> : <%= @dish.id %></h1>
 
 <div class="form-group">
-  <%= link_to 'Изменить', edit_admin_dish_path(@dish), class: 'btn btn-default' %>
+  <%= link_to 'Изменить', edit_admin_dish_path(@dish), class: 'btn btn-primary' %>
 </div>
 
 <div class="form-group">
@@ -12,29 +12,15 @@
   <strong>Описание:</strong> <%= @dish.description %>
 </div>
 
-<% if @dish.main? %>
-  <div class="form-group">
-    <strong>Ингредиенты:</strong>
+<div class="form-group">
+  <strong>Ингредиенты:</strong>
 
-    <ul>
-      <% @dish.ingredients.each do |ingredient| %>
-        <li><%= ingredient.name %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<% if @dish.lunch? %>
-  <div class="form-group">
-    <strong>Блюда для ланчей:</strong>
-
-    <ul>
-      <% @dish.lunch_dishes.each do |lunch_dish| %>
-        <li><%= lunch_dish.name %> – <%= lunch_dish.weight %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+  <ul>
+    <% @dish.ingredients.each do |ingredient| %>
+      <li><%= ingredient.name %></li>
+    <% end %>
+  </ul>
+</div>
 
 <div class="form-group">
   <strong>Иконки:</strong>

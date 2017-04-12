@@ -1,7 +1,7 @@
 <h1>Промо коды</h1>
 
 <div class="form-group">
-  <%= link_to 'Новый промо код', new_admin_promo_code_path, class: 'btn btn-default' %>
+  <%= link_to 'Новый промо код', new_admin_promo_code_path, class: 'btn btn-primary' %>
 </div>
 
 <table class="table">
@@ -12,6 +12,6 @@
     <th></th>
   </thead>
   <tbody>
-    <%= render @promo_codes %>
+    <%= render partial: 'admin/promo_codes/promo_code', collection: @promo_codes, cached: true %>
   </tbody>
 </table>

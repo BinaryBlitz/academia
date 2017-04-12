@@ -7,7 +7,7 @@
 #  discount    :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  activations :integer          default("0")
+#  activations :integer          default(0)
 #
 
 class PromoCode < ActiveRecord::Base

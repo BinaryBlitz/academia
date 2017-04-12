@@ -1,0 +1,11 @@
+<% cache [:admin, courier] do %>
+  <tr>
+    <td><%= courier.name %></td>
+    <td><%= courier.phone_number %></td>
+    <td><%= courier.delivery_point %></td>
+    <td>
+      <%= link_to 'Изменить', edit_admin_courier_path(courier), class: 'btn btn-primary' %>
+      <%= link_to 'Удалить', [:admin, courier], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+    </td>
+  </tr>
+<% end %>

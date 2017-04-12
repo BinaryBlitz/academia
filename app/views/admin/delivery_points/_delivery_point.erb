@@ -1,0 +1,9 @@
+<% cache [:admin, delivery_point] do %>
+  <tr>
+    <td><%= delivery_point.latitude %></td>
+    <td><%= delivery_point.longitude %></td>
+    <td>
+      <%= link_to 'Удалить', [:admin, delivery_point], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+    </td>
+  </tr>
+<% end %>

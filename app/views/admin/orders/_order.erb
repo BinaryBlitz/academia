@@ -1,11 +1,13 @@
-<tr>
-  <td><%= link_to order.id, [:admin, order] %></td>
-  <td><%= order.address %></td>
-  <td><%= order.status.text %></td>
-  <td><%= order.created_at.try(:to_formatted_s, :short) %></td>
-  <td><%= order.scheduled_for.try(:to_formatted_s, :short) %></td>
-  <td>
-    <%= link_to 'Изменить', edit_admin_order_path(order), class: 'btn btn-default' %>
-    <%= link_to 'Удалить', [:admin, order], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
-  </td>
-</tr>
+<% cache [:admin, order] do %>
+  <tr>
+    <td><%= link_to order.id, [:admin, order] %></td>
+    <td><%= order.address %></td>
+    <td><%= order.status.text %></td>
+    <td><%= order.created_at.try(:to_formatted_s, :short) %></td>
+    <td><%= order.scheduled_for.try(:to_formatted_s, :short) %></td>
+    <td>
+      <%= link_to 'Изменить', edit_admin_order_path(order), class: 'btn btn-sm btn-primary' %>
+      <%= link_to 'Удалить', [:admin, order], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-sm btn-danger' %>
+    </td>
+  </tr>
+<% end %>

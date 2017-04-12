@@ -1,7 +1,7 @@
 <h1>Заказы</h1>
 
 <div class="form-group">
-  <%= link_to 'Новый заказ', new_admin_order_path, class: 'btn btn-default' %>
+  <%= link_to 'Новый заказ', new_admin_order_path, class: 'btn btn-primary' %>
 </div>
 
-<%= render 'orders', orders: @orders %>
+<%= render partial: 'orders/order', collection: @orders, cached: true %>

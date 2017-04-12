@@ -23,7 +23,7 @@ ru:
   activerecord:
     models:
       dish: Блюдо
-      ingredient: Ингридиент
+      ingredient: Ингредиент
       order: Заказ
       day: День
       promo_code: Промо код
@@ -48,6 +48,7 @@ ru:
         dish_ingredients: Ингредиенты
         dish_badges: Иконки
         lunch_dishes: Блюда для ланча
+        category: Категория
       ingredient:
         name: Название
         image: Изображение
@@ -84,6 +85,9 @@ ru:
       lunch_dish:
         name: Название
         weight: Вес
+      category:
+        name: Название
+        complementary: Дополнительные блюда
     errors:
       models:
         schedule:

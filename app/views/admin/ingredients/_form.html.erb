@@ -21,22 +21,7 @@
     <%= f.number_field :weight, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :image %>
-    <% if @ingredient.image? %>
-      <%= image_tag @ingredient.image_url, class: 'form-image' %>
-
-      <div class="checkbox">
-        <%= f.label :remove_image do %>
-          <%= f.check_box :remove_image %> Удалить изображение
-        <% end %>
-      </div>
-    <% else %>
-      <%= f.file_field :image %>
-    <% end %>
-  </div>
-
   <div class="form-group actions">
-    <%= f.submit class: 'btn btn-default' %>
+    <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -1,7 +1,24 @@
-<h1><%= title_for_action(action_name) %></h1>
+<h1>Блюда</h1>
 
 <div class="form-group">
-  <%= link_to 'Новое блюдо', new_admin_dish_path, class: 'btn btn-default' %>
+  <%= link_to 'Новое блюдо', new_admin_dish_path, class: 'btn btn-primary' %>
 </div>
 
-<%= render 'dishes' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Цена</th>
+      <th>Изображение</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'admin/dishes/dish', collection: @dishes, cached: true %>
+  </tbody>
+</table>
+
+<%= paginate @dishes %>

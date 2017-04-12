@@ -7,19 +7,20 @@
 #  description   :text
 #  price         :integer
 #  image         :string
-#  stuff         :boolean          default("false")
-#  lunch         :boolean          default("false")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  subtitle      :string
-#  hidden        :boolean          default("false")
+#  hidden        :boolean          default(FALSE)
 #  proteins      :float
 #  fats          :float
 #  carbohydrates :float
 #  calories      :float
+#  category_id   :integer
 #
 
 class Dish < ActiveRecord::Base
+  belongs_to :category
+
   # Schedules
   has_many :schedules, dependent: :destroy
   has_many :days, through: :schedules
@@ -41,10 +42,10 @@ class Dish < ActiveRecord::Base
   accepts_nested_attributes_for :lunch_dishes, allow_destroy: true
 
   # Validations
+  validates :category, presence: true
   validates :name, presence: true, length: { maximum: 30 }
   validates :price, presence: true, numericality: { greter_than: 0 }
   validates :image, presence: true
-  validates :subtitle, presence: true, if: '!stuff && !lunch'
   validates :subtitle, length: { maximum: 60 }
 
   validates :proteins, :fats, :carbohydrates, :calories,
@@ -52,16 +53,8 @@ class Dish < ActiveRecord::Base
 
   mount_uploader :image, DishUploader
 
-  scope :dishes, -> { where(stuff: false).where(lunch: false) }
-  scope :main, -> { where(stuff: false).where(lunch: false) }
   scope :visible, -> { where(hidden: false) }
-  scope :lunches, -> { where(lunch: true) }
-  scope :stuff, -> { where(stuff: true) }
   scope :visible, -> { where(hidden: false) }
-
-  def main?
-    !stuff && !lunch
-  end
 
   def has_nutrition_info?
     proteins || fats || carbohydrates || calories

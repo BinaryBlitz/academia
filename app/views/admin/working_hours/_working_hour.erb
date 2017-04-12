@@ -1,0 +1,9 @@
+<% cache [:admin, working_hour] do %>
+  <tr>
+    <td><%= start_time_from_working_hour(working_hour) %></td>
+    <td><%= end_time_from_working_hour(working_hour) %></td>
+    <td>
+      <%= link_to 'Удалить', [:admin, working_hour], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+    </td>
+  </tr>
+<% end %>

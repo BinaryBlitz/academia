@@ -3,25 +3,37 @@
 <%= form_for([:admin, @welcome_screen], html: { multipart: true }) do |f| %>
   <div class="form-group">
     <%= f.label :image_open %>
-    <%= f.file_field :image_open %>
+    <%= f.file_field :image_open, class: 'form-control-file' %>
     <%= f.hidden_field :image_open_cache %>
-    <%= f.check_box :image_open_enabled %> Отображать
-    <% if @welcome_screen.image_open? %>
-      <%= image_tag @welcome_screen.image_open_url %>
+  </div>
+
+  <div class="form-check">
+    <%= f.label :image_open_enabled, class: 'form-check-label' do %>
+      <%= f.check_box :image_open_enabled, class: 'form-check-input' %> Отображать
     <% end %>
   </div>
+
+  <% if @welcome_screen.image_open? %>
+    <%= image_tag @welcome_screen.image_open_url %>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :image_closed %>
-    <%= f.file_field :image_closed %>
+    <%= f.file_field :image_closed, class: 'form-control-file' %>
     <%= f.hidden_field :image_closed_cache %>
-    <%= f.check_box :image_closed_enabled %> Отображать
-    <% if @welcome_screen.image_closed? %>
-      <%= image_tag @welcome_screen.image_closed_url %>
+  </div>
+
+  <div class="form-check">
+    <%= f.label :image_closed_enabled, class: 'form-check-label' do %>
+      <%= f.check_box :image_closed_enabled, class: 'form-check-input' %> Отображать
     <% end %>
   </div>
 
+  <% if @welcome_screen.image_closed? %>
+    <%= image_tag @welcome_screen.image_closed_url %>
+  <% end %>
+
   <div class="form-group">
-    <%= f.submit class: 'btn btn-default' %>
+    <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
