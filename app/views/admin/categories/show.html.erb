@@ -7,3 +7,22 @@
 <div class="form-group">
   <strong>Название:</strong> <%= @category.name %>
 </div>
+
+<h2>Блюда:</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Цена</th>
+      <th>Изображение</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'admin/dishes/dish', collection: @category.dishes, cached: true %>
+  </tbody>
+</table>
