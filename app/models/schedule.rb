@@ -17,4 +17,6 @@ class Schedule < ActiveRecord::Base
   validates :day, presence: true
   validates :dish, presence: true
   validates :dish, uniqueness: { scope: :day }
+
+  scope :on_day, -> (day) { where(day: day) }
 end
