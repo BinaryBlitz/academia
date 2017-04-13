@@ -54,8 +54,6 @@ class Dish < ActiveRecord::Base
   mount_uploader :image, DishUploader
 
   scope :visible, -> { where(hidden: false) }
-  scope :visible, -> { where(hidden: false) }
-  scope :with_schedules_on_day, -> (day) { includes(:schedules).where('schedules.day': day) }
 
   def has_nutrition_info?
     proteins || fats || carbohydrates || calories
