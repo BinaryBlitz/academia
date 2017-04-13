@@ -4,7 +4,7 @@ class DishesController < ApplicationController
 
   def index
     @day = Store.new.today
-    @dishes = @day.dishes.where(category: @category)
+    @dishes = @day.dishes.with_schedules_on_day(@day).where(category: @category)
   end
 
   private
