@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :ingredients, except: :show
     resources :badges, except: :show
-    resources :dishes
     resources :days
-    resources :categories
+    resources :categories, except: [:show] do
+      resources :dishes, shallow: true
+    end
     resources :users, except: [:new, :create]
     resources :promo_codes, except: [:show]
     resources :working_hours, except: [:show, :edit, :update]

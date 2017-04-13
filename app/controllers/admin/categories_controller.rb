@@ -5,9 +5,6 @@ class Admin::CategoriesController < Admin::AdminController
     @categories = Category.all.page(params[:page])
   end
 
-  def show
-  end
-
   def new
     @category = Category.new
   end
