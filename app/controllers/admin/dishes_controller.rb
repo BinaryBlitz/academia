@@ -1,22 +1,23 @@
 class Admin::DishesController < Admin::AdminController
   before_action :set_dish, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:index, :new, :create]
 
   def index
-    @dishes = Dish.all.page(params[:page])
+    @dishes = @category.dishes.page(params[:page])
   end
 
   def show
   end
 
   def new
-    @dish = Dish.new
+    @dish = @category.dishes.build
   end
 
   def edit
   end
 
   def create
-    @dish = Dish.new(dish_params)
+    @dish = @category.dishes.build(dish_params)
 
     if @dish.save
       redirect_to [:admin, @dish], notice: 'Блюдо успешно создано.'
@@ -42,6 +43,10 @@ class Admin::DishesController < Admin::AdminController
 
   def set_dish
     @dish = Dish.find(params[:id])
+  end
+
+  def set_category
+    @category = Category.find(params[:category_id])
   end
 
   def dish_params
