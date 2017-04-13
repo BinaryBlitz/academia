@@ -3,5 +3,5 @@ json.cache! dish do
                 :id, :name, :description, :subtitle, :price, :image_url,
                 :proteins, :fats, :carbohydrates, :calories
 
-  json.out_of_stock dish.schedules.first.out_of_stock
+  json.out_of_stock dish.schedules.first&.out_of_stock
 end
