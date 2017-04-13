@@ -54,7 +54,6 @@ class Dish < ActiveRecord::Base
   mount_uploader :image, DishUploader
 
   scope :visible, -> { where(hidden: false) }
-  scope :visible, -> { where(hidden: false) }
 
   def has_nutrition_info?
     proteins || fats || carbohydrates || calories
