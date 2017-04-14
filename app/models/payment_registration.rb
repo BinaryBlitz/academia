@@ -51,6 +51,9 @@ class PaymentRegistration < ActiveRecord::Base
   end
 
   def payment_card_params
-    { binding_id: binding_id, number: card_number }
+    payment_card_params ||= begin
+      status = check_status
+      { binding_id: status[:binding_id], number: status[:card_number] }
+    end
   end
 end
