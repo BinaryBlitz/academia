@@ -23,12 +23,12 @@ class Store
 
   def today
     @today ||= if working_now? || next_working_hour.present?
-      Day.find_by(date: Date.today)
+      Day.find_by(date: Time.zone.today)
     end
   end
 
   def menu_filled?
-    tomorrow = Date.today + 1.day
+    tomorrow = Time.zone.today + 1.day
     date_interval = (tomorrow)..(tomorrow + DAYS_BEFORE_ALERT)
     Day.where(date: date_interval).count == DAYS_BEFORE_ALERT
   end
@@ -54,7 +54,7 @@ class Store
   end
 
   def next_working_day
-    @next_working_day ||= Day.where('date > ?', Date.today).order(date: :asc).first
+    @next_working_day ||= Day.where('date > ?', Time.zone.today).order(date: :asc).first
   end
 
   def earliest_working_hour

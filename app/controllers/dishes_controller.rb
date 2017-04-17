@@ -4,7 +4,9 @@ class DishesController < ApplicationController
 
   def index
     @day = Store.new.today
-    @dishes = @day.dishes.where(category: @category)
+    if @day.present?
+      @dishes = @day.dishes.includes(:schedules).where(schedules: { day: @day }).where(category: @category)
+    end
   end
 
   private
