@@ -4,4 +4,4 @@
   <%= link_to 'Новый заказ', new_admin_order_path, class: 'btn btn-primary' %>
 </div>
 
-<%= render partial: 'admin/orders/order', collection: @orders, cached: true %>
+<%= render 'orders', orders: @orders %>
