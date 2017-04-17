@@ -19,9 +19,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index]
     resources :delivery_points, except: [:show, :edit, :update]
     resources :exports, only: [:new, :create]
-    resources :orders do
-      get 'unpaid', 'delivered', 'on_the_way', on: :collection
-    end
+    resources :orders
     resource :welcome_screen, controller: 'welcome_screen', only: [:show, :update]
 
     get 'schedule' => 'days#index'

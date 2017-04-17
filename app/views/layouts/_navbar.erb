@@ -12,9 +12,9 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <%= link_to 'Новые', admin_orders_path, class: 'dropdown-item' %>
-            <%= link_to 'В пути', on_the_way_admin_orders_path, class: 'dropdown-item' %>
-            <%= link_to 'Доставленные', delivered_admin_orders_path, class: 'dropdown-item' %>
-            <%= link_to 'Неоплаченные', unpaid_admin_orders_path, class: 'dropdown-item' %>
+            <%= link_to 'В пути', admin_orders_path(status: :on_the_way), class: 'dropdown-item' %>
+            <%= link_to 'Доставленные', admin_orders_path(status: :delivered), class: 'dropdown-item' %>
+            <%= link_to 'Неоплаченные', admin_orders_path(status: :unpaid), class: 'dropdown-item' %>
           </div>
         </li>
         <li class="nav-item dropdown">
