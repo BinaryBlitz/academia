@@ -4,4 +4,21 @@
   <%= link_to 'Новый заказ', new_admin_order_path, class: 'btn btn-primary' %>
 </div>
 
-<%= render 'orders', orders: @orders %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Адрес</th>
+      <th>Статус</th>
+      <th>Создан</th>
+      <th>Доставить к</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: 'admin/orders/order', collection: @orders, cached: true %>
+  </tbody>
+</table>
+
+<%= paginate @orders %>

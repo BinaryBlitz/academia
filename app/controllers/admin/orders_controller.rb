@@ -1,20 +1,8 @@
 class Admin::OrdersController < Admin::AdminController
-  before_action :set_admin_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_orders, only: [:index]
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    @orders = Order.unassigned.order(scheduled_for: :desc).page(params[:page])
-  end
-
-  def on_the_way
-    @on_the_way = Order.on_the_way.order(scheduled_for: :desc).page(params[:page])
-  end
-
-  def delivered
-    @delivered = Order.delivered.order(scheduled_for: :desc).page(params[:page])
-  end
-
-  def unpaid
-    @unpaid = Order.unpaid.order(scheduled_for: :desc).page(params[:page])
   end
 
   def show
@@ -52,7 +40,17 @@ class Admin::OrdersController < Admin::AdminController
 
   private
 
-  def set_admin_order
+  def set_orders
+    @orders = case params[:status]
+              when 'on_the_way' then Order.on_the_way
+              when 'delivered' then Order.delivered
+              when 'unpaid' then Order.unpaid
+              else Order.unassigned
+              end
+    @orders = @orders.order(scheduled_for: :desc).page(params[:page])
+  end
+
+  def set_order
     @order = Order.find(params[:id])
   end
 
