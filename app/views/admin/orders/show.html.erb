@@ -20,9 +20,11 @@
   <strong>Координаты: </strong> <%= @order.to_coordinate_s %>
 </p>
 
-<p>
-  <strong>Время доставки: </strong> <%= l(@order.scheduled_for, format: :long) %>
-</p>
+<% if @order.scheduled_for? %>
+  <p>
+    <strong>Время доставки: </strong> <%= l(@order.scheduled_for, format: :long) %>
+  </p>
+<% end %>
 
 <p>
   <strong>Телефон заказчика: </strong> <%= @order.user.phone_number %>

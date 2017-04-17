@@ -1,6 +1,6 @@
 class Admin::OrdersController < Admin::AdminController
   before_action :set_orders, only: [:index]
-  before_action :set_admin_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def index
   end
@@ -50,7 +50,7 @@ class Admin::OrdersController < Admin::AdminController
     @orders = @orders.order(scheduled_for: :desc).page(params[:page])
   end
 
-  def set_admin_order
+  def set_order
     @order = Order.find(params[:id])
   end
 
