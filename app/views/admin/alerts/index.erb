@@ -8,10 +8,40 @@
 
 <% if @unassigned.any? %>
   <h2>Непринятые заказы</h2>
-  <%= render 'admin/orders/orders', orders: @unassigned %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Адрес</th>
+        <th>Статус</th>
+        <th>Создан</th>
+        <th>Доставить к</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render partial: 'admin/orders/order', collection: @unassigned, cached: true %>
+    </tbody>
+  </table>
 <% end %>
 
 <% if @late.any? %>
   <h2>Невыполненные заказы</h2>
-  <%= render 'admin/orders/orders', orders: @late %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Адрес</th>
+        <th>Статус</th>
+        <th>Создан</th>
+        <th>Доставить к</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render partial: 'admin/orders/order', collection: @late, cached: true %>
+    </tbody>
+  </table>
 <% end %>
