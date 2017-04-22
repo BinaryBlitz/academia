@@ -16,9 +16,6 @@ end
   )
 end
 
-# Days & schedules
-day = Day.create!(date: Date.today)
-
 # Categories
 3.times do
   Category.create!(name: FFaker::HealthcareIpsum.word)
