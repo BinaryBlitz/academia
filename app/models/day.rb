@@ -13,9 +13,6 @@ class Day < ActiveRecord::Base
 
   has_many :dishes, -> { visible }, through: :schedules
 
-  has_many :courier_schedules, dependent: :destroy, inverse_of: :day
-  has_many :couriers, through: :courier_schedules
-
   accepts_nested_attributes_for :schedules, allow_destroy: true
   accepts_nested_attributes_for :courier_schedules, allow_destroy: true
 

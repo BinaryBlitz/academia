@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422112217) do
+ActiveRecord::Schema.define(version: 20170422113103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,15 +51,6 @@ ActiveRecord::Schema.define(version: 20170422112217) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.boolean  "complementary", default: false
-  end
-
-  create_table "courier_schedules", force: :cascade do |t|
-    t.integer  "day_id"
-    t.integer  "courier_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["courier_id"], name: "index_courier_schedules_on_courier_id", using: :btree
-    t.index ["day_id"], name: "index_courier_schedules_on_day_id", using: :btree
   end
 
   create_table "couriers", force: :cascade do |t|
