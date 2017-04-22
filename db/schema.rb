@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422113103) do
+ActiveRecord::Schema.define(version: 20170422113341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,12 +64,6 @@ ActiveRecord::Schema.define(version: 20170422113103) do
     t.string   "device_token"
     t.string   "platform"
     t.index ["delivery_point_id"], name: "index_couriers_on_delivery_point_id", using: :btree
-  end
-
-  create_table "days", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.date     "date"
   end
 
   create_table "delivery_points", force: :cascade do |t|
