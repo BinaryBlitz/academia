@@ -16,6 +16,7 @@
 #  carbohydrates :float
 #  calories      :float
 #  category_id   :integer
+#  out_of_stock  :boolean
 #
 
 require 'test_helper'

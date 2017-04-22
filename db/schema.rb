@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407131118) do
+ActiveRecord::Schema.define(version: 20170422111417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20170407131118) do
     t.float    "carbohydrates"
     t.float    "calories"
     t.integer  "category_id"
+    t.boolean  "out_of_stock",  default: false
     t.index ["category_id"], name: "index_dishes_on_category_id", using: :btree
   end
 
