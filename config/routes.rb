@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     resources :dishes, only: [:index]
   end
 
-  resource :day, only: :show
+  resource :store, only: :show, controller: :store
   resources :working_hours, only: :index
 
   resources :payment_cards, only: [:index, :create]
