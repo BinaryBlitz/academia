@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index]
     resources :delivery_points, except: [:show, :edit, :update]
     resources :exports, only: [:new, :create]
-    resources :orders
+    resources :orders, except: [:new, :create]
     resource :welcome_screen, controller: 'welcome_screen', only: [:show, :update]
   end
 
