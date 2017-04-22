@@ -3,10 +3,7 @@ class DishesController < ApplicationController
   before_action :set_category, only: [:index]
 
   def index
-    @day = Store.new.today
-    if @day.present?
-      @dishes = @day.dishes.includes(:schedules).where(schedules: { day: @day }).where(category: @category)
-    end
+    @dishes = @category.dishes
   end
 
   private
