@@ -5,6 +5,9 @@ class OrdersController < ApplicationController
     @orders = current_user.orders.visible
   end
 
+  def show
+  end
+
   def create
     @order = current_user.orders.build(order_params)
 

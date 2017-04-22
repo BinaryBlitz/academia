@@ -1,7 +1,7 @@
 class Admin::ExportsController < Admin::AdminController
   before_action :set_export, only: [:create]
 
-  def index
+  def new
   end
 
   def create

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins, path: 'admin', skip: :registrations
-  get 'admin', to: 'admin/days#index'
+  get 'admin', to: 'admin/orders#index'
 
   namespace :admin do
     resources :ingredients, except: :show
@@ -19,8 +19,6 @@ Rails.application.routes.draw do
     resources :exports, only: [:new, :create]
     resources :orders
     resource :welcome_screen, controller: 'welcome_screen', only: [:show, :update]
-
-    get 'schedule' => 'days#index'
   end
 
   scope module: 'courier' do
@@ -49,7 +47,6 @@ Rails.application.routes.draw do
     resources :payments, only: [:create]
     member do
       post 'payment'
-      get 'payment_status'
     end
   end
   resources :edge_points, only: :index
