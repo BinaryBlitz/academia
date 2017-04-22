@@ -22,10 +22,6 @@
 class Dish < ActiveRecord::Base
   belongs_to :category
 
-  # Schedules
-  has_many :schedules, dependent: :destroy
-  has_many :days, through: :schedules
-
   # Orders
   has_many :line_items, dependent: :destroy
 

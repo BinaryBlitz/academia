@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422111417) do
+ActiveRecord::Schema.define(version: 20170422112217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -221,16 +221,6 @@ ActiveRecord::Schema.define(version: 20170422111417) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "activations", default: 0
-  end
-
-  create_table "schedules", force: :cascade do |t|
-    t.integer  "day_id"
-    t.integer  "dish_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.boolean  "out_of_stock", default: false
-    t.index ["day_id"], name: "index_schedules_on_day_id", using: :btree
-    t.index ["dish_id"], name: "index_schedules_on_dish_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
