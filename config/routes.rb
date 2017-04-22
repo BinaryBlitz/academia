@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :ingredients, except: :show
     resources :badges, except: :show
-    resources :days
     resources :categories, except: [:show] do
       resources :dishes, shallow: true
     end
@@ -14,7 +13,6 @@ Rails.application.routes.draw do
     resources :working_hours, except: [:show, :edit, :update]
     resources :edge_points, except: [:show, :edit, :update]
     resources :couriers
-    resources :alerts, only: [:index]
     resources :analytics, only: [:index]
     resources :reviews, only: [:index]
     resources :delivery_points, except: [:show, :edit, :update]
