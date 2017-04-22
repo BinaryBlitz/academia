@@ -1,6 +1,6 @@
-class UsersController < ApplicationController
+class API::UsersController < API::APIController
   before_action :set_user, only: [:show, :update]
-  skip_before_action :restrict_access, only: [:create]
+  skip_before_action :restrict_access!, only: [:create]
 
   def show
   end

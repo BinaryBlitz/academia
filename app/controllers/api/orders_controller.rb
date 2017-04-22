@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class API::OrdersController < API::APIController
   before_action :set_order, except: [:index, :create]
 
   def index

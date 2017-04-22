@@ -1,4 +1,4 @@
-class PromoCodesController < ApplicationController
+class API::PromoCodesController < API::APIController
   def redeem
     if current_user.redeem(params[:code])
       head :ok

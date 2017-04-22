@@ -1,4 +1,4 @@
-class PaymentCardsController < ApplicationController
+class API::PaymentCardsController < API::APIController
   def create
     @payment_registration = current_user.payment_registrations.create
     response = @payment_registration.register

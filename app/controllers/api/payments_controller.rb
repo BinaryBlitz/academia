@@ -1,6 +1,5 @@
-class PaymentsController < ApplicationController
+class API::PaymentsController < API::APIController
   before_action :set_order, only: [:create]
-  before_action :set_payment, only: [:status]
 
   def create
     payment_card = current_user.payment_cards.find_by(binding_id: payment_params[:binding_id])
@@ -16,31 +15,10 @@ class PaymentsController < ApplicationController
     render json: response, status: :ok
   end
 
-  def status
-    @payment.check_status(use_binding: @payment.use_binding?) unless @payment.paid?
-
-    if @payment.paid?
-      redirect_to success_payments_path
-    else
-      redirect_to failure_payments_path
-    end
-  end
-
-  def success
-  end
-
-  def failure
-  end
-
   private
 
   def set_order
     @order = current_user.orders.find(params[:order_id])
-  end
-
-  def set_payment
-    options = { alfa_order_id: params[:orderId] }
-    @payment = Payment.find_by(options) || PaymentRegistration.find_by!(options)
   end
 
   def payment_params

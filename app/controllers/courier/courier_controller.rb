@@ -1,23 +1,26 @@
 class Courier::CourierController < ApplicationController
-  skip_before_action :restrict_access
-  before_action :restrict_courier_access
+  before_action :restrict_access!
 
   protected
 
   attr_reader :current_courier
   helper_method :current_courier
 
-  def restrict_courier_access
-    unless restrict_courier_access_by_params
-      render json: { message: 'Invalid API Token' }, status: 401
-      return
-    end
+  def restrict_access!
+    return if restrict_access
+    render json: { message: 'Invalid API Token' }, status: 401
   end
 
-  def restrict_courier_access_by_params
-    return true if @current_courier
+  def restrict_access
+    @current_courier ||= Courier.find_by_api_token(params[:api_token])
+  end
 
-    @current_courier = Courier.find_by_api_token(params[:api_token])
+  include Pundit
+  protected :pundit_policy_authorized?, :pundit_policy_scoped?
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  def user_not_authorized
+    head :forbidden
   end
 
   private

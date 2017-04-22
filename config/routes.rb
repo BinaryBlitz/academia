@@ -31,27 +31,30 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :user, only: [:show, :create, :update]
-  resources :verification_tokens, only: [:create, :update], param: :token
+  namespace :api do
+    resource :user, only: [:show, :create, :update]
+    resources :verification_tokens, only: [:create, :update], param: :token
 
-  resources :categories, only: [:index] do
-    resources :dishes, only: [:index]
-  end
-
-  resource :store, only: :show, controller: :store
-  resources :working_hours, only: :index
-
-  resources :payment_cards, only: [:index, :create]
-
-  resources :orders, except: [:new, :edit] do
-    resources :payments, only: [:create]
-    member do
-      post 'payment'
+    resources :categories, only: [:index] do
+      resources :dishes, only: [:index]
     end
+
+    resource :store, only: :show, controller: :store
+    resources :working_hours, only: :index
+
+    resources :payment_cards, only: [:index, :create]
+
+    resources :orders, except: [:new, :edit] do
+      resources :payments, only: [:create]
+      member do
+        post 'payment'
+      end
+    end
+    resources :edge_points, only: :index
+    post 'promo_codes/redeem'
   end
-  resources :edge_points, only: :index
+
   resources :payments, only: [] do
-    get 'status', 'sakses', 'feylur', on: :collection
+    get 'status', 'success', 'failure', on: :collection
   end
-  post 'promo_codes/redeem'
 end
