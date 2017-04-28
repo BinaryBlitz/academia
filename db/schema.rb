@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422113341) do
+ActiveRecord::Schema.define(version: 20170428114356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,15 +83,6 @@ ActiveRecord::Schema.define(version: 20170422113341) do
     t.index ["dish_id"], name: "index_dish_badges_on_dish_id", using: :btree
   end
 
-  create_table "dish_ingredients", force: :cascade do |t|
-    t.integer  "dish_id"
-    t.integer  "ingredient_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["dish_id"], name: "index_dish_ingredients_on_dish_id", using: :btree
-    t.index ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id", using: :btree
-  end
-
   create_table "dishes", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -121,7 +112,8 @@ ActiveRecord::Schema.define(version: 20170422113341) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "weight"
+    t.integer  "dish_id"
+    t.index ["dish_id"], name: "index_ingredients_on_dish_id", using: :btree
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -256,6 +248,7 @@ ActiveRecord::Schema.define(version: 20170422113341) do
   end
 
   add_foreign_key "dishes", "categories"
+  add_foreign_key "ingredients", "dishes"
   add_foreign_key "payment_cards", "users"
   add_foreign_key "payment_registrations", "users"
 end
