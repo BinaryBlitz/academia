@@ -27,8 +27,9 @@ class Dish < ActiveRecord::Base
 
   # Ingredients
   has_many :dish_ingredients, dependent: :destroy, inverse_of: :dish
-  has_many :ingredients, through: :dish_ingredients
-  accepts_nested_attributes_for :dish_ingredients, allow_destroy: true
+
+  has_many :ingredients
+  accepts_nested_attributes_for :ingredients, allow_destroy: true
 
   # Badges
   has_many :dish_badges, dependent: :destroy, inverse_of: :dish

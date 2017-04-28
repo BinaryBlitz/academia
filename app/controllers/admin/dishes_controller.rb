@@ -55,8 +55,8 @@ class Admin::DishesController < Admin::AdminController
       .permit(
         :name, :description, :subtitle, :price, :image, :remove_image, :hidden,
         :proteins, :fats, :carbohydrates, :calories, :category_id,
-        dish_ingredients_attributes: [:id, :ingredient_id, :_destroy],
-        dish_badges_attributes: [:id, :badge_id, :_destroy],
+        ingredients_attributes: [:id, :name, :_destroy],
+        dish_badges_attributes: [:id, :badge_id, :_destroy]
       )
   end
 end
