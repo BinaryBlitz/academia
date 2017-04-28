@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'admin', to: 'admin/orders#index'
 
   namespace :admin do
-    resources :ingredients, except: :show
     resources :badges, except: :show
     resources :categories, except: [:show] do
       resources :dishes, shallow: true
