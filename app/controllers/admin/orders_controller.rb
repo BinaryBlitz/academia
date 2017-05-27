@@ -12,7 +12,7 @@ class Admin::OrdersController < Admin::AdminController
   end
 
   def update
-    if @order.update(admin_order_params)
+    if @order.update(order_params)
       redirect_to [:admin, @order], notice: 'Заказ был успешно обновлен.'
     else
       render :edit
@@ -38,5 +38,9 @@ class Admin::OrdersController < Admin::AdminController
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def order_params
+    params.require(:order).permit(:address, :status)
   end
 end
