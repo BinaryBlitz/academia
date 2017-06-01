@@ -85,7 +85,7 @@ GEM
     enumerize (2.1.2)
       activesupport (>= 3.2)
     erubis (2.7.0)
-    excon (0.55.0)
+    excon (0.56.0)
     execjs (2.7.0)
     ffaker (2.5.0)
     ffi (1.9.18)
@@ -120,7 +120,7 @@ GEM
       json
     httparty (0.15.5)
       multi_xml (>= 0.5.2)
-    i18n (0.8.1)
+    i18n (0.8.4)
     ipaddress (0.8.3)
     jbuilder (2.6.4)
       activesupport (>= 3.0.0)
@@ -156,7 +156,7 @@ GEM
       coffee-rails (>= 3.2.1)
       jquery-rails
       rails (>= 3.2.0)
-    nio4r (2.0.0)
+    nio4r (2.1.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
@@ -165,7 +165,7 @@ GEM
     phony_rails (0.14.5)
       activesupport (>= 3.0)
       phony (~> 2.15)
-    puma (3.8.2)
+    puma (3.9.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.3)
@@ -299,7 +299,7 @@ DEPENDENCIES
   phony_rails (~> 0.14)
   puma (~> 3.0)
   pundit (~> 1.1)
-  rails (~> 5.0.2)
+  rails (~> 5.0.3)
   rails-i18n (~> 5.0)
   redis-rails (~> 5.0)
   rollbar
@@ -316,4 +316,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.14.6
+   1.15.0
