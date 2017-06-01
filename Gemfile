@@ -10,7 +10,6 @@ gem 'jbuilder', '~> 2.6'
 # Front-end
 gem 'sass-rails'
 gem 'uglifier'
-gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 

@@ -276,7 +276,6 @@ DEPENDENCIES
   bootstrap-datepicker-rails (~> 1.6)
   byebug
   carrierwave (~> 1.0)
-  coffee-rails
   devise (~> 4.2)
   devise-bootstrap-views (~> 1.0.0.alpha1)
   devise-i18n (~> 1.1)
