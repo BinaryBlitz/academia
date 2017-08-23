@@ -16,7 +16,7 @@ class Admin::CategoriesController < Admin::AdminController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to [:admin, @category], notice: 'Категория успешно созданa.'
+      redirect_to admin_categories_url, notice: 'Категория успешно созданa.'
     else
       render :new
     end
@@ -24,7 +24,7 @@ class Admin::CategoriesController < Admin::AdminController
 
   def update
     if @category.update(category_params)
-      redirect_to [:admin, @category], notice: 'Категория было успешно обновлена.'
+      redirect_to admin_categories_url, notice: 'Категория было успешно обновлена.'
     else
       render :edit
     end

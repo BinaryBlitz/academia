@@ -1,8 +1,8 @@
-u = User.create!(
+user = User.create!(
   first_name: 'Foo', last_name: 'Bar', email: 'foo@bar.com',
   phone_number: '+79991112233', platform: 'ios'
 )
-u.update!(api_token: 'foobar')
+user.update!(api_token: 'foobar')
 
 # Ingredients
 20.times do
@@ -15,9 +15,6 @@ end
     remote_image_url: 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100×100&w=100&h=100&fm=png'
   )
 end
-
-# Days & schedules
-day = Day.create!(date: Date.today)
 
 # Categories
 3.times do
@@ -37,5 +34,36 @@ end
   dish.ingredients << Ingredient.order('RANDOM()').limit(5)
 end
 
+EdgePoint.create!(
+  [
+    { latitude: 0, longitude: 0 },
+    { latitude: 0, longitude: 90 },
+    { latitude: 90, longitude: 90 },
+    { latitude: 90, longitude: 0 },
+    { latitude: 0, longitude: 0 }
+  ]
+)
+
+delivery_point = DeliveryPoint.create!(latitude: 45, longitude: 45)
+
 # Admins
-a = Admin.create!(email: 'foo@bar.com', password: 'qwerty123')
+admin = Admin.create!(email: 'foo@bar.com', password: 'qwerty123')
+
+# Couriers
+courier = Courier.create!(
+  name: 'Courier',
+  phone_number: '+79991112233',
+  password: 'qwerty123',
+  delivery_point: delivery_point
+)
+
+promo_code = PromoCode.create!(code: 'PROMO', discount: 10)
+
+order = Order.create!(
+  user: user,
+  address: 'Address',
+  status: :new,
+  latitude: 45, longitude: 45,
+  rating: 5, review: 'Review',
+  line_items_attributes: [{ dish: Dish.first, quantity: 1 }]
+)

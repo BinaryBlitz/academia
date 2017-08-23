@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407131118) do
+ActiveRecord::Schema.define(version: 20170428114356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,15 +53,6 @@ ActiveRecord::Schema.define(version: 20170407131118) do
     t.boolean  "complementary", default: false
   end
 
-  create_table "courier_schedules", force: :cascade do |t|
-    t.integer  "day_id"
-    t.integer  "courier_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["courier_id"], name: "index_courier_schedules_on_courier_id", using: :btree
-    t.index ["day_id"], name: "index_courier_schedules_on_day_id", using: :btree
-  end
-
   create_table "couriers", force: :cascade do |t|
     t.string   "name"
     t.string   "phone_number"
@@ -73,12 +64,6 @@ ActiveRecord::Schema.define(version: 20170407131118) do
     t.string   "device_token"
     t.string   "platform"
     t.index ["delivery_point_id"], name: "index_couriers_on_delivery_point_id", using: :btree
-  end
-
-  create_table "days", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.date     "date"
   end
 
   create_table "delivery_points", force: :cascade do |t|
@@ -98,15 +83,6 @@ ActiveRecord::Schema.define(version: 20170407131118) do
     t.index ["dish_id"], name: "index_dish_badges_on_dish_id", using: :btree
   end
 
-  create_table "dish_ingredients", force: :cascade do |t|
-    t.integer  "dish_id"
-    t.integer  "ingredient_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["dish_id"], name: "index_dish_ingredients_on_dish_id", using: :btree
-    t.index ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id", using: :btree
-  end
-
   create_table "dishes", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -121,6 +97,7 @@ ActiveRecord::Schema.define(version: 20170407131118) do
     t.float    "carbohydrates"
     t.float    "calories"
     t.integer  "category_id"
+    t.boolean  "out_of_stock",  default: false
     t.index ["category_id"], name: "index_dishes_on_category_id", using: :btree
   end
 
@@ -135,7 +112,8 @@ ActiveRecord::Schema.define(version: 20170407131118) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "weight"
+    t.integer  "dish_id"
+    t.index ["dish_id"], name: "index_ingredients_on_dish_id", using: :btree
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -222,16 +200,6 @@ ActiveRecord::Schema.define(version: 20170407131118) do
     t.integer  "activations", default: 0
   end
 
-  create_table "schedules", force: :cascade do |t|
-    t.integer  "day_id"
-    t.integer  "dish_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.boolean  "out_of_stock", default: false
-    t.index ["day_id"], name: "index_schedules_on_day_id", using: :btree
-    t.index ["dish_id"], name: "index_schedules_on_dish_id", using: :btree
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -280,6 +248,7 @@ ActiveRecord::Schema.define(version: 20170407131118) do
   end
 
   add_foreign_key "dishes", "categories"
+  add_foreign_key "ingredients", "dishes"
   add_foreign_key "payment_cards", "users"
   add_foreign_key "payment_registrations", "users"
 end

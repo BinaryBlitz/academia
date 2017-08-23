@@ -16,22 +16,18 @@
 #  carbohydrates :float
 #  calories      :float
 #  category_id   :integer
+#  out_of_stock  :boolean          default(FALSE)
 #
 
 class Dish < ActiveRecord::Base
   belongs_to :category
 
-  # Schedules
-  has_many :schedules, dependent: :destroy
-  has_many :days, through: :schedules
-
   # Orders
   has_many :line_items, dependent: :destroy
 
   # Ingredients
-  has_many :dish_ingredients, dependent: :destroy, inverse_of: :dish
-  has_many :ingredients, through: :dish_ingredients
-  accepts_nested_attributes_for :dish_ingredients, allow_destroy: true
+  has_many :ingredients
+  accepts_nested_attributes_for :ingredients, allow_destroy: true
 
   # Badges
   has_many :dish_badges, dependent: :destroy, inverse_of: :dish

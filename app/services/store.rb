@@ -1,7 +1,7 @@
 class Store
   DAYS_BEFORE_ALERT = 3
 
-  attr_reader :now, :today
+  attr_reader :now
 
   def initialize
     @now = Time.zone.now
@@ -9,34 +9,20 @@ class Store
   end
 
   def open?
-    today.present? && working_now?
+    WorkingHour.all.detect { |hour| hour.to_range.include?(@current_minute) }.present?
   end
 
   def opens_at
     return if open?
-    return format_time(next_working_hour) if working_today? && next_working_hour.present?
-    return unless next_working_day.present?
+    return format_time(next_working_hour) if next_working_hour.present?
 
-    next_working_day.to_time.change(
-      hour: earliest_working_hour.hour, min: earliest_working_hour.min)
-  end
-
-  def today
-    @today ||= if working_now? || next_working_hour.present?
-      Day.find_by(date: Time.zone.today)
-    end
-  end
-
-  def menu_filled?
-    tomorrow = Time.zone.today + 1.day
-    date_interval = (tomorrow)..(tomorrow + DAYS_BEFORE_ALERT)
-    Day.where(date: date_interval).count == DAYS_BEFORE_ALERT
+    1.day.from_now.change(hour: earliest_working_hour.hour, min: earliest_working_hour.min)
   end
 
   def welcome_screen_image_url
     welcome_screen = WelcomeScreen.instance
 
-    if working_today? && working_now?
+    if open?
       welcome_screen.image_open_url if welcome_screen.image_open_enabled?
     else
       welcome_screen.image_closed_url if welcome_screen.image_closed_enabled?
@@ -44,18 +30,6 @@ class Store
   end
 
   private
-
-  def working_now?
-    WorkingHour.all.detect { |hour| hour.to_range.include?(@current_minute) }.present?
-  end
-
-  def working_today?
-    today.present?
-  end
-
-  def next_working_day
-    @next_working_day ||= Day.where('date > ?', Time.zone.today).order(date: :asc).first
-  end
 
   def earliest_working_hour
     @earliest_working_hour ||= WorkingHour.order(starts_at: :asc).first

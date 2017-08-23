@@ -1,5 +1,4 @@
 class PaymentsController < ApplicationController
-  skip_before_action :restrict_access, only: [:status, :sakses, :feylur]
   before_action :set_order, only: [:create]
   before_action :set_payment, only: [:status]
 
@@ -21,16 +20,16 @@ class PaymentsController < ApplicationController
     @payment.check_status(use_binding: @payment.use_binding?) unless @payment.paid?
 
     if @payment.paid?
-      redirect_to sakses_payments_path
+      redirect_to success_payments_path
     else
-      redirect_to feylur_payments_path
+      redirect_to failure_payments_path
     end
   end
 
-  def sakses
+  def success
   end
 
-  def feylur
+  def failure
   end
 
   private
